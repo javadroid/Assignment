@@ -83,8 +83,33 @@ const SignUp: React.FC = () => {
           <input
             type="text"
             id="lname"
-            className="w-[17rem] my-4 h-[2.5rem] px-1 rounded-[0.7rem]"
+            className="border-black w-[17rem] my-4 h-[2.5rem] px-1 border-2 rounded-[0.7rem]"
           />
+          <label htmlFor="PhoneNo">Phone No:</label>
+          <input
+            type="tel"
+            id="phoneNo"
+            className="border-black w-[17rem] my-4 h-[2.5rem] px-1 border-2 rounded-[0.7rem]"
+          />
+          <label htmlFor="Faculty">Faculty:</label>
+          <DropDown />
+          <label htmlFor="Role">Role:</label>
+          <DropDown />
+          <label htmlFor="password">Password</label>
+          <div className="flex items-center relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              id="confirmPassword"
+              className="border-black w-[17rem] my-4 h-[2.5rem] px-1 border-2 rounded-[0.7rem]"
+            />
+            <div className="absolute right-2">
+              {showPassword ? (
+                <FaEyeSlash onClick={passwordChange} />
+              ) : (
+                <FaEye onClick={passwordChange} />
+              )}
+            </div>
+          </div>
         </div>
       </form>
     </div>
