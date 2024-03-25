@@ -22,7 +22,7 @@ const ForgetPassword = () => {
         <div className="image basis-1/3"></div>
         <div className="basis-2/3 flex flex-col pt-28 px-24 pb-96">
           <div className="flex flex-row justify-between mb-28 items-center">
-            <Link to={"/signIn"} className="group text-[#a1812e]">
+            <Link to={"/"} className="group text-[#a1812e]">
               <FaArrowLeft className="opacity-70 group-hover:-translate-x-1 transition" />
             </Link>
             <p className="font-medium">
@@ -75,10 +75,7 @@ const ForgetPassword = () => {
                 <div className="">
                   <p className="font-medium">
                     Remember your password?{" "}
-                    <Link
-                      to={"/signIn"}
-                      className="font-semibold text-[#a1812e]"
-                    >
+                    <Link to={"/"} className="font-semibold text-[#a1812e]">
                       Sign In!
                     </Link>
                   </p>
