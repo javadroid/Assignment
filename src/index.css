@@ -4,7 +4,8 @@
 @tailwind utilities;
 
 .borderBlack {
-  @apply border-black/10;
+  /* @apply border-black/10; */
+  @apply border-gray-500
 }
 .image {
   background: url("./assets/images/Frame-186.png");

@@ -22,8 +22,8 @@ const ForgetPassword = () => {
         <div className="image basis-1/3"></div>
         <div className="basis-2/3 flex flex-col pt-28 px-24 pb-96">
           <div className="flex flex-row justify-between mb-28 items-center">
-            <Link to={"/signIn"} className="text-[#a1812e]">
-              <FaArrowLeft />
+            <Link to={"/signIn"} className="group text-[#a1812e]">
+              <FaArrowLeft className="opacity-70 group-hover:-translate-x-1 transition" />
             </Link>
             <p className="font-medium">
               Don't have an account?{" "}
@@ -68,7 +68,7 @@ const ForgetPassword = () => {
                     }`}
                     disabled={!isEmailValid(email)} // Disable the button if email is not valid
                   >
-                    <span className="text-base text-white">Proceed</span>
+                    <span className="text-base text-white ">Proceed</span>
                   </button>
                 </div>
 
