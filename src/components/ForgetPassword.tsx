@@ -66,7 +66,9 @@ const ForgetPassword = () => {
                 <div className="mb-16">
                   <button
                     className={`button w-72 flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e] ${
-                      !isEmailValid(email) ? "opacity-50" : ""
+                      !isEmailValid(email)
+                        ? "opacity-50 cursor-not-allowed"
+                        : ""
                     }`}
                     disabled={!isEmailValid(email)} // Disable the button if email is not valid
                   >

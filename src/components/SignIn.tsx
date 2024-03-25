@@ -11,6 +11,9 @@ function SignIn() {
   const userIdRef = useRef(null);
   const passwordRef = useRef(null);
   const [showPassword, setPasswordVisible] = useState(false);
+  const [isUserIdValid, setUserIdValid] = useState(false);
+  const [isPasswordValid, setPasswordValid] = useState(false);
+
   const passwordChange = () => {
     setPasswordVisible(!showPassword);
   };
@@ -19,10 +22,27 @@ function SignIn() {
     window.scrollTo(0, 0); // Scroll to the top when component mounts
   }, []); // Empty dependency array to ensure it only runs once
 
+  const handleUserIdChange = (e: { target: { value: any } }) => {
+    const value = e.target.value;
+    setUserId(value);
+    setUserIdValid(value.trim() !== ""); // Validate if user ID is not empty
+  };
+
+  const handlePasswordChange = (e: { target: { value: any } }) => {
+    const value = e.target.value;
+    setPassword(value);
+    setPasswordValid(value.trim() !== ""); // Validate if password is not empty
+  };
+
+  const isFormValid = isUserIdValid && isPasswordValid;
+
   return (
     <div className="w-full font-pop">
+      {/* Container */}
       <div className="flex flex-row text-gray-900">
+        {/* Side Image */}
         <div className="image basis-1/3"></div>
+        {/* The Signup page */}
         <div className="basis-2/3 flex flex-col pt-28 px-24 pb-96">
           <div className="flex flex-row justify-between mb-28 items-center">
             <Link to={"/"} className="text-[#a1812e]">
@@ -56,7 +76,7 @@ function SignIn() {
                       id="userId"
                       ref={userIdRef}
                       value={userId}
-                      onChange={(e) => setUserId(e.target.value)}
+                      onChange={handleUserIdChange}
                     />
                   </div>
                 </div>
@@ -73,7 +93,7 @@ function SignIn() {
                       className="w-72 my-4 h-10 px-2 rounded-xl pr-10 border-2 border-gray-500 outline-none focus:border-[#a1812e]"
                       ref={passwordRef}
                       value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      onChange={handlePasswordChange}
                     />
                     <div className="absolute inset-y-0 right-[26rem] flex items-center pr-4 focus:right-96">
                       {showPassword ? (
@@ -92,7 +112,12 @@ function SignIn() {
                 </div>
 
                 <div className="mb-16">
-                  <button className="w-72 flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e]">
+                  <button
+                    className={`w-72 flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e] ${
+                      !isFormValid ? "opacity-50 cursor-not-allowed" : ""
+                    }`}
+                    disabled={!isFormValid}
+                  >
                     <span className="text-base text-white">Sign In</span>
                     <GoArrowRight className="ml-2 text-xl text-white" />
                     {/* <FaArrowRightLong /> */}
