@@ -16,7 +16,7 @@ const SignUp: React.FC = () => {
   }, []); // Empty dependency array to ensure it only runs once
 
   return (
-    <div className="my-20 mx-[23rem] font-pop">
+    <div className="my-20 mx-[18rem] font-pop">
       <div className="flex justify-between">
         <div className="block">
           <h1
