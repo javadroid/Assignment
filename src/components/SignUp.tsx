@@ -16,7 +16,7 @@ const SignUp: React.FC = () => {
   }, []); // Empty dependency array to ensure it only runs once
 
   return (
-    <div className="my-20 mx-[20rem] font-pop">
+    <div className="my-20 mx-[23rem] font-pop">
       <div className="flex justify-between">
         <div className="block">
           <h1
@@ -119,7 +119,7 @@ const SignUp: React.FC = () => {
           </div>
         </div>
         <div>
-          <p className="text-center text-wrap mt-10">
+          <p className=" text-wrap w-full mt-10">
             By clicking continue, I agree to{" "}
             <Link className="text-[#a1812e]" to="/">
               Terms of Use
