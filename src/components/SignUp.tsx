@@ -4,6 +4,7 @@ import DropDown from "./DropDown";
 import { FaEyeSlash, FaEye } from "react-icons/fa6";
 import "../index.css";
 import { GoArrowRight } from "react-icons/go";
+import InputField from "./InputField";
 
 const SignUp: React.FC = () => {
   const [showPassword, setPasswordVisible] = useState(false);
@@ -44,12 +45,7 @@ const SignUp: React.FC = () => {
       <form action="" className="flex flex-col mt-8">
         <div className="flex flex-row justify-between">
           <div className="flex flex-col">
-            <label htmlFor="fname">First Name:</label>
-            <input
-              type="text"
-              id="fname"
-              className="borderBlack border-2 w-[17rem] my-4 h-[2.5rem] px-1 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
-            />
+            <InputField labelText="First Name:" id="fname" type="text" />
             <label htmlFor="userID">User ID:</label>
             <input
               type="text"
