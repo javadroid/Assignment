@@ -27,7 +27,7 @@ const ForgetPassword = () => {
             </Link>
             <p className="font-medium">
               Don't have an account?{" "}
-              <Link to={"/"} className="text-[#a1812e] font-semibold">
+              <Link to={"/SignUp"} className="text-[#a1812e] font-semibold">
                 Sign Up
               </Link>
             </p>

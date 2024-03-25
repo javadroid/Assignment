@@ -45,12 +45,12 @@ function SignIn() {
         {/* The Signup page */}
         <div className="basis-2/3 flex flex-col pt-28 px-24 pb-96">
           <div className="flex flex-row justify-between mb-28 items-center">
-            <Link to={"/"} className="group text-[#a1812e]">
+            <Link to="/SignUp" className="group text-[#a1812e]">
               <FaArrowLeft className="opacity-70 group-hover:-translate-x-1 transition" />
             </Link>
             <p className="font-medium">
               Don't have an account?{" "}
-              <Link to={"/"} className="text-[#a1812e] font-semibold">
+              <Link to="/SignUp" className="text-[#a1812e] font-semibold">
                 Sign Up
               </Link>
             </p>

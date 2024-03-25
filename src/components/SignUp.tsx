@@ -35,7 +35,7 @@ const SignUp: React.FC = () => {
           </p>
           <Link
             className="px-2 font-pop text-[#a1812e] font-[600] text-[1rem]"
-            to="/SignIn"
+            to="/"
           >
             Sign In!
           </Link>
