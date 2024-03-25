@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import DropDown from "./DropDown";
 import { FaEyeSlash, FaEye } from "react-icons/fa6";
 import "../index.css";
+import { GoArrowRight } from "react-icons/go";
 
 const SignUp: React.FC = () => {
   const [showPassword, setPasswordVisible] = useState(false);
@@ -15,7 +16,7 @@ const SignUp: React.FC = () => {
   }, []); // Empty dependency array to ensure it only runs once
 
   return (
-    <div className="my-20 mx-[7rem] font-pop">
+    <div className="my-20 mx-[23rem] font-pop">
       <div className="flex justify-between">
         <div className="block">
           <h1
@@ -33,87 +34,106 @@ const SignUp: React.FC = () => {
             Already have an account?
           </p>
           <Link
-            className="px-2 font-pop text-[#a1812e] font-[500] text-[1rem]"
+            className="px-2 font-pop text-[#a1812e] font-[600] text-[1rem]"
             to="/SignIn"
           >
             Sign In!
           </Link>
         </div>
       </div>
-      <form action="" className="flex justify-between mt-8">
-        <div className="flex flex-col">
-          <label htmlFor="fname">First Name:</label>
-          <input
-            type="text"
-            id="fname"
-            className="border-black border-2 w-[17rem] my-4 h-[2.5rem] px-1 rounded-[0.7rem]"
-          />
-          <label htmlFor="userID">User ID:</label>
-          <input
-            type="text"
-            id="userID"
-            className="border-black border-2 w-[17rem] my-4 h-[2.5rem] px-1 rounded-[0.7rem]"
-          />
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            className="border-black border-2 w-[17rem] my-4 h-[2.5rem] px-1 rounded-[0.7rem]"
-          />
-          <label htmlFor="dropDownDept">Department:</label>
-          <DropDown />
-
-          <label htmlFor="dropdownType">Type:</label>
-          <DropDown />
-
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <div className="flex items-center relative">
+      <form action="" className="flex flex-col mt-8">
+        <div className="flex flex-row justify-between">
+          <div className="flex flex-col">
+            <label htmlFor="fname">First Name:</label>
             <input
-              type={showPassword ? "text" : "password"}
-              id="confirmPassword"
-              className="border-black w-[17rem] my-4 h-[2.5rem] px-1 border-2 rounded-[0.7rem]"
+              type="text"
+              id="fname"
+              className="border-black border-2 w-[17rem] my-4 h-[2.5rem] px-1 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
             />
-            <div className="absolute right-2">
-              {showPassword ? (
-                <FaEyeSlash onClick={passwordChange} />
-              ) : (
-                <FaEye onClick={passwordChange} />
-              )}
+            <label htmlFor="userID">User ID:</label>
+            <input
+              type="text"
+              id="userID"
+              className="border-black border-2 w-[17rem] my-4 h-[2.5rem] px-1 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
+            />
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              className="border-black border-2 w-[17rem] my-4 h-[2.5rem] px-1 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
+            />
+            <label htmlFor="dropDownDept">Department:</label>
+            <DropDown />
+
+            <label htmlFor="dropdownType">Type:</label>
+            <DropDown />
+
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <div className="flex items-center relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="confirmPassword"
+                className="border-black w-[17rem] my-4 h-[2.5rem] px-1 border-2 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
+              />
+              <div className="absolute right-2">
+                {showPassword ? (
+                  <FaEyeSlash onClick={passwordChange} />
+                ) : (
+                  <FaEye onClick={passwordChange} />
+                )}
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col">
+            <label htmlFor="lname">Last Name:</label>
+            <input
+              type="text"
+              id="lname"
+              className="border-black w-[17rem] my-4 h-[2.5rem] px-1 border-2 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
+            />
+            <label htmlFor="PhoneNo">Phone No:</label>
+            <input
+              type="tel"
+              id="phoneNo"
+              className="border-black w-[17rem] my-4 h-[2.5rem] px-1 border-2 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
+            />
+            <label htmlFor="Faculty">Faculty:</label>
+            <DropDown />
+            <label htmlFor="Role">Role:</label>
+            <DropDown />
+            <label htmlFor="password">Password</label>
+            <div className="flex items-center relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="confirmPassword"
+                className="border-black w-[17rem] my-4 h-[2.5rem] px-1 border-2 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
+              />
+              <div className="absolute right-2">
+                {showPassword ? (
+                  <FaEyeSlash onClick={passwordChange} />
+                ) : (
+                  <FaEye onClick={passwordChange} />
+                )}
+              </div>
             </div>
           </div>
         </div>
-
-        <div className="flex flex-col">
-          <label htmlFor="lname">Last Name:</label>
-          <input
-            type="text"
-            id="lname"
-            className="border-black w-[17rem] my-4 h-[2.5rem] px-1 border-2 rounded-[0.7rem]"
-          />
-          <label htmlFor="PhoneNo">Phone No:</label>
-          <input
-            type="tel"
-            id="phoneNo"
-            className="border-black w-[17rem] my-4 h-[2.5rem] px-1 border-2 rounded-[0.7rem]"
-          />
-          <label htmlFor="Faculty">Faculty:</label>
-          <DropDown />
-          <label htmlFor="Role">Role:</label>
-          <DropDown />
-          <label htmlFor="password">Password</label>
-          <div className="flex items-center relative">
-            <input
-              type={showPassword ? "text" : "password"}
-              id="confirmPassword"
-              className="border-black w-[17rem] my-4 h-[2.5rem] px-1 border-2 rounded-[0.7rem]"
-            />
-            <div className="absolute right-2">
-              {showPassword ? (
-                <FaEyeSlash onClick={passwordChange} />
-              ) : (
-                <FaEye onClick={passwordChange} />
-              )}
-            </div>
+        <div>
+          <p className=" text-wrap w-full mt-10">
+            By clicking continue, I agree to{" "}
+            <Link className="text-[#a1812e]" to="/">
+              Terms of Use
+            </Link>{" "}
+            and acknoledge that I have read the{" "}
+            <Link className="text-[#a1812e]" to="/">
+              Privacy Policy
+            </Link>
+          </p>
+          <div className=" mt-16 flex justify-center">
+            <button className="w-[50rem] h-[3rem] flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e]">
+              <span className="text-base text-white">Sign In</span>
+              <GoArrowRight className="ml-2 text-xl text-white" />
+            </button>
           </div>
         </div>
       </form>
