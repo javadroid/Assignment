@@ -3,12 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-image {
-  background: url(../assets/images/Frame-186.png);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
 
 .borderBlack{
     @apply  border-black/10

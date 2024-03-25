@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { FaArrowLeft, FaEye, FaEyeSlash } from "react-icons/fa6";
 import { GoArrowRight } from "react-icons/go";
 import { Link } from "react-router-dom";
-import "./style.css";
 
 function SignIn() {
   const [showPassword, setPasswordVisible] = useState(false);
