@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import DropDown from "./DropDown";
 import { FaEyeSlash, FaEye } from "react-icons/fa6";
+import "../index.css";
 
 const SignUp: React.FC = () => {
   const [showPassword, setPasswordVisble] = useState(false);
@@ -9,7 +10,7 @@ const SignUp: React.FC = () => {
     setPasswordVisble(!showPassword);
   };
   return (
-    <div className="my-20 mx-[20rem]">
+    <div className="my-20 mx-[20rem] font-pop">
       <div className="flex justify-between">
         <div className="block">
           <h1
@@ -18,7 +19,7 @@ const SignUp: React.FC = () => {
           >
             Sign Up
           </h1>
-          <p className="font-pop font-medium text-[0.9rem]">
+          <p className="font-medium text-[0.9rem]">
             Fill in your details to sign up
           </p>
         </div>
@@ -40,19 +41,19 @@ const SignUp: React.FC = () => {
           <input
             type="text"
             id="fname"
-            className="w-[17rem] my-4 h-[2.5rem] px-1 rounded-[0.7rem]"
+            className="border-black border-2 w-[17rem] my-4 h-[2.5rem] px-1 rounded-[0.7rem]"
           />
           <label htmlFor="userID">User ID:</label>
           <input
             type="text"
             id="userID"
-            className="w-[17rem] my-4 h-[2.5rem] px-1 rounded-[0.7rem]"
+            className="border-black border-2 w-[17rem] my-4 h-[2.5rem] px-1 rounded-[0.7rem]"
           />
           <label htmlFor="email">Email:</label>
           <input
             type="email"
             id="email"
-            className="w-[17rem] my-4 h-[2.5rem] px-1 rounded-[0.7rem]"
+            className="border-black border-2 w-[17rem] my-4 h-[2.5rem] px-1 rounded-[0.7rem]"
           />
           <label htmlFor="dropDownDept">Department:</label>
           <DropDown />
@@ -65,7 +66,7 @@ const SignUp: React.FC = () => {
             <input
               type={showPassword ? "text" : "password"}
               id="confirmPassword"
-              className="w-[17rem] my-4 h-[2.5rem] px-1 rounded-[0.7rem]"
+              className="border-black w-[17rem] my-4 h-[2.5rem] px-1 border-2 rounded-[0.7rem]"
             />
             <div className="absolute right-2">
               {showPassword ? (
