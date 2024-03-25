@@ -12,8 +12,8 @@ const SignUp: React.FC = () => {
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0); // Scroll to the top when component mounts
-  }, []); // Empty dependency array to ensure it only runs once
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="my-20 mx-[18rem] font-pop">
