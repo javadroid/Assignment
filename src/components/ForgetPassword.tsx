@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const ForgetPassword = () => {
+  const [email, setEmail] = useState("");
+  const emailRef = useRef(null);
+  const navigate = useNavigate();
+
+  const isEmailValid = (email: string) => {
+    // Simple email validation using regular expression
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top when component mounts
+  }, []); // Empty dependency array to ensure it only runs once
+
+  const signIN = () => {
+    navigate("/signIn");
+  };
   return (
     <div className="w-full font-pop">
       <div className="flex flex-row text-gray-900">
@@ -39,12 +56,22 @@ const ForgetPassword = () => {
                     <input
                       type="email"
                       className="w-72 my-4 h-10 px-2 rounded-xl pr-10 border-2 border-gray-500 outline-none focus:w-80 focus:border-[#a1812e]"
+                      ref={emailRef}
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
                 </div>
 
                 <div className="mb-16">
-                  <button className="button w-72 flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e]">
+                  <button
+                    className={`button w-72 flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e] ${
+                      !isEmailValid(email)
+                        ? "opacity-50 cursor-not-allowed"
+                        : ""
+                    }`}
+                    disabled={!isEmailValid(email)} // Disable the button if email is not valid
+                  >
                     <span className="text-base text-white">Proceed</span>
                   </button>
                 </div>
@@ -52,12 +79,12 @@ const ForgetPassword = () => {
                 <div className="">
                   <p className="font-medium">
                     Remember your password?{" "}
-                    <Link
-                      to={"/signIn"}
-                      className="font-semibold text-[#a1812e]"
+                    <span
+                      onClick={signIN}
+                      className="font-semibold text-[#a1812e] cursor-pointer"
                     >
                       Sign In!
-                    </Link>
+                    </span>
                   </p>
                 </div>
               </div>

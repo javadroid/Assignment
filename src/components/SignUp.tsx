@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DropDown from "./DropDown";
 import { FaEyeSlash, FaEye } from "react-icons/fa6";
@@ -6,10 +6,15 @@ import "../index.css";
 import { GoArrowRight } from "react-icons/go";
 
 const SignUp: React.FC = () => {
-  const [showPassword, setPasswordVisble] = useState(false);
+  const [showPassword, setPasswordVisible] = useState(false);
   const passwordChange = () => {
-    setPasswordVisble(!showPassword);
+    setPasswordVisible(!showPassword);
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top when component mounts
+  }, []); // Empty dependency array to ensure it only runs once
+
   return (
     <div className="my-20 mx-[20rem] font-pop">
       <div className="flex justify-between">
