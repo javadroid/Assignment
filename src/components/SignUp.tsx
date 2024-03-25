@@ -10,7 +10,7 @@ const SignUp: React.FC = () => {
     setPasswordVisble(!showPassword);
   };
   return (
-    <div className="my-20 mx-[20rem] font-pop">
+    <div className="my-20 mx-[7rem] font-pop">
       <div className="flex justify-between">
         <div className="block">
           <h1
