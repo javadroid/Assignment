@@ -1,7 +1,18 @@
-import "./App.css";
+import SignUp from "./components/SignUp";
+import SignIn from "./components/SignIn";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import ForgetPassword from "./components/ForgetPassword";
 
-const App = () => {
-  return <div className="App"></div>;
+const App: React.FC = () => {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<SignUp />}></Route>
+        <Route path="/signIn" element={<SignIn />}></Route>
+        <Route path="/forget" element={<ForgetPassword />}></Route>
+      </Routes>
+    </Router>
+  );
 };
 
 export default App;

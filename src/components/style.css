@@ -1,0 +1,21 @@
+.image {
+  background: url(../assets/images/Frame-186.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.button {
+  background-color: #a1812e;
+  color: #ffffff;
+}
+
+.color {
+  color: #a1812e;
+}
+
+.focus:focus {
+  border-color: #a1812e;
+  outline: none;
+  border-width: 2px;
+}
