@@ -1,17 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import DropDown from "./DropDown";
-import { FaEyeSlash, FaEye } from "react-icons/fa6";
 import "../index.css";
 import { GoArrowRight } from "react-icons/go";
 import InputField from "./InputField";
+import ShowPassword from "./ShowPassword";
 
 const SignUp: React.FC = () => {
-  const [showPassword, setPasswordVisible] = useState(false);
-  const passwordChange = () => {
-    setPasswordVisible(!showPassword);
-  };
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -46,72 +41,20 @@ const SignUp: React.FC = () => {
         <div className="flex flex-row justify-between">
           <div className="flex flex-col">
             <InputField labelText="First Name:" id="fname" type="text" />
-            <label htmlFor="userID">User ID:</label>
-            <input
-              type="text"
-              id="userID"
-              className="borderBlack border-2 w-[17rem] my-4 h-[2.5rem] px-1 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
-            />
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              className="borderBlack border-2 w-[17rem] my-4 h-[2.5rem] px-1 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
-            />
+            <InputField labelText="User ID:" id="userId" type="text" />
+            <InputField labelText="Email:" id="email" type="email" />
             <label htmlFor="dropDownDept">Department:</label>
             <DropDown />
-
             <label htmlFor="dropdownType">Type:</label>
             <DropDown />
-
-            <label htmlFor="confirmPassword">Confirm Password</label>
-            <div className="flex items-center relative">
-              <input
-                type={showPassword ? "text" : "password"}
-                id="confirmPassword"
-                className="borderBlack w-[17rem] my-4 h-[2.5rem] px-1 border-2 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
-              />
-              <div className="absolute right-2">
-                {showPassword ? (
-                  <FaEyeSlash onClick={passwordChange} />
-                ) : (
-                  <FaEye onClick={passwordChange} />
-                )}
-              </div>
-            </div>
           </div>
           <div className="flex flex-col">
-            <label htmlFor="lname">Last Name:</label>
-            <input
-              type="text"
-              id="lname"
-              className="borderBlack w-[17rem] my-4 h-[2.5rem] px-1 border-2 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
-            />
-            <label htmlFor="PhoneNo">Phone No:</label>
-            <input
-              type="tel"
-              id="phoneNo"
-              className="borderBlack w-[17rem] my-4 h-[2.5rem] px-1 border-2 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
-            />
+            <InputField labelText="Last Name:" id="lname" type="text" />
+            <InputField labelText="Phone No:" id="tel" type="tel" />
             <label htmlFor="Faculty">Faculty:</label>
             <DropDown />
-            <label htmlFor="Role">Role:</label>
-            <DropDown />
-            <label htmlFor="password">Password</label>
-            <div className="flex items-center relative">
-              <input
-                type={showPassword ? "text" : "password"}
-                id="confirmPassword"
-                className="borderBlack w-[17rem] my-4 h-[2.5rem] px-1 border-2 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
-              />
-              <div className="absolute right-2">
-                {showPassword ? (
-                  <FaEyeSlash onClick={passwordChange} />
-                ) : (
-                  <FaEye onClick={passwordChange} />
-                )}
-              </div>
-            </div>
+            <ShowPassword labelText="Confirm Password:" id="confirmPassword" />
+            <ShowPassword labelText="Password:" id="password" />
           </div>
         </div>
         <div>
