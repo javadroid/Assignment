@@ -44,7 +44,7 @@ function SignIn() {
                   <div className="">
                     <input
                       type="text"
-                      className="w-72 my-4 h-10 px-2 rounded-xl pr-10 border-2 border-gray-500 focus:border-[#a1812e]"
+                      className="w-72 my-4 h-10 px-2 rounded-xl pr-10 border-2 border-gray-500 outline-none focus:border-[#a1812e]"
                     />
                   </div>
                 </div>
@@ -58,7 +58,7 @@ function SignIn() {
                   <div className="relative">
                     <input
                       type={showPassword ? "text" : "password"}
-                      className="w-72 my-4 h-10 px-2 rounded-xl pr-10 border-2 border-gray-500 focus:border-[#a1812e]"
+                      className="w-72 my-4 h-10 px-2 rounded-xl pr-10 border-2 border-gray-500 outline-none focus:border-[#a1812e]"
                     />
                     <div className="absolute inset-y-0 right-[26rem] flex items-center pr-4 focus:right-96">
                       {showPassword ? (
