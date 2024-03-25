@@ -6,24 +6,24 @@ import { GoArrowRight } from "react-icons/go";
 import { Link } from "react-router-dom";
 import "./style.css";
 
-function signIn() {
+function SignIn() {
   const [showPassword, setPasswordVisible] = useState(false);
   const passwordChange = () => {
     setPasswordVisible(!showPassword);
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full font-pop">
       <div className="flex flex-row text-gray-900">
         <div className="image basis-1/3"></div>
         <div className="basis-2/3 flex flex-col pt-28 px-24 pb-96">
           <div className="flex flex-row justify-between mb-28 items-center">
-            <Link to={"/"} className="color">
+            <Link to={"/"} className="text-[#a1812e]">
               <FaArrowLeft />
             </Link>
             <p className="font-medium">
               Don't have an account?{" "}
-              <Link to={"/"} className="color font-semibold">
+              <Link to={"/"} className="text-[#a1812e] font-semibold">
                 Sign Up
               </Link>
             </p>
@@ -45,7 +45,7 @@ function signIn() {
                   <div className="">
                     <input
                       type="text"
-                      className="w-72 my-4 h-10 px-2 rounded-xl pr-10 focus:w-80 focus"
+                      className="w-72 my-4 h-10 px-2 rounded-xl pr-10 border-2 border-gray-500 focus:border-[#a1812e]"
                     />
                   </div>
                 </div>
@@ -59,9 +59,9 @@ function signIn() {
                   <div className="relative">
                     <input
                       type={showPassword ? "text" : "password"}
-                      className="w-72 my-4 h-10 px-2 rounded-xl pr-10 focus:w-80 focus"
+                      className="w-72 my-4 h-10 px-2 rounded-xl pr-10 border-2 border-gray-500 focus:border-[#a1812e]"
                     />
-                    <div className="absolute inset-y-0 right-0 flex items-center pr-2">
+                    <div className="absolute inset-y-0 right-[26rem] flex items-center pr-4 focus:right-96">
                       {showPassword ? (
                         <FaEyeSlash
                           onClick={passwordChange}
@@ -79,8 +79,8 @@ function signIn() {
 
                 <div className="mb-16">
                   <button className="w-72 flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e]">
-                    <span className="text-base">Sign In</span>
-                    <GoArrowRight className="ml-2 text-xl" />
+                    <span className="text-base text-white">Sign In</span>
+                    <GoArrowRight className="ml-2 text-xl text-white" />
                     {/* <FaArrowRightLong /> */}
                   </button>
                 </div>
@@ -88,7 +88,10 @@ function signIn() {
                 <div className="">
                   <p className="font-medium">
                     Forget your password?{" "}
-                    <Link to={"/forget"} className="color font-semibold">
+                    <Link
+                      to={"/forget"}
+                      className="text-[#a1812e] font-semibold"
+                    >
                       Reset Now!
                     </Link>
                   </p>
@@ -102,4 +105,4 @@ function signIn() {
   );
 }
 
-export default signIn;
+export default SignIn;
