@@ -1,15 +1,23 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaArrowLeft, FaEye, FaEyeSlash } from "react-icons/fa6";
 import { GoArrowRight } from "react-icons/go";
 import { Link } from "react-router-dom";
 
 function SignIn() {
+  const [userId, setUserId] = useState("");
+  const [password, setPassword] = useState("");
+  const userIdRef = useRef(null);
+  const passwordRef = useRef(null);
   const [showPassword, setPasswordVisible] = useState(false);
   const passwordChange = () => {
     setPasswordVisible(!showPassword);
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top when component mounts
+  }, []); // Empty dependency array to ensure it only runs once
 
   return (
     <div className="w-full font-pop">
@@ -45,6 +53,10 @@ function SignIn() {
                     <input
                       type="text"
                       className="w-72 my-4 h-10 px-2 rounded-xl pr-10 border-2 border-gray-500 outline-none focus:border-[#a1812e]"
+                      id="userId"
+                      ref={userIdRef}
+                      value={userId}
+                      onChange={(e) => setUserId(e.target.value)}
                     />
                   </div>
                 </div>
@@ -59,6 +71,9 @@ function SignIn() {
                     <input
                       type={showPassword ? "text" : "password"}
                       className="w-72 my-4 h-10 px-2 rounded-xl pr-10 border-2 border-gray-500 outline-none focus:border-[#a1812e]"
+                      ref={passwordRef}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                     <div className="absolute inset-y-0 right-[26rem] flex items-center pr-4 focus:right-96">
                       {showPassword ? (
