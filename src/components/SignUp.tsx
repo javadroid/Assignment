@@ -7,12 +7,12 @@ import InputField from "./InputField";
 import ShowPassword from "./ShowPassword";
 
 const SignUp: React.FC = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
 
   return (
-    <div className="my-20 mx-[18rem] font-pop">
+    <div className="my-9  mx-[19rem] font-pop overflow-hidden">
       <div className="flex justify-between">
         <div className="block">
           <h1
@@ -53,12 +53,12 @@ const SignUp: React.FC = () => {
             <InputField labelText="Phone No:" id="tel" type="tel" />
             <label htmlFor="Faculty">Faculty:</label>
             <DropDown />
-            <ShowPassword labelText="Confirm Password:" id="confirmPassword" />
-            <ShowPassword labelText="Password:" id="password" />
+            <ShowPassword labelText="Password:" id="confirmPassword" />
+            <ShowPassword labelText="Confirm Password:" id="password" />
           </div>
         </div>
         <div>
-          <p className=" text-wrap w-full mt-10">
+          <p className=" text-wrap w-full mt-2">
             By clicking continue, I agree to{" "}
             <Link className="text-[#a1812e]" to="/">
               Terms of Use
@@ -68,7 +68,7 @@ const SignUp: React.FC = () => {
               Privacy Policy
             </Link>
           </p>
-          <div className=" mt-16 flex justify-center">
+          <div className="mt-3 flex justify-center">
             <button className="group w-[50rem] h-[3rem] flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e]">
               <span className="text-base text-white">Sign In</span>
               <GoArrowRight className="ml-2 text-xl text-white opacity-70 group-hover:translate-x-1 transition" />

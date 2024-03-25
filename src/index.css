@@ -13,3 +13,9 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+html body{
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
