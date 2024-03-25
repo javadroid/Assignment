@@ -21,11 +21,11 @@ const SignUp: React.FC = () => {
         <div className="block">
           <h1
             style={{ fontFamily: "Poppins" }}
-            className="font-semibold text-black text-3xl mb-3"
+            className="font-semibold text-black text-5xl mb-3"
           >
             Sign Up
           </h1>
-          <p className="font-medium text-[0.9rem]">
+          <p className="font-medium text-[1rem]">
             Fill in your details to sign up
           </p>
         </div>
