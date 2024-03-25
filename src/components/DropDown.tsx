@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../index.css";
 
 function DropDown() {
   const [selectOption, setSelectOption] = useState("");
@@ -13,7 +14,7 @@ function DropDown() {
         id="dropDown"
         value={selectOption}
         onChange={handleChange}
-        className="w-[17rem] my-4 h-[2.5rem] px-1 rounded-[0.7rem] border-solid border-2 border-[#000000]"
+        className="border-black border-2 w-[17rem] my-4 h-[2.5rem] px-1 rounded-[0.7rem] border-solid"
       >
         <option value="">Select...</option>
         <option value="option1">Option 1</option>
