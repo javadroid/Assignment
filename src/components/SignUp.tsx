@@ -35,7 +35,7 @@ const SignUp: React.FC = () => {
           </p>
           <Link
             className="px-2 font-pop text-[#a1812e] font-[600] text-[1rem]"
-            to="/SignIn"
+            to="/"
           >
             Sign In!
           </Link>
@@ -48,19 +48,19 @@ const SignUp: React.FC = () => {
             <input
               type="text"
               id="fname"
-              className="border-black border-2 w-[17rem] my-4 h-[2.5rem] px-1 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
+              className="borderBlack border-2 w-[17rem] my-4 h-[2.5rem] px-1 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
             />
             <label htmlFor="userID">User ID:</label>
             <input
               type="text"
               id="userID"
-              className="border-black border-2 w-[17rem] my-4 h-[2.5rem] px-1 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
+              className="borderBlack border-2 w-[17rem] my-4 h-[2.5rem] px-1 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
             />
             <label htmlFor="email">Email:</label>
             <input
               type="email"
               id="email"
-              className="border-black border-2 w-[17rem] my-4 h-[2.5rem] px-1 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
+              className="borderBlack border-2 w-[17rem] my-4 h-[2.5rem] px-1 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
             />
             <label htmlFor="dropDownDept">Department:</label>
             <DropDown />
@@ -73,7 +73,7 @@ const SignUp: React.FC = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 id="confirmPassword"
-                className="border-black w-[17rem] my-4 h-[2.5rem] px-1 border-2 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
+                className="borderBlack w-[17rem] my-4 h-[2.5rem] px-1 border-2 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
               />
               <div className="absolute right-2">
                 {showPassword ? (
@@ -89,13 +89,13 @@ const SignUp: React.FC = () => {
             <input
               type="text"
               id="lname"
-              className="border-black w-[17rem] my-4 h-[2.5rem] px-1 border-2 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
+              className="borderBlack w-[17rem] my-4 h-[2.5rem] px-1 border-2 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
             />
             <label htmlFor="PhoneNo">Phone No:</label>
             <input
               type="tel"
               id="phoneNo"
-              className="border-black w-[17rem] my-4 h-[2.5rem] px-1 border-2 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
+              className="borderBlack w-[17rem] my-4 h-[2.5rem] px-1 border-2 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
             />
             <label htmlFor="Faculty">Faculty:</label>
             <DropDown />
@@ -106,7 +106,7 @@ const SignUp: React.FC = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 id="confirmPassword"
-                className="border-black w-[17rem] my-4 h-[2.5rem] px-1 border-2 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
+                className="borderBlack w-[17rem] my-4 h-[2.5rem] px-1 border-2 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
               />
               <div className="absolute right-2">
                 {showPassword ? (
@@ -130,9 +130,9 @@ const SignUp: React.FC = () => {
             </Link>
           </p>
           <div className=" mt-16 flex justify-center">
-            <button className="w-[50rem] h-[3rem] flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e]">
+            <button className="group w-[50rem] h-[3rem] flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e]">
               <span className="text-base text-white">Sign In</span>
-              <GoArrowRight className="ml-2 text-xl text-white" />
+              <GoArrowRight className="ml-2 text-xl text-white opacity-70 group-hover:translate-x-1 transition" />
             </button>
           </div>
         </div>

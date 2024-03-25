@@ -45,12 +45,12 @@ function SignIn() {
         {/* The Signup page */}
         <div className="basis-2/3 flex flex-col pt-28 px-24 pb-96">
           <div className="flex flex-row justify-between mb-28 items-center">
-            <Link to={"/"} className="text-[#a1812e]">
-              <FaArrowLeft />
+            <Link to="/SignUp" className="group text-[#a1812e]">
+              <FaArrowLeft className="opacity-70 group-hover:-translate-x-1 transition" />
             </Link>
             <p className="font-medium">
               Don't have an account?{" "}
-              <Link to={"/"} className="text-[#a1812e] font-semibold">
+              <Link to="/SignUp" className="text-[#a1812e] font-semibold">
                 Sign Up
               </Link>
             </p>
@@ -113,13 +113,13 @@ function SignIn() {
 
                 <div className="mb-16">
                   <button
-                    className={`w-72 flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e] ${
+                    className={`group w-72 flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e] ${
                       !isFormValid ? "opacity-50 cursor-not-allowed" : ""
                     }`}
                     disabled={!isFormValid}
                   >
                     <span className="text-base text-white">Sign In</span>
-                    <GoArrowRight className="ml-2 text-xl text-white" />
+                    <GoArrowRight className="ml-2 text-xl text-white opacity-70 group-hover:translate-x-1 transition" />
                     {/* <FaArrowRightLong /> */}
                   </button>
                 </div>
