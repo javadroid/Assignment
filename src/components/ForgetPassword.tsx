@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ForgetPassword = () => {
   const [email, setEmail] = useState("");
   const emailRef = useRef(null);
-  const navigate = useNavigate();
 
   const isEmailValid = (email: string) => {
     // Simple email validation using regular expression
@@ -17,9 +16,6 @@ const ForgetPassword = () => {
     window.scrollTo(0, 0); // Scroll to the top when component mounts
   }, []); // Empty dependency array to ensure it only runs once
 
-  const signIN = () => {
-    navigate("/signIn");
-  };
   return (
     <div className="w-full font-pop">
       <div className="flex flex-row text-gray-900">
@@ -79,12 +75,12 @@ const ForgetPassword = () => {
                 <div className="">
                   <p className="font-medium">
                     Remember your password?{" "}
-                    <span
-                      onClick={signIN}
-                      className="font-semibold text-[#a1812e] cursor-pointer"
+                    <Link
+                      to={"/signIn"}
+                      className="font-semibold text-[#a1812e]"
                     >
                       Sign In!
-                    </span>
+                    </Link>
                   </p>
                 </div>
               </div>
