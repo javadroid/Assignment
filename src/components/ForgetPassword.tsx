@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { FaArrowLeft } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 const ForgetPassword = () => {
@@ -22,9 +21,6 @@ const ForgetPassword = () => {
         <div className="image basis-1/3"></div>
         <div className="basis-2/3 flex flex-col pt-28 px-24 pb-96">
           <div className="flex flex-row justify-between mb-28 items-center">
-            <Link to={"/"} className="group text-[#a1812e]">
-              <FaArrowLeft className="opacity-70 group-hover:-translate-x-1 transition" />
-            </Link>
             <p className="font-medium">
               Don't have an account?{" "}
               <Link to={"/SignUp"} className="text-[#a1812e] font-semibold">

@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useRef, useState } from "react";
-import { FaArrowLeft, FaEye, FaEyeSlash } from "react-icons/fa6";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { GoArrowRight } from "react-icons/go";
 import { Link } from "react-router-dom";
+import Input from "./Input";
 
 function SignIn() {
   const [userId, setUserId] = useState("");
@@ -37,17 +38,14 @@ function SignIn() {
   const isFormValid = isUserIdValid && isPasswordValid;
 
   return (
-    <div className="w-full font-pop">
+    <div className="w-full font-pop h-screen">
       {/* Container */}
       <div className="flex flex-row text-gray-900">
         {/* Side Image */}
-        <div className="image basis-1/3"></div>
+        <div className="image basis-1/2 h-screen"></div>
         {/* The Signup page */}
-        <div className="basis-2/3 flex flex-col pt-28 px-24 pb-96">
-          <div className="flex flex-row justify-between mb-28 items-center">
-            <Link to="/SignUp" className="group text-[#a1812e]">
-              <FaArrowLeft className="opacity-70 group-hover:-translate-x-1 transition" />
-            </Link>
+        <div className="basis-1/2 flex flex-col pt-16 px-16 pb-12">
+          <div className="flex flex-row justify-end mb-10">
             <p className="font-medium">
               Don't have an account?{" "}
               <Link to="/SignUp" className="text-[#a1812e] font-semibold">
@@ -55,35 +53,25 @@ function SignIn() {
               </Link>
             </p>
           </div>
-          <div>
-            <h1 className="font-bold text-gray-700 text-6xl pb-4">Sign In</h1>
-            <p className="text-gray-500 text-base mb-16">
+          <div className="flex flex-col">
+            <h1 className="font-bold text-gray-700 text-5xl pb-4">Sign In</h1>
+            <p className="text-gray-500 text-base mb-10">
               Fill in your details to sign in
             </p>
             <form action="">
               <div>
-                <div className="mb-10">
-                  <label
-                    htmlFor="userId"
-                    className="block text-lg font-medium leading-6 text-gray-500"
-                  >
-                    User ID:
-                  </label>
-                  <div className="">
-                    <input
-                      type="text"
-                      className="w-72 my-4 h-10 px-2 rounded-xl pr-10 border-2 border-gray-500 outline-none focus:border-[#a1812e]"
-                      id="userId"
-                      ref={userIdRef}
-                      value={userId}
-                      onChange={handleUserIdChange}
-                    />
-                  </div>
-                </div>
-                <div className="mb-16">
+                <Input
+                  label="User ID:"
+                  id="userId"
+                  type="text"
+                  value={userId}
+                  onChange={handleUserIdChange}
+                  ref={userIdRef}
+                />
+                <div className="mb-4">
                   <label
                     htmlFor="password"
-                    className="block text-lg font-medium leading-6 text-gray-500"
+                    className="block text-base font-medium leading-6 text-gray-500"
                   >
                     Password:
                   </label>
@@ -95,7 +83,7 @@ function SignIn() {
                       value={password}
                       onChange={handlePasswordChange}
                     />
-                    <div className="absolute inset-y-0 right-[26rem] flex items-center pr-4 focus:right-96">
+                    <div className="absolute inset-y-0 right-48 flex items-center pr-6">
                       {showPassword ? (
                         <FaEyeSlash
                           onClick={passwordChange}
@@ -111,7 +99,7 @@ function SignIn() {
                   </div>
                 </div>
 
-                <div className="mb-16">
+                <div className="mb-10">
                   <button
                     className={`group w-72 flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e] ${
                       !isFormValid ? "opacity-50 cursor-not-allowed" : ""
@@ -125,12 +113,9 @@ function SignIn() {
                 </div>
 
                 <div className="">
-                  <p className="font-medium">
+                  <p className="font-sm font-thin">
                     Forget your password?{" "}
-                    <Link
-                      to={"/forget"}
-                      className="text-[#a1812e] font-semibold"
-                    >
+                    <Link to={"/forget"} className="text-[#a1812e]">
                       Reset Now!
                     </Link>
                   </p>
