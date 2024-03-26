@@ -14,7 +14,8 @@ function DropDown() {
         id="dropDown"
         value={selectOption}
         onChange={handleChange}
-        className="borderBlack w-[17rem] mb-4 h-[2.5rem] px-1 border-2 rounded-[0.7rem] outline-none  focus:border-[#a1812e]
+        className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2  rounded-[0.7rem]
+        outline-none  focus:border-[#a1812e]
         "
       >
         <option value="">Select...</option>

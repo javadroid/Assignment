@@ -13,23 +13,24 @@ const SignUp: React.FC = () => {
 
   return (
     <div
-      className="my-10 md:my-4 md:mx-[2rem] lg:my-9  lg:mx-[10rem]  
-    xl:mx-[21rem] font-pop overflow-hidden"
+      className="font-pop text-[0.5rem] md:my-4 md:mx-[3rem] md:text-[0.8rem]
+       lg:my-[3rem]  lg:mx-[10rem] lg:text-[1rem]  
+    xl:mx-[21rem] xl:h-screen  overflow-hidden"
     >
-      <div className="flex justify-between">
-        <div className="block">
+      <div className="flex justify-between md:mx-[3rem] md:mb-0">
+        <div className="">
           <h1
             style={{ fontFamily: "Poppins" }}
-            className="font-semibold text-black text-5xl mb-3"
+            className="md:text-[2rem] font-semibold text-black text-5xl mb-3"
           >
             Sign Up
           </h1>
-          <caption className="font-medium text-[1rem]">
+          <caption className="flex flex-row font-medium text-[0.8rem]">
             Fill in your details to sign up
           </caption>
         </div>
         <div className="flex">
-          <p className="font-pop font-medium text-[1rem]">
+          <p className="font-pop font-medium text-[0.6rem] md:text-[1rem] ">
             Already have an account?
           </p>
           <Link
@@ -40,7 +41,7 @@ const SignUp: React.FC = () => {
           </Link>
         </div>
       </div>
-      <form action="" className="flex flex-col mt-8">
+      <form action="" className="flex flex-col mt-3 md:mx-[3rem] md:mt-8">
         <div className="flex flex-row justify-between">
           <div className="flex flex-col">
             <InputField labelText="First Name:" id="fname" type="text" />
@@ -61,7 +62,7 @@ const SignUp: React.FC = () => {
           </div>
         </div>
         <div>
-          <p className=" text-wrap w-full mt-2">
+          <p className="lg:text-sm text-wrap w-full mt-2">
             By clicking continue, I agree to{" "}
             <Link className="text-[#a1812e]" to="/">
               Terms of Use
@@ -72,7 +73,7 @@ const SignUp: React.FC = () => {
             </Link>
           </p>
           <div className="mt-3 flex justify-center">
-            <button className="group w-[50rem] h-[3rem] flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e]">
+            <button className="group lg:mt-2 w-[50rem] h-[3rem] flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e]">
               <span className="text-base text-white">Sign In</span>
               <GoArrowRight className="ml-2 text-xl text-white opacity-70 group-hover:translate-x-1 transition" />
             </button>
