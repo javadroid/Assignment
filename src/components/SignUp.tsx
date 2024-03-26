@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import DropDown from "./DropDown";
 import "../index.css";
@@ -12,7 +12,10 @@ const SignUp: React.FC = () => {
   // }, []);
 
   return (
-    <div className="my-9  mx-[19rem] font-pop overflow-hidden">
+    <div
+      className="my-10 md:my-4 md:mx-[2rem] lg:my-9  lg:mx-[10rem]  
+    xl:mx-[21rem] font-pop overflow-hidden"
+    >
       <div className="flex justify-between">
         <div className="block">
           <h1
@@ -21,9 +24,9 @@ const SignUp: React.FC = () => {
           >
             Sign Up
           </h1>
-          <p className="font-medium text-[1rem]">
+          <caption className="font-medium text-[1rem]">
             Fill in your details to sign up
-          </p>
+          </caption>
         </div>
         <div className="flex">
           <p className="font-pop font-medium text-[1rem]">
