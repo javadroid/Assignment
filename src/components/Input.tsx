@@ -10,10 +10,10 @@ interface Props {
 
 const Input: React.FC<Props> = ({ label, id, type, value, onChange, ref }) => {
   return (
-    <div className="mb-4">
+    <div className="mb-2">
       <label
         htmlFor={id}
-        className="block text-base font-medium leading-6 text-gray-500"
+        className="block text-lg font-medium leading-6 text-gray-500"
       >
         {label}
       </label>

@@ -2,6 +2,8 @@ import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ForgetPassword from "./components/ForgetPassword";
+import ResetPassword from "./components/ResetPassword";
+import NewPassword from "./components/NewPassword";
 
 const App: React.FC = () => {
   return (
@@ -10,6 +12,8 @@ const App: React.FC = () => {
         <Route path="/" element={<SignIn />}></Route>
         <Route path="/SignUp" element={<SignUp />}></Route>
         <Route path="/forget" element={<ForgetPassword />}></Route>
+        <Route path="/reset" element={<ResetPassword />}></Route>
+        <Route path="/newpassword" element={<NewPassword />}></Route>
       </Routes>
     </Router>
   );
