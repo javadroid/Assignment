@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import Input from "./Input";
 import Button from "./Button";
+import Password from "./Password";
 
-const ForgetPassword = () => {
-  const [email, setEmail] = useState("");
-  const emailRef = useRef(null);
+const NewPassword = () => {
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const passwordRef = useRef(null);
+  const confirmPasswordRef = useRef(null);
 
   useEffect(() => {
     window.scrollTo(0, 0); // Scroll to the top when component mounts
@@ -26,35 +28,31 @@ const ForgetPassword = () => {
           </div>
           <div>
             <h1 className="font-bold text-gray-700 text-4xl pb-4">
-              Reset Password
+              Enter New Password
             </h1>
             <p className="text-gray-500 text-base mb-10 w-2/3">
-              Input your email address to retrieve your password
+              Enter a new password to continue
             </p>
             <form action="">
               <div>
                 <div className="mb-10">
-                  <Input
-                    label="Email:"
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    ref={emailRef}
+                  <Password
+                    label="Password:"
+                    id="password"
+                    value={password}
+                    ref={passwordRef}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <Password
+                    label="Confirm Password:"
+                    id="confirmPassword"
+                    value={confirmPassword}
+                    ref={confirmPasswordRef}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                   />
                 </div>
-
-                <div className="mb-10">
+                <div>
                   <Button label="Proceed" type="button" arrow={false} />
-                </div>
-
-                <div className="">
-                  <p className="text-base font-light">
-                    Remember your password?{" "}
-                    <Link to={"/"} className="text-[#a1812e]">
-                      Sign In!
-                    </Link>
-                  </p>
                 </div>
               </div>
             </form>
@@ -65,4 +63,4 @@ const ForgetPassword = () => {
   );
 };
 
-export default ForgetPassword;
+export default NewPassword;
