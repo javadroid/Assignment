@@ -13,9 +13,9 @@ const SignUp: React.FC = () => {
 
   return (
     <div
-      className="font-pop text-[0.5rem] md:my-4 md:mx-[3rem] md:text-[0.8rem]
-       lg:my-[3rem]  lg:mx-[10rem] lg:text-[1rem]  
-    xl:mx-[21rem] xl:h-screen  overflow-hidden"
+      className="font-pop md:my-2 md:mx-[3rem] md:text-[0.8rem] sm:h-screen
+       lg:my-[4rem]  lg:mx-[10rem] lg:text-[1rem]  
+    xl:mx-[21rem] 2xl:mx-[55rem] 2xl:my-[10rem] overflow-hidden"
     >
       <div className="flex justify-between md:mx-[3rem] md:mb-0">
         <div className="">

@@ -13,7 +13,7 @@ const InputField: React.FC<Props> = ({ labelText, id, type }) => {
       <input
         type={type}
         id={id}
-        className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2  rounded-[0.7rem]
+        className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
          outline-none  focus:border-[#a1812e]"
       />
     </div>
