@@ -31,7 +31,13 @@ const ForgetPassword = () => {
             <form action="">
               <div>
                 <div className="mb-10">
-                  <InputField labelText="Email" id="email" type="email" />
+                  <InputField
+                    labelText="Email"
+                    id="email"
+                    type="email"
+                    divClassName=""
+                    className=""
+                  />
                 </div>
 
                 <div className="mb-10">

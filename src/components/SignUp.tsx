@@ -48,6 +48,7 @@ const SignUp: React.FC = () => {
               labelText="First Name:"
               id="fname"
               type="text"
+              divClassName=""
               className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
          outline-none  focus:border-[#a1812e]"
             />
@@ -55,6 +56,7 @@ const SignUp: React.FC = () => {
               labelText="User ID:"
               id="userId"
               type="text"
+              divClassName=""
               className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
          outline-none  focus:border-[#a1812e]"
             />
@@ -62,6 +64,7 @@ const SignUp: React.FC = () => {
               labelText="Email:"
               id="email"
               type="email"
+              divClassName=""
               className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
          outline-none  focus:border-[#a1812e]"
             />
@@ -75,13 +78,14 @@ const SignUp: React.FC = () => {
               labelText="Last Name:"
               id="lname"
               type="text"
-              className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
-         outline-none  focus:border-[#a1812e]"
+              divClassName=""
+              className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
             />
             <InputField
               labelText="Phone No:"
               id="tel"
               type="tel"
+              divClassName=""
               className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
          outline-none  focus:border-[#a1812e]"
             />
@@ -90,14 +94,14 @@ const SignUp: React.FC = () => {
             <ShowPassword
               labelText="Password:"
               id="confirmPassword"
-              icon={false}
-              style=""
+              className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2  rounded-[0.7rem]
+          outline-none  focus:border-[#a1812e]"
             />
             <ShowPassword
               labelText="Confirm Password:"
               id="password"
-              icon={false}
-              style=""
+              className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2  rounded-[0.7rem]
+          outline-none  focus:border-[#a1812e]"
             />
           </div>
         </div>

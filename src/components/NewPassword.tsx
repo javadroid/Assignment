@@ -34,14 +34,12 @@ const NewPassword = () => {
                   <ShowPassword
                     labelText="New Password:"
                     id="password"
-                    icon={false}
-                    style=""
+                    className=""
                   />
                   <ShowPassword
                     labelText="Confirm Password:"
                     id="confirmPassword"
-                    icon={false}
-                    style=""
+                    className=""
                   />
                 </div>
                 <div>

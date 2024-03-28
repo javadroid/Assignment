@@ -35,12 +35,17 @@ function SignIn() {
             <form action="">
               <div className="pt-5">
                 <div className="mb-10">
-                  <InputField labelText="UserId:" id="userId" type="text" />
+                  <InputField
+                    labelText="UserId:"
+                    id="userId"
+                    type="text"
+                    divClassName=""
+                    className=""
+                  />
                   <ShowPassword
                     labelText="Password:"
                     id="password"
-                    icon={false}
-                    style="right-58"
+                    className=""
                   />
                 </div>
 

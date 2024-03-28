@@ -3,11 +3,10 @@ import { FaEye, FaEyeSlash } from "react-icons/fa6";
 interface Props {
   labelText: string;
   id: string;
-  icon: boolean;
-  style: string;
+  className: string;
 }
 
-const ShowPassword: React.FC<Props> = ({ labelText, id, icon, style }) => {
+const ShowPassword: React.FC<Props> = ({ labelText, id, className }) => {
   const [showPassword, setPasswordVisible] = useState(false);
   const passwordChange = () => {
     setPasswordVisible(!showPassword);
@@ -19,10 +18,9 @@ const ShowPassword: React.FC<Props> = ({ labelText, id, icon, style }) => {
         <input
           type={showPassword ? "text" : "password"}
           id={id}
-          className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2  rounded-[0.7rem]
-          outline-none  focus:border-[#a1812e]"
+          className={className}
         />
-        <div className={`absolute top-3 ${!icon} ? right-2 : ${style} `}>
+        <div className="absolute top-3 right-2">
           {showPassword ? (
             <FaEyeSlash onClick={passwordChange} />
           ) : (
