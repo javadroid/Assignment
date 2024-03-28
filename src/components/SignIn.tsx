@@ -12,26 +12,24 @@ function SignIn() {
   }, []); // Empty dependency array to ensure it only runs once
 
   return (
-    <div className="component">
+    <div className="font-pop h-screen w-screen text-base border-gray-500">
       {/* Container */}
       <div className="flex flex-row text-gray-900">
         {/* Side Image */}
         <div className="image basis-1/2 h-screen"></div>
         {/* The Signup page */}
-        <div className="basis-1/2 w-full flex flex-col px-10 py-16">
+        <div className="basis-1/2 w-full flex flex-col px-20 py-16">
           <div className="flex justify-end">
-            <caption className="text-gray-500 flex">
+            <p className="">
               Don't have an account?{" "}
               <Link to="/SignUp" className="text-[#a1812e]">
-                Sign Up
+                Sign Up!
               </Link>
-            </caption>
+            </p>
           </div>
           <div className="pt-20 flex flex-col">
             <h1 className="pb-2 font-bold text-gray-700 text-4xl">Sign In</h1>
-            <caption className="text-gray-500 flex">
-              Fill in your details to sign in
-            </caption>
+            <caption className="flex">Fill in your details to sign in</caption>
             <form action="">
               <div className="pt-5">
                 <div className="mb-10">
@@ -39,27 +37,31 @@ function SignIn() {
                     labelText="UserId:"
                     id="userId"
                     type="text"
-                    divClassName=""
-                    className=""
+                    divClassName="my-4"
+                    className="w-full my-1 px-3 py-1 rounded-xl pr-8 border-2 border-gray-500 outline-none focus:border-[#a1812e]"
                   />
                   <ShowPassword
                     labelText="Password:"
                     id="password"
-                    className=""
+                    className="w-full my-1 px-3 py-1 rounded-xl pr-8 border-2 border-gray-500 outline-none focus:border-[#a1812e]"
                   />
                 </div>
 
                 <div className="mb-6">
-                  <Button label="Sign In" type="group" arrow={true} />
+                  <Button
+                    label="Sign In"
+                    className="group w-full flex flex-row justify-center items-center px-8 py-2.5 rounded-xl bg-[#a1812e]"
+                    arrow={true}
+                  />
                 </div>
 
                 <div className="pt-4">
-                  <caption className=" text-gray-500 flex">
+                  <p className="">
                     Forget your password?{" "}
                     <Link to={"/forget"} className="text-[#a1812e]">
                       Reset Now!
                     </Link>
-                  </caption>
+                  </p>
                 </div>
               </div>
             </form>

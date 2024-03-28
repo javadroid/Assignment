@@ -19,28 +19,3 @@ html body {
   margin: 0;
   padding: 0;
 }
-
-.component {
-  @apply w-screen;
-  @apply font-pop;
-  @apply h-screen;
-}
-
-.inputDiv {
-  @apply mb-2;
-  @apply lg:mb-8;
-  @apply xl:mb-12;
-}
-
-.mobileResponsiveness{
-  
-}
-.tableResponsiveness{
-  @apply md:my-2 md:mx-[3rem] md:text-[0.8rem]
-}
-.desktopResponsiveness{
-  @apply lg:my-[4rem]  lg:mx-[10rem] lg:text-[1rem]
-}
-.largeScreenResponsiveness{
-  @apply xl:mx-[21rem] 2xl:mx-[55rem] 2xl:my-[10rem]
-}

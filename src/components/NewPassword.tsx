@@ -9,10 +9,10 @@ const NewPassword = () => {
   }, []); // Empty dependency array to ensure it only runs once
 
   return (
-    <div className="w-screen font-pop h-screen">
+    <div className="font-pop h-screen w-screen text-base border-gray-500">
       <div className="flex flex-row text-gray-900">
         <div className="image basis-1/2 h-screen"></div>
-        <div className="basis-1/2 flex flex-col pt-16 px-16 pb-12">
+        <div className="basis-1/2 w-full flex flex-col px-20 py-16">
           <div className="flex flex-row justify-end mb-16">
             <p className="font-medium">
               Don't have an account?{" "}
@@ -34,16 +34,20 @@ const NewPassword = () => {
                   <ShowPassword
                     labelText="New Password:"
                     id="password"
-                    className=""
+                    className="w-full my-1 px-3 py-1 rounded-xl pr-8 border-2 border-gray-500 outline-none focus:border-[#a1812e]"
                   />
                   <ShowPassword
                     labelText="Confirm Password:"
                     id="confirmPassword"
-                    className=""
+                    className="w-full my-1 px-3 py-1 rounded-xl pr-8 border-2 border-gray-500 outline-none focus:border-[#a1812e]"
                   />
                 </div>
                 <div>
-                  <Button label="Proceed" type="button" arrow={false} />
+                  <Button
+                    label="Proceed"
+                    className="button w-full flex flex-row justify-center items-center px-8 py-2.5 rounded-xl bg-[#a1812e]"
+                    arrow={false}
+                  />
                 </div>
               </div>
             </form>

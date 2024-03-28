@@ -20,7 +20,8 @@ const ShowPassword: React.FC<Props> = ({ labelText, id, className }) => {
           id={id}
           className={className}
         />
-        <div className="absolute top-3 md:right-3 lg:right-2 xl:right-2">
+        {/* removed top-3 not needed */}
+        <div className="absolute right-3">
           {showPassword ? (
             <FaEyeSlash onClick={passwordChange} />
           ) : (
