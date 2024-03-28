@@ -44,17 +44,47 @@ const SignUp: React.FC = () => {
       <form action="" className="flex flex-col mt-3 md:mx-[3rem] md:mt-8">
         <div className="flex flex-row justify-between">
           <div className="flex flex-col">
-            <InputField labelText="First Name:" id="fname" type="text" />
-            <InputField labelText="User ID:" id="userId" type="text" />
-            <InputField labelText="Email:" id="email" type="email" />
+            <InputField
+              labelText="First Name:"
+              id="fname"
+              type="text"
+              className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
+         outline-none  focus:border-[#a1812e]"
+            />
+            <InputField
+              labelText="User ID:"
+              id="userId"
+              type="text"
+              className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
+         outline-none  focus:border-[#a1812e]"
+            />
+            <InputField
+              labelText="Email:"
+              id="email"
+              type="email"
+              className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
+         outline-none  focus:border-[#a1812e]"
+            />
             <label htmlFor="dropDownDept">Department:</label>
             <DropDown />
             <label htmlFor="dropdownType">Type:</label>
             <DropDown />
           </div>
           <div className="flex flex-col">
-            <InputField labelText="Last Name:" id="lname" type="text" />
-            <InputField labelText="Phone No:" id="tel" type="tel" />
+            <InputField
+              labelText="Last Name:"
+              id="lname"
+              type="text"
+              className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
+         outline-none  focus:border-[#a1812e]"
+            />
+            <InputField
+              labelText="Phone No:"
+              id="tel"
+              type="tel"
+              className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
+         outline-none  focus:border-[#a1812e]"
+            />
             <label htmlFor="Faculty">Faculty:</label>
             <DropDown />
             <ShowPassword
