@@ -12,7 +12,7 @@ const ResetPassword = () => {
   }, []); // Empty dependency array to ensure it only runs once
 
   return (
-    <div className="w-screen font-pop h-screen">
+    <div className="font-pop h-screen w-screen text-base border-gray-500">
       <div className="flex flex-row text-gray-900">
         <div className="image basis-1/2 h-screen"></div>
         <div className="basis-1/2 flex flex-col pt-16 px-16 pb-12">
@@ -85,7 +85,7 @@ const ResetPassword = () => {
                 <div className="pt-4">
                   <Button
                     label="Verify and Proceed"
-                    type="button"
+                    className="button w-sm flex flex-row justify-center items-center px-8 py-2.5 rounded-xl bg-[#a1812e]"
                     arrow={false}
                   />
                 </div>
