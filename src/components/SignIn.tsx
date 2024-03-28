@@ -1,10 +1,8 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
-/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import Button from "./Button";
-import InputField from "./InputField";
-import ShowPassword from "./ShowPassword";
+import Button from "./Reusable-Code/Button";
+import InputField from "./Reusable-Code/InputField";
+import ShowPassword from "./Reusable-Code/ShowPassword";
 
 function SignIn() {
   useEffect(() => {

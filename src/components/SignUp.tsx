@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import DropDown from "./DropDown";
+import DropDown from "./Reusable-Code/DropDown";
 import "../index.css";
 import { GoArrowRight } from "react-icons/go";
-import InputField from "./InputField";
-import ShowPassword from "./ShowPassword";
+import InputField from "./Reusable-Code/InputField";
+import ShowPassword from "./Reusable-Code/ShowPassword";
 
 const SignUp: React.FC = () => {
   return (
