@@ -32,8 +32,8 @@ function SignIn() {
               <div className="pt-5">
                 <div className="mb-10">
                   <InputField
-                    labelText="UserId:"
-                    id="user ID"
+                    labelText="User ID:"
+                    id="userID"
                     type="text"
                     divClassName="my-4"
                     className="w-full my-1 px-3 py-1 rounded-xl pr-8 border-2 border-gray-500 outline-none focus:border-[#a1812e]"
