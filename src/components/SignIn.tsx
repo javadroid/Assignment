@@ -18,14 +18,14 @@ function SignIn() {
         {/* Side Image */}
         <div className="image basis-1/2 h-screen"></div>
         {/* The Signup page */}
-        <div className="basis-1/2 w-full flex flex-col px-20 py-16">
+        <div className="basis-1/2 w-full flex flex-col px-[10rem] py-16">
           <div className="flex justify-end">
-            <p className="">
+            <caption className="pr-0 text-[0.8rem]">
               Don't have an account?{" "}
               <Link to="/SignUp" className="text-[#a1812e]">
                 Sign Up!
               </Link>
-            </p>
+            </caption>
           </div>
           <div className="pt-20 flex flex-col">
             <h1 className="pb-2 font-bold text-gray-700 text-4xl">Sign In</h1>
@@ -35,7 +35,7 @@ function SignIn() {
                 <div className="mb-10">
                   <InputField
                     labelText="UserId:"
-                    id="userId"
+                    id="user ID"
                     type="text"
                     divClassName="my-4"
                     className="w-full my-1 px-3 py-1 rounded-xl pr-8 border-2 border-gray-500 outline-none focus:border-[#a1812e]"
