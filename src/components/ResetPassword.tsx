@@ -1,12 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "./Button";
 import ResetInput from "./ResetInput";
 
 const ResetPassword = () => {
-  const [number, setNumber] = useState("");
-  const numberRef = useRef(null);
-
   useEffect(() => {
     window.scrollTo(0, 0); // Scroll to the top when component mounts
   }, []); // Empty dependency array to ensure it only runs once
@@ -36,42 +33,12 @@ const ResetPassword = () => {
               <div className="pt-6">
                 <div className="w-full flex justify-center">
                   <div className="w-5/6 mb-16 flex flex-row justify-between">
-                    <ResetInput
-                      id="number"
-                      ref={numberRef}
-                      value={number}
-                      onChange={(e) => setNumber(e.target.value)}
-                    />
-                    <ResetInput
-                      id="number"
-                      ref={numberRef}
-                      value={number}
-                      onChange={(e) => setNumber(e.target.value)}
-                    />
-                    <ResetInput
-                      id="number"
-                      ref={numberRef}
-                      value={number}
-                      onChange={(e) => setNumber(e.target.value)}
-                    />
-                    <ResetInput
-                      id="number"
-                      ref={numberRef}
-                      value={number}
-                      onChange={(e) => setNumber(e.target.value)}
-                    />
-                    <ResetInput
-                      id="number"
-                      ref={numberRef}
-                      value={number}
-                      onChange={(e) => setNumber(e.target.value)}
-                    />
-                    <ResetInput
-                      id="number"
-                      ref={numberRef}
-                      value={number}
-                      onChange={(e) => setNumber(e.target.value)}
-                    />
+                    <ResetInput id="number" />
+                    <ResetInput id="number" />
+                    <ResetInput id="number" />
+                    <ResetInput id="number" />
+                    <ResetInput id="number" />
+                    <ResetInput id="number" />
                   </div>
                 </div>
                 <div className="mb-4">
