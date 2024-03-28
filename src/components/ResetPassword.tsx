@@ -12,7 +12,7 @@ const ResetPassword = () => {
     <div className="font-pop h-screen w-screen text-base border-gray-500">
       <div className="flex flex-row text-gray-900">
         <div className="image basis-1/2 h-screen"></div>
-        <div className="basis-1/2 flex flex-col pt-16 px-16 pb-12">
+        <div className="basis-1/2 w-full flex flex-col px-20 py-16">
           <div className="flex flex-row justify-end mb-16">
             <p className="font-medium">
               Don't have an account?{" "}
