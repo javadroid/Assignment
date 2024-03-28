@@ -1,14 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "./Button";
-import Password from "./Password";
+import ShowPassword from "./ShowPassword";
 
 const NewPassword = () => {
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const passwordRef = useRef(null);
-  const confirmPasswordRef = useRef(null);
-
   useEffect(() => {
     window.scrollTo(0, 0); // Scroll to the top when component mounts
   }, []); // Empty dependency array to ensure it only runs once
@@ -36,19 +31,17 @@ const NewPassword = () => {
             <form action="">
               <div>
                 <div className="mb-10">
-                  <Password
-                    label="Password:"
+                  <ShowPassword
+                    labelText="New Password:"
                     id="password"
-                    value={password}
-                    ref={passwordRef}
-                    onChange={(e) => setPassword(e.target.value)}
+                    icon={false}
+                    style=""
                   />
-                  <Password
-                    label="Confirm Password:"
+                  <ShowPassword
+                    labelText="Confirm Password:"
                     id="confirmPassword"
-                    value={confirmPassword}
-                    ref={confirmPasswordRef}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    icon={false}
+                    style=""
                   />
                 </div>
                 <div>

@@ -56,8 +56,18 @@ const SignUp: React.FC = () => {
             <InputField labelText="Phone No:" id="tel" type="tel" />
             <label htmlFor="Faculty">Faculty:</label>
             <DropDown />
-            <ShowPassword labelText="Password:" id="confirmPassword" />
-            <ShowPassword labelText="Confirm Password:" id="password" />
+            <ShowPassword
+              labelText="Password:"
+              id="confirmPassword"
+              icon={false}
+              style=""
+            />
+            <ShowPassword
+              labelText="Confirm Password:"
+              id="password"
+              icon={false}
+              style=""
+            />
           </div>
         </div>
         <div>

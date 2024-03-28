@@ -5,7 +5,7 @@
 
 .borderBlack {
   /* @apply border-black/10; */
-  @apply border-gray-500
+  @apply border-gray-500;
 }
 .image {
   background: url("./assets/images/Frame-186.png");
@@ -14,8 +14,20 @@
   background-repeat: no-repeat;
 }
 
-html body{
+html body {
   overflow: hidden;
   margin: 0;
   padding: 0;
+}
+
+.component {
+  @apply w-screen;
+  @apply font-pop;
+  @apply h-screen;
+}
+
+.inputDiv {
+  @apply mb-2;
+  @apply lg:mb-8;
+  @apply xl:mb-12;
 }

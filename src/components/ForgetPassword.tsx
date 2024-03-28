@@ -1,18 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import Input from "./Input";
 import Button from "./Button";
+import InputField from "./InputField";
 
 const ForgetPassword = () => {
-  const [email, setEmail] = useState("");
-  const emailRef = useRef(null);
-
   useEffect(() => {
     window.scrollTo(0, 0); // Scroll to the top when component mounts
   }, []); // Empty dependency array to ensure it only runs once
 
   return (
-    <div className="w-screen font-pop h-screen">
+    <div className="component">
       <div className="flex flex-row text-gray-900">
         <div className="image basis-1/2 h-screen"></div>
         <div className="basis-1/2 flex flex-col pt-16 px-16 pb-12">
@@ -34,14 +31,7 @@ const ForgetPassword = () => {
             <form action="">
               <div>
                 <div className="mb-10">
-                  <Input
-                    label="Email:"
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    ref={emailRef}
-                  />
+                  <InputField labelText="Email" id="email" type="email" />
                 </div>
 
                 <div className="mb-10">

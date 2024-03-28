@@ -9,7 +9,9 @@ interface Props {
 const InputField: React.FC<Props> = ({ labelText, id, type }) => {
   return (
     <div className="flex flex-col">
-      <label htmlFor={id}>{labelText}</label>
+      <label htmlFor={id} className="text-gray-500">
+        {labelText}
+      </label>
       <input
         type={type}
         id={id}
