@@ -32,6 +32,19 @@ html body {
   @apply xl:mx-[21rem] 2xl:mx-[55rem] 2xl:my-[10rem];
 }
 
-.desktopInputField {
+/*  */
+.component {
+  @apply font-pop h-screen w-screen text-base text-gray-500;
+}
+
+.inputField {
   @apply w-full my-1 px-3 py-1 rounded-xl pr-8 border-2 border-gray-500 outline-none focus:border-[#a1812e];
+}
+
+.resetInput {
+  @apply w-12 text-2xl h-10 p-3 rounded-xl border-2 border-gray-500 outline-none focus:border-[#a1812e];
+}
+
+.btn {
+  @apply w-full flex flex-row justify-center items-center px-8 py-2.5 rounded-xl bg-[#a1812e];
 }

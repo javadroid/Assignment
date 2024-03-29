@@ -9,12 +9,12 @@ const ForgetPassword = () => {
   }, []); // Empty dependency array to ensure it only runs once
 
   return (
-    <div className="font-pop h-screen w-screen text-base border-gray-500">
+    <div className="component">
       <div className="flex flex-row text-gray-900">
         <div className="image basis-1/2 h-screen"></div>
-        <div className="basis-1/2 w-full flex flex-col px-[10rem] py-16">
+        <div className="basis-1/2 w-full flex flex-col px-40 py-16">
           <div className="flex justify-end">
-            <caption className="pr-0 text-[0.8rem]">
+            <caption className="text-sm">
               Don't have an account?{" "}
               <Link to={"/SignUp"} className="text-[#a1812e]">
                 Sign Up
@@ -35,26 +35,26 @@ const ForgetPassword = () => {
                     labelText="Email:"
                     id="email"
                     type="email"
-                    divClassName="block font-medium leading-6"
-                    className="w-full my-1 p-2 rounded-xl pr-8 border-2 border-gray-500 outline-none focus:border-[#a1812e]"
+                    divClassName=""
+                    className="inputField"
                   />
                 </div>
 
                 <div className="mb-10">
                   <Button
                     label="Proceed"
-                    className="button w-full flex flex-row justify-center items-center px-8 py-2.5 rounded-xl bg-[#a1812e]"
+                    className="button btn"
                     arrow={false}
                   />
                 </div>
 
-                <div className="">
-                  <p className="text-base font-light">
+                <div className="flex">
+                  <caption className="">
                     Remember your password?{" "}
                     <Link to={"/"} className="text-[#a1812e]">
                       Sign In!
                     </Link>
-                  </p>
+                  </caption>
                 </div>
               </div>
             </form>

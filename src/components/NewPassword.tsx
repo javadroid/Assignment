@@ -9,7 +9,7 @@ const NewPassword = () => {
   }, []); // Empty dependency array to ensure it only runs once
 
   return (
-    <div className="font-pop h-screen w-screen text-base border-gray-500">
+    <div className="component">
       <div className="flex flex-row text-gray-900">
         <div className="image basis-1/2 h-screen"></div>
         <div className="basis-1/2 w-full flex flex-col px-20 py-16">
