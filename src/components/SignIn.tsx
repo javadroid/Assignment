@@ -38,12 +38,12 @@ function SignIn() {
                     id="userId"
                     type="text"
                     divClassName="my-4"
-                    className="w-full my-1 px-3 py-1 rounded-xl pr-8 border-2 border-gray-500 outline-none focus:border-[#a1812e]"
+                    className="desktopInputField"
                   />
                   <ShowPassword
                     labelText="Password:"
                     id="password"
-                    className="w-full my-1 px-3 py-1 rounded-xl pr-8 border-2 border-gray-500 outline-none focus:border-[#a1812e]"
+                    className="desktopInputField"
                   />
                 </div>
 
