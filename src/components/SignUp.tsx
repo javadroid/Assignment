@@ -1,21 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import DropDown from "./DropDown";
+import DropDown from "./Reusable-Code/DropDown";
 import "../index.css";
 import { GoArrowRight } from "react-icons/go";
-import InputField from "./InputField";
-import ShowPassword from "./ShowPassword";
+import InputField from "./Reusable-Code/InputField";
+import ShowPassword from "./Reusable-Code/ShowPassword";
 
 const SignUp: React.FC = () => {
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, []);
-
   return (
     <div
-      className="font-pop md:my-2 md:mx-[3rem] md:text-[0.8rem] sm:h-screen
-       lg:my-[4rem]  lg:mx-[10rem] lg:text-[1rem]  
-    xl:mx-[21rem] 2xl:mx-[55rem] 2xl:my-[10rem] overflow-hidden"
+      className="font-pop tableResponsiveness sm:h-screen
+      desktopResponsiveness  
+      largeScreenResponsiveness overflow-hidden"
     >
       <div className="flex justify-between md:mx-[3rem] md:mb-0">
         <div className="">
@@ -41,32 +37,36 @@ const SignUp: React.FC = () => {
           </Link>
         </div>
       </div>
-      <form action="" className="flex flex-col mt-3 md:mx-[3rem] md:mt-8">
+      <form
+        action=""
+        className="flex flex-col mt-3 md:mx-[3rem] md:mt-8
+      lg:max-[5rem]"
+      >
         <div className="flex flex-row justify-between">
           <div className="flex flex-col">
             <InputField
               labelText="First Name:"
               id="fname"
               type="text"
-              divClassName=""
+              divClassName="flex flex-col"
               className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
-         outline-none  focus:border-[#a1812e]"
+              outline-none  focus:border-[#a1812e]"
             />
             <InputField
               labelText="User ID:"
               id="userId"
               type="text"
-              divClassName=""
+              divClassName="flex flex-col"
               className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
-         outline-none  focus:border-[#a1812e]"
+              outline-none  focus:border-[#a1812e]"
             />
             <InputField
               labelText="Email:"
               id="email"
               type="email"
-              divClassName=""
+              divClassName="flex flex-col"
               className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
-         outline-none  focus:border-[#a1812e]"
+              outline-none  focus:border-[#a1812e]"
             />
             <label htmlFor="dropDownDept">Department:</label>
             <DropDown />
@@ -78,14 +78,14 @@ const SignUp: React.FC = () => {
               labelText="Last Name:"
               id="lname"
               type="text"
-              divClassName=""
+              divClassName="flex flex-col"
               className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
             />
             <InputField
               labelText="Phone No:"
               id="tel"
               type="tel"
-              divClassName=""
+              divClassName="flex flex-col"
               className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
          outline-none  focus:border-[#a1812e]"
             />
@@ -94,14 +94,14 @@ const SignUp: React.FC = () => {
             <ShowPassword
               labelText="Password:"
               id="confirmPassword"
-              className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2  rounded-[0.7rem]
-          outline-none  focus:border-[#a1812e]"
+              className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
+              outline-none  focus:border-[#a1812e]"
             />
             <ShowPassword
               labelText="Confirm Password:"
               id="password"
-              className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2  rounded-[0.7rem]
-          outline-none  focus:border-[#a1812e]"
+              className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
+              outline-none  focus:border-[#a1812e]"
             />
           </div>
         </div>

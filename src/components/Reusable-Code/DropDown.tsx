@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../index.css";
 
 function DropDown() {
   const [selectOption, setSelectOption] = useState("");
@@ -14,7 +13,7 @@ function DropDown() {
         id="dropDown"
         value={selectOption}
         onChange={handleChange}
-        className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2  rounded-[0.7rem]
+        className="border-gray-500 border-2 w-[17rem] mb-1 h-[2.5rem] px-2  rounded-[0.7rem]
         outline-none  focus:border-[#a1812e]
         "
       >

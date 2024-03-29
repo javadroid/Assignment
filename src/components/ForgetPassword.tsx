@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import Button from "./Button";
-import InputField from "./InputField";
+import Button from "./Reusable-Code/Button";
+import InputField from "./Reusable-Code/InputField";
 
 const ForgetPassword = () => {
   useEffect(() => {
@@ -12,20 +12,20 @@ const ForgetPassword = () => {
     <div className="font-pop h-screen w-screen text-base border-gray-500">
       <div className="flex flex-row text-gray-900">
         <div className="image basis-1/2 h-screen"></div>
-        <div className="basis-1/2 w-full flex flex-col px-20 py-16">
+        <div className="basis-1/2 w-full flex flex-col px-[10rem] py-16">
           <div className="flex justify-end">
-            <p className="">
+            <caption className="pr-0 text-[0.8rem]">
               Don't have an account?{" "}
               <Link to={"/SignUp"} className="text-[#a1812e]">
                 Sign Up
               </Link>
-            </p>
+            </caption>
           </div>
           <div className="pt-20 flex flex-col">
             <h1 className="pb-2 font-bold text-gray-700 text-4xl">
               Reset Password
             </h1>
-            <p className="text-sm mb-10 w-2/3">
+            <p className="text-sm mb-10 w-full">
               Input your email address to retrieve your password
             </p>
             <form action="">

@@ -1,10 +1,8 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
-/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import Button from "./Button";
-import InputField from "./InputField";
-import ShowPassword from "./ShowPassword";
+import Button from "./Reusable-Code/Button";
+import InputField from "./Reusable-Code/InputField";
+import ShowPassword from "./Reusable-Code/ShowPassword";
 
 function SignIn() {
   useEffect(() => {
@@ -18,14 +16,14 @@ function SignIn() {
         {/* Side Image */}
         <div className="image basis-1/2 h-screen"></div>
         {/* The Signup page */}
-        <div className="basis-1/2 w-full flex flex-col px-20 py-16">
+        <div className="basis-1/2 w-full flex flex-col px-[10rem] py-16">
           <div className="flex justify-end">
-            <p className="">
+            <caption className="pr-0 text-[0.8rem]">
               Don't have an account?{" "}
               <Link to="/SignUp" className="text-[#a1812e]">
                 Sign Up!
               </Link>
-            </p>
+            </caption>
           </div>
           <div className="pt-20 flex flex-col">
             <h1 className="pb-2 font-bold text-gray-700 text-4xl">Sign In</h1>
@@ -34,8 +32,8 @@ function SignIn() {
               <div className="pt-5">
                 <div className="mb-10">
                   <InputField
-                    labelText="UserId:"
-                    id="userId"
+                    labelText="User ID:"
+                    id="userID"
                     type="text"
                     divClassName="my-4"
                     className="desktopInputField"
