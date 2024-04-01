@@ -61,7 +61,7 @@ const SignUp: React.FC = () => {
               outline-none  focus:border-[#a1812e]"
             />
             <InputField
-              labelText="Email:"
+              labelText="Email: "
               id="email"
               type="email"
               divClassName="flex flex-col"
