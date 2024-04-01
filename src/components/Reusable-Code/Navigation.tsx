@@ -8,7 +8,6 @@ function Navigation() {
         <FaBars size={20} />
         <MdCircle size={9} className="absolute right-0 top-0" />
       </div>
-
       <FaPowerOff size={20} style={{ color: "#ef1616" }} />
     </nav>
   );
