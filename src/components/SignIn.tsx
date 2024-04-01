@@ -10,15 +10,15 @@ function SignIn() {
   }, []); // Empty dependency array to ensure it only runs once
 
   return (
-    <div className="font-pop h-screen w-screen text-base border-gray-500">
+    <div className="component">
       {/* Container */}
       <div className="flex flex-row text-gray-900">
         {/* Side Image */}
         <div className="image basis-1/2 h-screen"></div>
         {/* The Signup page */}
-        <div className="basis-1/2 w-full flex flex-col px-[10rem] py-16">
+        <div className="basis-1/2 w-full flex flex-col px-40 py-16">
           <div className="flex justify-end">
-            <caption className="pr-0 text-[0.8rem]">
+            <caption className="text-sm">
               Don't have an account?{" "}
               <Link to="/SignUp" className="text-[#a1812e]">
                 Sign Up!
@@ -36,30 +36,26 @@ function SignIn() {
                     id="userID"
                     type="text"
                     divClassName="my-4"
-                    className="w-full my-1 px-3 py-1 rounded-xl pr-8 border-2 border-gray-500 outline-none focus:border-[#a1812e]"
+                    className="inputField"
                   />
                   <ShowPassword
                     labelText="Password:"
                     id="password"
-                    className="w-full my-1 px-3 py-1 rounded-xl pr-8 border-2 border-gray-500 outline-none focus:border-[#a1812e]"
+                    className="inputField"
                   />
                 </div>
 
                 <div className="mb-6">
-                  <Button
-                    label="Sign In"
-                    className="group w-full flex flex-row justify-center items-center px-8 py-2.5 rounded-xl bg-[#a1812e]"
-                    arrow={true}
-                  />
+                  <Button label="Sign In" className="group btn" arrow={true} />
                 </div>
 
-                <div className="pt-4">
-                  <p className="">
+                <div className="pt-4 flex">
+                  <caption className="">
                     Forget your password?{" "}
                     <Link to={"/forget"} className="text-[#a1812e]">
                       Reset Now!
                     </Link>
-                  </p>
+                  </caption>
                 </div>
               </div>
             </form>
