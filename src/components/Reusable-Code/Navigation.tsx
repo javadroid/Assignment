@@ -1,5 +1,6 @@
 import { FaBars, FaPowerOff } from "react-icons/fa6";
 import { MdCircle } from "react-icons/md";
+import DateDisplay from "../Functions/DateDisplay";
 
 function Navigation() {
   return (
@@ -8,7 +9,10 @@ function Navigation() {
         <FaBars size={20} />
         <MdCircle size={9} className="absolute right-0 top-0" />
       </div>
-      <FaPowerOff size={20} style={{ color: "#ef1616" }} />
+      <div className="flex justify-center ">
+        <DateDisplay />
+        <FaPowerOff size={20} style={{ color: "#ef1616" }} />
+      </div>
     </nav>
   );
 }
