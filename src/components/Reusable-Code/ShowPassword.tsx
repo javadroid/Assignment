@@ -27,6 +27,7 @@ const ShowPassword: React.FC<Props> = ({ labelText, id, className }) => {
           ) : (
             <FaEye onClick={passwordChange} />
           )}
+          <div></div>
         </div>
       </div>
     </div>
