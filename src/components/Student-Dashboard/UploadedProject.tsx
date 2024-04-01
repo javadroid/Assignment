@@ -1,10 +1,10 @@
-import React from "react";
 import Navigation from "../Reusable-Code/Navigation";
+import SideDesign from "../Reusable-Code/SideDesign";
 
 function UploadedProject() {
   return (
     <div className="h-screen flex flex-row">
-      <div className="h-screen bg-[#57430e] w-[4rem]"></div>
+      <SideDesign />
       <div className="w-full">
         <Navigation />
       </div>

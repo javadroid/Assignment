@@ -117,7 +117,7 @@ const SignUp: React.FC = () => {
             </Link>
           </p>
           <div className="mt-3 flex justify-center">
-            <Link to={"/uploadedProject"}>
+            <Link to={"/uploaded"}>
               <button className="group lg:mt-2 w-[50rem] h-[3rem] flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e]">
                 <span className="text-base text-white">Sign Up</span>
                 <GoArrowRight className="ml-2 text-xl text-white opacity-70 group-hover:translate-x-1 transition" />
