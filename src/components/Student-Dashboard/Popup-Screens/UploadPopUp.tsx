@@ -43,7 +43,7 @@ function UploadPopUp({ onClose }: UploadPopUpProps) {
           />
           <button
             type="submit"
-            className="font-pop text-white outline-none rounded-[1rem] ml-[21rem] border-2 bg-[#726135] mt-5 w-[5rem] p-2 hover:bg-[#b5af5a]"
+            className="font-pop text-white font-medium outline-none rounded-[0.9rem] ml-[21rem] border-2 bg-[#726135] mt-5 w-[5rem] p-2 hover:bg-[#54462f]"
           >
             SUBMIT
           </button>
