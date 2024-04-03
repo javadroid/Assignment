@@ -8,8 +8,11 @@ interface UploadPopUpProps {
 
 function UploadPopUp({ onClose }: UploadPopUpProps) {
   return (
-    <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 font-pop  flex justify-center items-center z-10">
-      <div className="bg-slate-50 p-[2rem] rounded-md z-[7rem] w-[30rem]">
+    <div className="font-pop fixed top-0 left-0 w-full h-full bg-black bg-opacity-50   flex justify-center items-center z-10">
+      <form
+        action=""
+        className="bg-slate-50 p-[2rem] rounded-md z-[7rem] w-[30rem]"
+      >
         <div className="flex flex-row justify-between relative">
           <h2 className="font-bold">File in your details carefully</h2>
           <IoClose
@@ -38,8 +41,14 @@ function UploadPopUp({ onClose }: UploadPopUpProps) {
               "flex flex-col my-1 pb-[3rem] text-wrap p-2 m-0 border-2 bg-slate-50 border-gray-500 outline-none focus:border-[#a1812e] rounded-[1rem]"
             }
           />
+          <button
+            type="submit"
+            className="font-pop text-white outline-none rounded-[1rem] ml-[21rem] border-2 bg-[#726135] mt-5 w-[5rem] p-2 hover:bg-[#b5af5a]"
+          >
+            SUBMIT
+          </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
