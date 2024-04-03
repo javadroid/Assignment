@@ -4,9 +4,10 @@ import FileUpload from "../../Reusable-Code/FileUpload";
 
 interface UploadPopUpProps {
   onClose: () => void;
+  onSubmit: () => void;
 }
 
-function UploadPopUp({ onClose }: UploadPopUpProps) {
+function UploadPopUp({ onClose, onSubmit }: UploadPopUpProps) {
   return (
     <div className="font-pop fixed top-0 left-0 w-full h-full bg-black bg-opacity-50   flex justify-center items-center z-10">
       <form
@@ -42,6 +43,7 @@ function UploadPopUp({ onClose }: UploadPopUpProps) {
             }
           />
           <button
+            onClick={onSubmit}
             type="submit"
             className="font-pop text-white font-medium outline-none rounded-[0.9rem] ml-[21rem] border-2 bg-[#726135] mt-5 w-[5rem] p-2 hover:bg-[#54462f]"
           >
