@@ -12,7 +12,7 @@ function UploadPopUp({ onClose, onSubmit }: UploadPopUpProps) {
     <div className="font-pop fixed top-0 left-0 w-full h-full bg-black bg-opacity-50   flex justify-center items-center z-10">
       <form
         action=""
-        className="bg-slate-50 p-[2rem] rounded-md z-[7rem] w-[30rem]"
+        className="bg-slate-50 p-[2rem] rounded-md z-[7rem] w-[30rem]  shadow-lg"
       >
         <div className="flex flex-row justify-between relative">
           <h2 className="font-bold">File in your details carefully</h2>
