@@ -20,6 +20,7 @@ function UploadedProject({}: UploadedProjectProps) {
     setShowConfirmation(true);
     setIsPopupOpen(false);
   };
+
   return (
     <div className="h-screen flex flex-row">
       <SideDesign />
