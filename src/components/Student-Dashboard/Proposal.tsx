@@ -1,20 +1,25 @@
 import React from "react";
 import SideDesign from "../Reusable-Code/SideDesign";
 import Navigation from "../Reusable-Code/Navigation";
+import { Link } from "react-router-dom";
+import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
 
 const Proposal = () => {
   return (
-    <div className="h-screen flex flex-row">
+    <div className="component flex flex-row">
       <SideDesign />
-      <div className="w-full">
+      <div className="w-full h-screen text-black">
         <Navigation />
-        <div>
-          <h1>Project Proposal</h1>
-          <hr />
-          <div>
-            <main>
+        <div className="pt-8 px-10">
+          <h1 className="font-semibold text-lg">Project Proposal</h1>
+          <hr className="border-gray-400" />
+          <div className="flex flex-col pt-4">
+            <main className="flex flex-row items-end justify-between w-full">
               <h2>Comments:</h2>
-              <button>Project PDF ICON </button>
+              <div>
+                <h2>Web Based Civil Service Performance Evaluation System</h2>
+                <Link to={"#"}>Click to view project pdf</Link>
+              </div>
             </main>
             <section>
               <div>
@@ -64,8 +69,11 @@ const Proposal = () => {
               </p>
               <button></button>
             </section>
-            <div>
-              <div>icon right icon left</div>
+            <div className="flex flex-col items-end">
+              <div className="flex flex-row justify-between">
+                <BiSolidLeftArrow />
+                <BiSolidRightArrow />
+              </div>
               <button>Update PDF</button>
             </div>
           </div>
