@@ -7,11 +7,11 @@ import Avatar from "@mui/material/Avatar";
 
 const Proposal = () => {
   return (
-    <div className="component flex flex-row">
+    <div className="font-pop flex flex-row">
       <SideDesign />
-      <div className="w-full h-screen text-black">
+      <div className="w-full text-black">
         <Navigation />
-        <div className="pt-8 px-10 bg-[#F6F6F6] h-screen">
+        <div className="pt-4 px-10 bg-[#F6F6F6] h-screen">
           <h1 className="font-semibold text-lg">Project Proposal</h1>
           <hr className="border-gray-400" />
           <div className="flex flex-col pt-4">
@@ -26,70 +26,94 @@ const Proposal = () => {
                 </Link>
               </div>
             </main>
-            <div className="bg-white mt-4">
-              <section>
-                <div>
-                  <div>
-                    <div>
-                      <Avatar alt="Dr. Joseph Akangi" src="" />
+            <div className="bg-white mt-4 flex flex-col p-6 overflow-y-auto h-[26rem]">
+              <section className="border p-5 text-gray-700 mb-4">
+                <div className="flex flex-row justify-between mb-4">
+                  <div className="flex flex-row items-center">
+                    <Avatar
+                      alt="Dr. Joseph Akangi"
+                      src=""
+                      sx={{ width: 56, height: 56 }}
+                      className="mr-3"
+                    />
+                    <div className="flex flex-col ">
+                      <h3 className="font-semibold text-lg">
+                        Dr. Joseph Akangi{" "}
+                        <span className="bold text-black">(HOD)</span>
+                      </h3>
+                      <p className="text-sm pl-6">22nd March 2024</p>
                     </div>
-                    <h3>Dr. Joseph Akangi (HOD)</h3>
                   </div>
-                  <p>34 minutes ago</p>
+                  <button className="bg-none w-6 h-6 border border-solid rounded-full border-[#EDBE44]"></button>
                 </div>
-                <p>
+                <p className="px-4">
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                   Aliquam voluptates ipsa voluptatibus explicabo amet! Inventore
                   minus fuga, labore quas ducimus libero itaque saepe pariatur?
                   Reprehenderit exercitationem atque illo amet aut!
                 </p>
-                <button></button>
               </section>
-              <section>
-                <div>
-                  <div>
-                    <div>
-                      {" "}
-                      <Avatar alt="Prof. David Moses" src="" />
+              <section className="border p-5 text-gray-700 mt-2 mb-4">
+                <div className="flex flex-row justify-between mb-4">
+                  <div className="flex flex-row items-center">
+                    <Avatar
+                      alt="Dr. Joseph Akangi"
+                      src=""
+                      sx={{ width: 56, height: 56 }}
+                      className="mr-3"
+                    />
+                    <div className="flex flex-col ">
+                      <h3 className="font-semibold text-lg">
+                        Dr. Joseph Akangi{" "}
+                        <span className="bold text-black">(HOD)</span>
+                      </h3>
+                      <p className="text-sm pl-6">22nd March 2024</p>
                     </div>
-                    <h3>Prof. David Moses (DEAN)</h3>
                   </div>
-                  <p>2 hours ago</p>
+                  <button className="bg-none w-6 h-6 border border-solid rounded-full border-[#EDBE44]"></button>
                 </div>
-                <p>
+                <p className="px-4">
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                   Aliquam voluptates ipsa voluptatibus explicabo amet! Inventore
                   minus fuga, labore quas ducimus libero itaque saepe pariatur?
                   Reprehenderit exercitationem atque illo amet aut!
                 </p>
-                <button></button>
               </section>
-              <section>
-                <div>
-                  <div>
-                    <div>
-                      {" "}
-                      <Avatar alt="Mr. Abdul Sani" src="" />
+              <section className="border p-5 text-gray-700 mt-2 mb-4">
+                <div className="flex flex-row justify-between mb-4">
+                  <div className="flex flex-row items-center">
+                    <Avatar
+                      alt="Dr. Joseph Akangi"
+                      src=""
+                      sx={{ width: 56, height: 56 }}
+                      className="mr-3"
+                    />
+                    <div className="flex flex-col ">
+                      <h3 className="font-semibold text-lg">
+                        Dr. Joseph Akangi{" "}
+                        <span className="bold text-black">(HOD)</span>
+                      </h3>
+                      <p className="text-sm pl-6">22nd March 2024</p>
                     </div>
-                    <h3>Mr. Abdul Sani (PG Coordinator)</h3>
                   </div>
-                  <p>4 hours ago</p>
+                  <button className="bg-none w-6 h-6 border border-solid rounded-full border-[#EDBE44]"></button>
                 </div>
-                <p>
+                <p className="px-4">
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                   Aliquam voluptates ipsa voluptatibus explicabo amet! Inventore
                   minus fuga, labore quas ducimus libero itaque saepe pariatur?
                   Reprehenderit exercitationem atque illo amet aut!
                 </p>
-                <button></button>
               </section>
-              <div className="flex flex-row justify-between">
-                <BiSolidLeftArrow />
-                <BiSolidRightArrow />
+              <div className="flex flex-row justify-end mt-2">
+                <BiSolidLeftArrow className="mr-4 text-xl text-[#B5B5B5]" />
+                <BiSolidRightArrow className="ml-4 text-xl text-[#B5B5B5]" />
               </div>
             </div>
-            <div className="flex flex-col items-end">
-              <button>Update PDF</button>
+            <div className="flex flex-col items-end mt-4">
+              <button className="bg-[#A89D82] text-black p-3 text-lg">
+                Update PDF
+              </button>
             </div>
           </div>
         </div>
