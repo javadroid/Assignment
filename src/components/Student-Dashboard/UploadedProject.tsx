@@ -22,20 +22,43 @@ function UploadedProject({}: UploadedProjectProps) {
   };
 
   return (
-    <div className="h-screen flex flex-row">
+    <div className="h-screen flex flex-row font-pop">
       <SideDesign />
       <div className="w-full">
         <Navigation />
-        <div>
-          <button onClick={togglePopup} className="border-solid bg-indigo-500">
-            Click Me
-          </button>
-          {isPopupOpen && (
-            <UploadPopUp onClose={togglePopup} onSubmit={handleSubmit} />
-          )}
-          {showConfirmation && (
-            <ConfirmationPopup onClose={() => setShowConfirmation(true)} />
-          )}
+        <div className="grid grid-cols-2 gap-6 h-screen border-none ">
+          <div className="border-2 my-[4rem] mx-[5rem]">
+            <h3 className="font-semibold text-[1.2rem] my-3 pl-5 border-b-2 shadow-sm">
+              TOPIC 1
+            </h3>
+            <p>Description of topic 1.</p>
+          </div>
+          <div className="border-2 my-[4rem] mx-[5rem]">
+            <h3 className="font-semibold text-[1.2rem] my-3 pl-5 border-b-2 shadow-sm">
+              TOPIC 2
+            </h3>
+            <p>Description of topic 2.</p>
+          </div>
+          <div className="border-2 mb-[7rem] mx-[5rem]">
+            <h3 className="font-semibold text-[1.2rem] my-3 pl-5 border-b-2 shadow-sm">
+              TOPIC 3
+            </h3>
+            <p>Description of topic 3.</p>
+          </div>
+          <div className="border-2 mb-[7rem] mx-[5rem] relative">
+            <button
+              onClick={togglePopup}
+              className="border-solid bg-indigo-500 absolute bottom-0 right-0"
+            >
+              Click Me
+            </button>
+            {isPopupOpen && (
+              <UploadPopUp onClose={togglePopup} onSubmit={handleSubmit} />
+            )}
+            {showConfirmation && (
+              <ConfirmationPopup onClose={() => setShowConfirmation(true)} />
+            )}
+          </div>
         </div>
       </div>
     </div>
