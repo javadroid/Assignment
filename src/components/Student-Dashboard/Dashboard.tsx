@@ -1,6 +1,7 @@
 import React from "react";
 import SideDesign from "../Reusable-Code/SideDesign";
 import Navigation from "../Reusable-Code/Navigation";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   return (
@@ -15,9 +16,11 @@ const Dashboard = () => {
             </h1>
             <hr className="border-black" />
             <div className="p-12 flex justify-center">
-              <button className="bg-white rounded-md px-14 py-2 uppercase text-[#A1812E] font-bold text-lg">
-                Ongoing
-              </button>
+              <Link to={"/uploaded"}>
+                <button className="bg-white rounded-md px-14 py-2 uppercase text-[#A1812E] font-bold text-lg">
+                  Ongoing
+                </button>
+              </Link>
             </div>
           </section>
           <section className="basis-1/3 m-4 bg-gradient-to-b from-[#F9E8BC] from-1% to-[#999999] to-100%">
