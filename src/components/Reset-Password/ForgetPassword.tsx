@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import Button from "./Reusable-Code/Button";
-import InputField from "./Reusable-Code/InputField";
+import Button from "../Reusable-Code/Button";
+import InputField from "../Reusable-Code/InputField";
 
 const ForgetPassword = () => {
   useEffect(() => {

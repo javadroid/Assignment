@@ -27,30 +27,51 @@ function UploadedProject({}: UploadedProjectProps) {
       <div className="w-full">
         <Navigation />
         <div className="grid grid-cols-2 gap-6 h-screen border-none ">
-          <div className="border-2 my-[4rem] mx-[5rem]">
-            <h3 className="font-semibold text-[1.2rem] my-3 pl-5 border-b-2 shadow-sm">
+          <div className="bg-[#f6dd9e]  shadow-lg my-[4rem] mx-[5rem] relative">
+            <h3 className="font-semibold text-[1.3rem] my-3 pl-5 border-b-2 border-gray-500 shadow-sm">
               TOPIC 1
             </h3>
-            <p>Description of topic 1.</p>
+            <p className="px-5 text-wrap w-full font-medium text-[1.1rem]">
+              MOBILE BASED INFORMATION SYSTEM FOR VEGETABLE FARMING
+            </p>
+            <button
+              disabled
+              className="text-white cursor-not-allowed p-2 w-[7rem] outline-none rounded-md absolute bottom-4 bg-[#ef1616] right-5"
+            >
+              Rejected
+            </button>
           </div>
-          <div className="border-2 my-[4rem] mx-[5rem]">
-            <h3 className="font-semibold text-[1.2rem] my-3 pl-5 border-b-2 shadow-sm">
+          <div className="bg-[#f6dd9e]  shadow-lg my-[4rem] mx-[5rem] relative">
+            <h3 className="font-semibold text-[1.3rem] my-3 pl-5 border-b-2 border-gray-500 shadow-sm">
               TOPIC 2
             </h3>
-            <p>Description of topic 2.</p>
+            <p className="px-5 text-wrap w-full font-medium text-[1.1rem]">
+              DESIGN OF COMPUTERIZED CHILD CARE IMFORMATION SYSYEM
+            </p>
+            <button
+              disabled
+              className="text-white cursor-not-allowed p-2 w-[7rem] outline-none rounded-md absolute bottom-4 bg-[#ef1616] right-5"
+            >
+              Rejected
+            </button>
           </div>
-          <div className="border-2 mb-[7rem] mx-[5rem]">
-            <h3 className="font-semibold text-[1.2rem] my-3 pl-5 border-b-2 shadow-sm">
+          <div className="bg-[#f9e8bc] shadow-lg mb-[7rem] mx-[5rem] relative">
+            <h3 className="font-semibold text-[1.3rem] my-3 pl-5 border-b-2 border-gray-500 shadow-sm">
               TOPIC 3
             </h3>
-            <p>Description of topic 3.</p>
+            <p className="px-5 text-wrap w-full font-medium text-[1.1rem]">
+              WEB BASED CIVIL SERVICE PERFORMANCE EVALUATION SYSTEM
+            </p>
+            <button className="text-white cursor-progress p-2 w-[7rem] outline-none rounded-md absolute bottom-4 bg-[#edbe44] right-5">
+              ONGOING
+            </button>
           </div>
-          <div className="border-2 mb-[7rem] mx-[5rem] relative">
+          <div className=" mb-[7rem] mx-[5rem] relative">
             <button
               onClick={togglePopup}
-              className="border-solid bg-indigo-500 absolute bottom-0 right-0"
+              className="outline-none p-3  w-[10rem] rounded-md bg-[#726135] text-white absolute bottom-0 right-0"
             >
-              Click Me
+              Add Project
             </button>
             {isPopupOpen && (
               <UploadPopUp onClose={togglePopup} onSubmit={handleSubmit} />

@@ -1,9 +1,9 @@
 import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import ForgetPassword from "./components/ForgetPassword";
-import ResetPassword from "./components/ResetPassword";
-import NewPassword from "./components/NewPassword";
+import ForgetPassword from "./components/Reset-Password/ForgetPassword";
+import ResetPassword from "./components/Reset-Password/ResetPassword";
+import NewPassword from "./components/Reset-Password/NewPassword";
 import UploadedProject from "./components/Student-Dashboard/UploadedProject";
 import Dashboard from "./components/Student-Dashboard/Dashboard";
 import Proposal from "./components/Student-Dashboard/Proposal";
