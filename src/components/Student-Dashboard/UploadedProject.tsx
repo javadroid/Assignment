@@ -22,16 +22,16 @@ function UploadedProject({}: UploadedProjectProps) {
   };
 
   return (
-    <div className="h-screen flex flex-row font-pop">
+    <div className="lg:h-screen flex flex-row font-pop">
       <SideDesign />
       <div className="w-full">
         <Navigation />
-        <div className="grid grid-cols-2 gap-6 h-screen border-none ">
+        <div className="grid grid-cols-2 gap-6 lg:h-screen border-none ">
           <div className="bg-[#f6dd9e]  shadow-lg my-[4rem] mx-[5rem] relative">
             <h3 className="font-semibold text-[1.3rem] my-3 pl-5 border-b-2 border-gray-500 shadow-sm">
               TOPIC 1
             </h3>
-            <p className="px-5 text-wrap w-full font-medium text-[1.1rem]">
+            <p className="px-5 text-wrap w-full font-medium text-[1.1rem] pt-3">
               MOBILE BASED INFORMATION SYSTEM FOR VEGETABLE FARMING
             </p>
             <button
@@ -45,7 +45,7 @@ function UploadedProject({}: UploadedProjectProps) {
             <h3 className="font-semibold text-[1.3rem] my-3 pl-5 border-b-2 border-gray-500 shadow-sm">
               TOPIC 2
             </h3>
-            <p className="px-5 text-wrap w-full font-medium text-[1.1rem]">
+            <p className="px-5 text-wrap w-full font-medium text-[1.1rem] pt-3">
               DESIGN OF COMPUTERIZED CHILD CARE IMFORMATION SYSYEM
             </p>
             <button
@@ -59,7 +59,7 @@ function UploadedProject({}: UploadedProjectProps) {
             <h3 className="font-semibold text-[1.3rem] my-3 pl-5 border-b-2 border-gray-500 shadow-sm">
               TOPIC 3
             </h3>
-            <p className="px-5 text-wrap w-full font-medium text-[1.1rem]">
+            <p className="px-5 text-wrap w-full font-medium text-[1.1rem] pt-3">
               WEB BASED CIVIL SERVICE PERFORMANCE EVALUATION SYSTEM
             </p>
             <button className="text-white cursor-progress p-2 w-[7rem] outline-none rounded-md absolute bottom-4 bg-[#edbe44] right-5">
