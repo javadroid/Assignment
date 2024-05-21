@@ -27,7 +27,7 @@ function UploadPopUp({ onClose, onSubmit }: UploadPopUpProps) {
         <div>
           <InputField
             labelText={"Project Topic: "}
-            id={""}
+            id={"projectTopic"}
             type={"textarea"}
             className={
               "pb-[3rem] text-wrap p-2 m-0 border-2 bg-slate-50 border-gray-500 outline-none focus:border-[#a1812e] rounded-[1rem]"
@@ -36,7 +36,7 @@ function UploadPopUp({ onClose, onSubmit }: UploadPopUpProps) {
           />
           <FileUpload
             labelText={"Document: "}
-            id={""}
+            id={"documentUpload"}
             className={""}
             divClassName={
               "flex flex-col my-1 pb-[3rem] text-wrap p-2 m-0 border-2 bg-slate-50 border-gray-500 outline-none focus:border-[#a1812e] rounded-[1rem]"

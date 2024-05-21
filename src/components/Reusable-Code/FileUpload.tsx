@@ -1,6 +1,7 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { BiSolidCloudUpload } from "react-icons/bi";
+
 interface Props {
   labelText: string;
   id: string;
@@ -14,6 +15,9 @@ const FileUpload: React.FC<Props> = ({
   className,
   divClassName,
 }) => {
+  const [acceptedFiles, setAcceptedFiles] = useState<File[]>([]);
+  const [fileContents, setFileContents] = useState<string[]>([]);
+
   const onDrop = useCallback((acceptedFiles: File[]) => {
     acceptedFiles.forEach((file: File) => {
       if (
@@ -26,6 +30,23 @@ const FileUpload: React.FC<Props> = ({
         return;
       }
     });
+
+    setAcceptedFiles(acceptedFiles);
+
+    acceptedFiles.forEach((file) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.result) {
+          setFileContents((prevFileContents) => [
+            ...prevFileContents,
+            reader.result as string,
+          ]);
+        }
+      };
+      reader.readAsText(file);
+    });
+
+    localStorage.setItem("files", JSON.stringify(acceptedFiles));
     console.log(acceptedFiles);
   }, []);
 
@@ -46,7 +67,11 @@ const FileUpload: React.FC<Props> = ({
           <div className="text-gray-500 flex flex-col items-center">
             <BiSolidCloudUpload size={50} />
             <caption className="flex">
-              Drag and drop some files here, or click to select files.
+              {acceptedFiles.length > 0
+                ? acceptedFiles.map((file, index) => (
+                    <div key={index}>{file.name}</div>
+                  ))
+                : "Drag and drop some files here, or click to select files."}
             </caption>
           </div>
         )}
