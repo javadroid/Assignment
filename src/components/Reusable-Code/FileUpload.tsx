@@ -65,13 +65,17 @@ const FileUpload: React.FC<Props> = ({
           <p>Drop the files here ...</p>
         ) : (
           <div className="text-gray-500 flex flex-col items-center">
-            <BiSolidCloudUpload size={50} />
             <caption className="flex">
-              {acceptedFiles.length > 0
-                ? acceptedFiles.map((file, index) => (
-                    <div key={index}>{file.name}</div>
-                  ))
-                : "Drag and drop some files here, or click to select files."}
+              {acceptedFiles.length > 0 ? (
+                acceptedFiles.map((file, index) => (
+                  <div key={index}>{file.name}</div>
+                ))
+              ) : (
+                <div>
+                  <BiSolidCloudUpload size={50} />
+                  Drag and drop some files here, or click to select files.
+                </div>
+              )}
             </caption>
           </div>
         )}
