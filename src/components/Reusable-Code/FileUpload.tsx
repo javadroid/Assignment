@@ -16,7 +16,7 @@ const FileUpload: React.FC<Props> = ({
   divClassName,
 }) => {
   const [acceptedFiles, setAcceptedFiles] = useState<File[]>([]);
-  const [fileContents, setFileContents] = useState<string[]>([]);
+  const [, setFileContents] = useState<string[]>([]);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     acceptedFiles.forEach((file: File) => {
