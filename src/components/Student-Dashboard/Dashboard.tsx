@@ -17,7 +17,7 @@ const Dashboard = () => {
             <hr className="border-black" />
             <div className="p-12 flex justify-center">
               <Link to={"/uploaded"}>
-                <button className="bg-white rounded-md px-14 py-2 uppercase text-[#A1812E] font-bold text-lg">
+                <button className="bg-white rounded-md px-14 py-2 uppercase text-[#A1812E] font-bold text-lg hover:bg-[#EDBE44] hover:text-[#ffffff]">
                   Ongoing
                 </button>
               </Link>

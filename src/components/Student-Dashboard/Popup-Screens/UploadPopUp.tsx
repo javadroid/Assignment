@@ -1,6 +1,7 @@
 import { IoClose } from "react-icons/io5";
 import InputField from "../../Reusable-Code/InputField";
 import FileUpload from "../../Reusable-Code/FileUpload";
+import { useState } from "react";
 
 interface UploadPopUpProps {
   onClose: () => void;
@@ -8,6 +9,8 @@ interface UploadPopUpProps {
 }
 
 function UploadPopUp({ onClose, onSubmit }: UploadPopUpProps) {
+  const [projectTopic, setProjectTopic] = useState<string | []>([]);
+
   return (
     <div className="font-pop fixed top-0 left-0 w-full h-full bg-black bg-opacity-50   flex justify-center items-center z-10">
       <form

@@ -62,7 +62,7 @@ const FileUpload: React.FC<Props> = ({
       >
         <input {...getInputProps()} id={id} className={className} multiple />
         {isDragActive ? (
-          <p>Drop the files here ...</p>
+          <p>Drop the files here....</p>
         ) : (
           <div className="text-gray-500 flex flex-col items-center">
             <caption className="flex">
