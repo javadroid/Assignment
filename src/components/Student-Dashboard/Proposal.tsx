@@ -4,14 +4,29 @@ import Navigation from "../Reusable-Code/Navigation";
 import { Link } from "react-router-dom";
 import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
 import Avatar from "@mui/material/Avatar";
+import CheckBox from "../Reusable-Code/CheckBox";
 
 const Proposal = () => {
+  const [checkedBox, setCheckedBox] = React.useState(false);
+  const [checkedbox2, setCheckedBox2] = React.useState(false);
+  const [checkedbox3, setCheckedBox3] = React.useState(false);
+
+  const handleChange = (newValue: boolean) => {
+    setCheckedBox(newValue);
+  };
+  const handleChange2 = (newValue: boolean) => {
+    setCheckedBox2(newValue);
+  };
+  const handleChange3 = (newValue: boolean) => {
+    setCheckedBox3(newValue);
+  };
+
   return (
     <div className="font-pop flex flex-row">
       <SideDesign />
       <div className="w-full text-black">
         <Navigation />
-        <div className="pt-4 px-10 bg-[#F6F6F6] h-screen">
+        <div className="pt-3 px-10 bg-[#F6F6F6] h-screen">
           <h1 className="font-semibold text-lg">Project Proposal</h1>
           <hr className="border-gray-400" />
           <div className="flex flex-col pt-4">
@@ -26,7 +41,7 @@ const Proposal = () => {
                 </Link>
               </div>
             </main>
-            <div className="bg-white mt-4 flex flex-col p-6 overflow-y-auto h-[26rem]">
+            <div className="bg-white mt-4 flex flex-col p-6 overflow-y-auto h-[24rem]">
               <section className="border p-5 text-gray-700 mb-4">
                 <div className="flex flex-row justify-between mb-4">
                   <div className="flex flex-row items-center">
@@ -44,7 +59,7 @@ const Proposal = () => {
                       <p className="text-sm pl-6">22nd March 2024</p>
                     </div>
                   </div>
-                  <button className="bg-none w-6 h-6 border border-solid rounded-full border-[#EDBE44]"></button>
+                  <CheckBox value={checkedBox} onChange={handleChange} id="1" />
                 </div>
                 <p className="px-4">
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -70,7 +85,11 @@ const Proposal = () => {
                       <p className="text-sm pl-6">22nd March 2024</p>
                     </div>
                   </div>
-                  <button className="bg-none w-6 h-6 border border-solid rounded-full border-[#EDBE44]"></button>
+                  <CheckBox
+                    value={checkedbox2}
+                    onChange={handleChange2}
+                    id="2"
+                  />
                 </div>
                 <p className="px-4">
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -96,7 +115,12 @@ const Proposal = () => {
                       <p className="text-sm pl-6">22nd March 2024</p>
                     </div>
                   </div>
-                  <button className="bg-none w-6 h-6 border border-solid rounded-full border-[#EDBE44]"></button>
+                  <CheckBox
+                    value={checkedbox3}
+                    onChange={handleChange3}
+                    id="3"
+                  />
+                  {/* <button className="bg-none w-6 h-6 border border-solid rounded-full border-[#EDBE44]"></button> */}
                 </div>
                 <p className="px-4">
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -111,7 +135,7 @@ const Proposal = () => {
               </div>
             </div>
             <div className="flex flex-col items-end mt-4">
-              <button className="bg-[#A89D82] text-black p-3 text-lg">
+              <button className="transform transition hover:scale-110 bg-[#A89D82] text-black p-3 text-lg mr-4 rounded-md hover:bg-[#bebcb6]">
                 Update PDF
               </button>
             </div>
