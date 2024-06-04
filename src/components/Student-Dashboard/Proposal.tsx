@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SideDesign from "../Reusable-Code/SideDesign";
 import Navigation from "../Reusable-Code/Navigation";
 import { Link } from "react-router-dom";
@@ -6,13 +6,44 @@ import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
 import Avatar from "@mui/material/Avatar";
 import CheckBox from "../Reusable-Code/CheckBox";
 
+const commentsDataATH = [
+  {
+    id: 1,
+    image: "",
+    status:true,
+    name: "Dr. Joseph Akangi",
+    type: "HOD",
+    comment:
+      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam voluptates ipsa voluptatibus explicabo amet! Inventore minus fuga, labore quas ducimus libero itaque saepe pariatur? Reprehenderit exercitationem atque illo amet aut!",
+  },
+  {
+    id: 2,
+    image: "",
+    status:false,
+    name: "Javadroid",
+    type: "Developer",
+    comment:
+      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam voluptates ipsa voluptatibus explicabo amet! Inventore minus fuga, labore quas ducimus libero itaque saepe pariatur? Reprehenderit exercitationem atque illo amet aut!",
+  },
+];
+
+
 const Proposal = () => {
   const [checkedBox, setCheckedBox] = React.useState(false);
   const [checkedbox2, setCheckedBox2] = React.useState(false);
   const [checkedbox3, setCheckedBox3] = React.useState(false);
-
-  const handleChange = (newValue: boolean) => {
+const [commentsData, setcommentsData] = useState(commentsDataATH)
+  const handleChange = (newValue: boolean,i:any) => {
     setCheckedBox(newValue);
+   // Make a copy of the commentsData array
+  const updatedCommentsData = [...commentsData];
+  
+  // Update the status of the comment at position 1
+  updatedCommentsData[i].status = !updatedCommentsData[i].status; // Toggle status
+  
+  // Set the state with the updated array
+  setcommentsData(updatedCommentsData);
+   
   };
   const handleChange2 = (newValue: boolean) => {
     setCheckedBox2(newValue);
@@ -42,93 +73,38 @@ const Proposal = () => {
               </div>
             </main>
             <div className="bg-white mt-4 flex flex-col p-6 overflow-y-auto h-[24rem]">
-              <section className="border p-5 text-gray-700 mb-4">
-                <div className="flex flex-row justify-between mb-4">
-                  <div className="flex flex-row items-center">
-                    <Avatar
-                      alt="Dr. Joseph Akangi"
-                      src=""
-                      sx={{ width: 56, height: 56 }}
-                      className="mr-3"
-                    />
-                    <div className="flex flex-col ">
-                      <h3 className="font-semibold text-lg">
-                        Dr. Joseph Akangi{" "}
-                        <span className="bold text-black">(HOD)</span>
-                      </h3>
-                      <p className="text-sm pl-6">22nd March 2024</p>
+              {commentsData.map((commentData, i) => {
+                return (
+                  <section key={i} className="border p-5 text-gray-700 mb-4">
+                    <div className="flex flex-row justify-between mb-4">
+                      <div className="flex flex-row items-center">
+                        <Avatar
+                          alt=""
+                          src={commentData.image}
+                          sx={{ width: 56, height: 56 }}
+                          className="mr-3"
+                        />
+                        <div className="flex flex-col ">
+                          <h3 className="font-semibold text-lg">
+                            {commentData.name}
+                            <span className="bold text-black">({commentData.type})</span>
+                          </h3>
+                          <p className="text-sm pl-6">22nd March 2024</p>
+                        </div>
+                      </div>
+                      <CheckBox
+                        value={commentData.status}
+                        onChange={(e)=>handleChange(e,i)}
+                        id={String(i)}
+                      />
                     </div>
-                  </div>
-                  <CheckBox value={checkedBox} onChange={handleChange} id="1" />
-                </div>
-                <p className="px-4">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Aliquam voluptates ipsa voluptatibus explicabo amet! Inventore
-                  minus fuga, labore quas ducimus libero itaque saepe pariatur?
-                  Reprehenderit exercitationem atque illo amet aut!
-                </p>
-              </section>
-              <section className="border p-5 text-gray-700 mt-2 mb-4">
-                <div className="flex flex-row justify-between mb-4">
-                  <div className="flex flex-row items-center">
-                    <Avatar
-                      alt="Dr. Joseph Akangi"
-                      src=""
-                      sx={{ width: 56, height: 56 }}
-                      className="mr-3"
-                    />
-                    <div className="flex flex-col ">
-                      <h3 className="font-semibold text-lg">
-                        Dr. Joseph Akangi{" "}
-                        <span className="bold text-black">(HOD)</span>
-                      </h3>
-                      <p className="text-sm pl-6">22nd March 2024</p>
-                    </div>
-                  </div>
-                  <CheckBox
-                    value={checkedbox2}
-                    onChange={handleChange2}
-                    id="2"
-                  />
-                </div>
-                <p className="px-4">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Aliquam voluptates ipsa voluptatibus explicabo amet! Inventore
-                  minus fuga, labore quas ducimus libero itaque saepe pariatur?
-                  Reprehenderit exercitationem atque illo amet aut!
-                </p>
-              </section>
-              <section className="border p-5 text-gray-700 mt-2 mb-4">
-                <div className="flex flex-row justify-between mb-4">
-                  <div className="flex flex-row items-center">
-                    <Avatar
-                      alt="Dr. Joseph Akangi"
-                      src=""
-                      sx={{ width: 56, height: 56 }}
-                      className="mr-3"
-                    />
-                    <div className="flex flex-col ">
-                      <h3 className="font-semibold text-lg">
-                        Dr. Joseph Akangi{" "}
-                        <span className="bold text-black">(HOD)</span>
-                      </h3>
-                      <p className="text-sm pl-6">22nd March 2024</p>
-                    </div>
-                  </div>
-                  <CheckBox
-                    value={checkedbox3}
-                    onChange={handleChange3}
-                    id="3"
-                  />
-                  {/* <button className="bg-none w-6 h-6 border border-solid rounded-full border-[#EDBE44]"></button> */}
-                </div>
-                <p className="px-4">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Aliquam voluptates ipsa voluptatibus explicabo amet! Inventore
-                  minus fuga, labore quas ducimus libero itaque saepe pariatur?
-                  Reprehenderit exercitationem atque illo amet aut!
-                </p>
-              </section>
+                    <p className="px-4">
+                     {commentData.comment}
+                    </p>
+                  </section>
+                );
+              })}
+             
               <div className="flex flex-row justify-end mt-2">
                 <BiSolidLeftArrow className="mr-4 text-xl text-[#B5B5B5]" />
                 <BiSolidRightArrow className="ml-4 text-xl text-[#B5B5B5]" />
