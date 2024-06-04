@@ -4,8 +4,8 @@ const DateDisplay = () => {
   const Month = CurrentDate.toLocaleDateString("en-US", { month: "long" });
   const Year = CurrentDate.toLocaleDateString("en-US", { year: "numeric" });
   return (
-    <div className="sm:flex sm:flex-col md:flex font-pop text-gray-500 text-sm mr-3">
-      {Day} {Month} {Year}
+    <div className="sm:flex sm:flex-row md:flex font-pop text-gray-500 text-sm mr-3">
+      {Day} {Month}, {Year}
     </div>
   );
 };

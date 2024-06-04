@@ -78,7 +78,7 @@ function UploadedProject({}: UploadedProjectProps) {
           <div className=" mb-[7rem] mx-[5rem] relative">
             <button
               onClick={togglePopup}
-              className="outline-none p-3  w-[10rem] rounded-md bg-[#726135] text-white absolute bottom-0 right-0"
+              className="outline-none p-3  w-[10rem] rounded-md bg-[#726135] text-white absolute bottom-0 right-0 hover:scale-110 hover:bg-[#aa9c7a]"
             >
               Add Project
             </button>

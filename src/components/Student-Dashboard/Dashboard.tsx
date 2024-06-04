@@ -51,8 +51,4 @@ const Dashboard = () => {
   );
 };
 
-// for box 1 #EDBE44 #8D7F5B
-// for box 2 #F9E8BC #999999
-// for box 3 #A89D82 #F3D380
-
 export default Dashboard;

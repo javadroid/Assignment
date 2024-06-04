@@ -10,7 +10,7 @@ const commentsDataATH = [
   {
     id: 1,
     image: "",
-    status:true,
+    status: true,
     name: "Dr. Joseph Akangi",
     type: "HOD",
     comment:
@@ -19,7 +19,7 @@ const commentsDataATH = [
   {
     id: 2,
     image: "",
-    status:false,
+    status: false,
     name: "Javadroid",
     type: "Developer",
     comment:
@@ -27,29 +27,20 @@ const commentsDataATH = [
   },
 ];
 
-
 const Proposal = () => {
   const [checkedBox, setCheckedBox] = React.useState(false);
-  const [checkedbox2, setCheckedBox2] = React.useState(false);
-  const [checkedbox3, setCheckedBox3] = React.useState(false);
-const [commentsData, setcommentsData] = useState(commentsDataATH)
-  const handleChange = (newValue: boolean,i:any) => {
+  const [commentsData, setcommentsData] = useState(commentsDataATH);
+
+  const handleChange = (newValue: boolean, i: any) => {
     setCheckedBox(newValue);
-   // Make a copy of the commentsData array
-  const updatedCommentsData = [...commentsData];
-  
-  // Update the status of the comment at position 1
-  updatedCommentsData[i].status = !updatedCommentsData[i].status; // Toggle status
-  
-  // Set the state with the updated array
-  setcommentsData(updatedCommentsData);
-   
-  };
-  const handleChange2 = (newValue: boolean) => {
-    setCheckedBox2(newValue);
-  };
-  const handleChange3 = (newValue: boolean) => {
-    setCheckedBox3(newValue);
+    // Make a copy of the commentsData array
+    const updatedCommentsData = [...commentsData];
+
+    // Update the status of the comment at position 1
+    updatedCommentsData[i].status = !updatedCommentsData[i].status; // Toggle status
+
+    // Set the state with the updated array
+    setcommentsData(updatedCommentsData);
   };
 
   return (
@@ -87,24 +78,24 @@ const [commentsData, setcommentsData] = useState(commentsDataATH)
                         <div className="flex flex-col ">
                           <h3 className="font-semibold text-lg">
                             {commentData.name}
-                            <span className="bold text-black">({commentData.type})</span>
+                            <span className="bold text-black">
+                              ({commentData.type})
+                            </span>
                           </h3>
                           <p className="text-sm pl-6">22nd March 2024</p>
                         </div>
                       </div>
                       <CheckBox
                         value={commentData.status}
-                        onChange={(e)=>handleChange(e,i)}
+                        onChange={(e) => handleChange(e, i)}
                         id={String(i)}
                       />
                     </div>
-                    <p className="px-4">
-                     {commentData.comment}
-                    </p>
+                    <p className="px-4">{commentData.comment}</p>
                   </section>
                 );
               })}
-             
+
               <div className="flex flex-row justify-end mt-2">
                 <BiSolidLeftArrow className="mr-4 text-xl text-[#B5B5B5]" />
                 <BiSolidRightArrow className="ml-4 text-xl text-[#B5B5B5]" />
