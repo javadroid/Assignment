@@ -11,7 +11,6 @@ const Proposal = () => {
   const [, setCheckedBox] = React.useState(false);
   const [commentsData, setcommentsData] = useState(commentsDataATH);
   const filteredTopics = uploadDataATH.filter((topic) => topic.button);
-  console.log(filteredTopics);
 
   const handleChange = (newValue: boolean, i: any) => {
     setCheckedBox(newValue);
