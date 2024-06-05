@@ -5,30 +5,10 @@ import { Link } from "react-router-dom";
 import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
 import Avatar from "@mui/material/Avatar";
 import CheckBox from "../Reusable-Code/CheckBox";
-
-const commentsDataATH = [
-  {
-    id: 1,
-    image: "",
-    status: true,
-    name: "Dr. Joseph Akangi",
-    type: "HOD",
-    comment:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam voluptates ipsa voluptatibus explicabo amet! Inventore minus fuga, labore quas ducimus libero itaque saepe pariatur? Reprehenderit exercitationem atque illo amet aut!",
-  },
-  {
-    id: 2,
-    image: "",
-    status: false,
-    name: "Javadroid",
-    type: "Developer",
-    comment:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam voluptates ipsa voluptatibus explicabo amet! Inventore minus fuga, labore quas ducimus libero itaque saepe pariatur? Reprehenderit exercitationem atque illo amet aut!",
-  },
-];
+import { commentsDataATH } from "../../Utilities/Data";
 
 const Proposal = () => {
-  const [checkedBox, setCheckedBox] = React.useState(false);
+  const [, setCheckedBox] = React.useState(false);
   const [commentsData, setcommentsData] = useState(commentsDataATH);
 
   const handleChange = (newValue: boolean, i: any) => {
@@ -82,7 +62,7 @@ const Proposal = () => {
                               ({commentData.type})
                             </span>
                           </h3>
-                          <p className="text-sm pl-6">22nd March 2024</p>
+                          <p className="text-sm pl-6">{commentData.date}</p>
                         </div>
                       </div>
                       <CheckBox

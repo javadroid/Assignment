@@ -26,7 +26,7 @@ const SignUp: React.FC = () => {
           </caption>
         </div>
         <div className="flex">
-          <p className="font-pop font-medium text-[0.6rem] md:text-[1rem] ">
+          <p className="font-pop font-medium mt-1 text-[0.8rem] md:text-[1rem] ">
             Already have an account?
           </p>
           <Link

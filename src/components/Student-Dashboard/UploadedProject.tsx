@@ -4,10 +4,13 @@ import Navigation from "../Reusable-Code/Navigation";
 import SideDesign from "../Reusable-Code/SideDesign";
 import UploadPopUp from "./Popup-Screens/UploadPopUp";
 import ConfirmationPopup from "./Popup-Screens/ConfirmationPopup";
+import { uploadDataATH } from "../../Utilities/Data";
 
 interface UploadedProjectProps {}
 
 function UploadedProject({}: UploadedProjectProps) {
+  const [uploadData] = useState(uploadDataATH);
+
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
 
@@ -26,59 +29,73 @@ function UploadedProject({}: UploadedProjectProps) {
       <SideDesign />
       <div className="w-full">
         <Navigation />
-        <div className="grid grid-cols-2 gap-6 lg:h-screen border-none ">
-          <div className="bg-[#f6dd9e]  shadow-lg my-[4rem] mx-[5rem] relative">
-            <h3 className="font-semibold text-[1.3rem] my-3 pl-5 border-b-2 border-gray-500 shadow-sm">
-              TOPIC 1
-            </h3>
-            <p
-              className="px-5 text-wrap w-full font-medium text-[1.1rem] pt-3"
-              id="projectTopic1"
-            >
-              MOBILE BASED INFORMATION SYSTEM FOR VEGETABLE FARMING
-            </p>
-            <button
-              disabled
-              className="text-white cursor-not-allowed p-2 w-[7rem] outline-none rounded-md absolute bottom-4 bg-[#ef1616] right-5"
-            >
-              Rejected
-            </button>
+        <div className="flex lg:space-x-1 lg:h-screen border-none">
+          <div className="md:grid md:grid-cols-1 lg:flex  lg:flex-row  items-center">
+            {uploadData
+              .filter((uploadDatas) => uploadDatas.id !== 3)
+              .map((uploadDatas, i) => (
+                <section key={i} className="w-[100%] grid grid-cols-2 h-[100%]">
+                  <div
+                    className="bg-[#f6dd9e] shadow-lg mt-10 ml-[6rem] w-full h-[50%] relative"
+                    id={String(i)}
+                  >
+                    <h3 className="font-semibold text-[1.3rem] my-3 pl-5 border-b-2 border-gray-500 shadow-sm">
+                      {uploadDatas.topicNo}
+                    </h3>
+                    <p className="px-5 text-wrap w-full font-medium text-[1.1rem] pt-3">
+                      {uploadDatas.mainTopic}
+                    </p>
+                    <div>
+                      {uploadDatas.button ? (
+                        <div className="text-white text-center cursor-not-allowed p-2 w-[7rem] outline-none rounded-md absolute bottom-4 bg-[#ef1616] right-5">
+                          Rejected
+                        </div>
+                      ) : (
+                        <div className="text-white text-center cursor-progress p-2 w-[7rem] outline-none rounded-md absolute bottom-4 bg-[#edbe44] right-5">
+                          ONGOING
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </section>
+              ))}
+
+            {uploadData
+              .filter((uploadDatas) => uploadDatas.id === 3)
+              .map((uploadDatas, i) => (
+                <section
+                  key={`3-${i}`}
+                  className="w-[100%] grid grid-cols-2 h-[100%]"
+                >
+                  <div
+                    className="bg-[#f6dd9e] shadow-lg mt-10 ml-[6rem] w-full h-[50%] relative"
+                    id={String(uploadDatas.id)}
+                  >
+                    <h3 className="font-semibold text-[1.3rem] my-3 pl-5 border-b-2 border-gray-500 shadow-sm">
+                      {uploadDatas.topicNo}
+                    </h3>
+                    <p className="px-5 text-wrap w-full font-medium text-[1.1rem] pt-3">
+                      {uploadDatas.mainTopic}
+                    </p>
+                    <div>
+                      {!uploadDatas.button ? (
+                        <div className="text-white text-center cursor-not-allowed p-2 w-[7rem] outline-none rounded-md absolute bottom-4 bg-[#ef1616] right-5">
+                          Rejected
+                        </div>
+                      ) : (
+                        <div className="text-white text-center cursor-progress p-2 w-[7rem] outline-none rounded-md absolute bottom-4 bg-[#edbe44] right-5">
+                          ONGOING
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </section>
+              ))}
           </div>
-          <div className="bg-[#f6dd9e]  shadow-lg my-[4rem] mx-[5rem] relative">
-            <h3 className="font-semibold text-[1.3rem] my-3 pl-5 border-b-2 border-gray-500 shadow-sm">
-              TOPIC 2
-            </h3>
-            <p
-              className="px-5 text-wrap w-full font-medium text-[1.1rem] pt-3"
-              id="projectTopic2"
-            >
-              DESIGN OF COMPUTERIZED CHILD CARE IMFORMATION SYSYEM
-            </p>
-            <button
-              disabled
-              className="text-white cursor-not-allowed p-2 w-[7rem] outline-none rounded-md absolute bottom-4 bg-[#ef1616] right-5"
-            >
-              Rejected
-            </button>
-          </div>
-          <div className="bg-[#f9e8bc] shadow-lg mb-[7rem] mx-[5rem] relative">
-            <h3 className="font-semibold text-[1.3rem] my-3 pl-5 border-b-2 border-gray-500 shadow-sm">
-              TOPIC 3
-            </h3>
-            <p
-              className="px-5 text-wrap w-full font-medium text-[1.1rem] pt-3"
-              id="projectTopic3"
-            >
-              WEB BASED CIVIL SERVICE PERFORMANCE EVALUATION SYSTEM
-            </p>
-            <button className="text-white cursor-progress p-2 w-[7rem] outline-none rounded-md absolute bottom-4 bg-[#edbe44] right-5">
-              ONGOING
-            </button>
-          </div>
-          <div className=" mb-[7rem] mx-[5rem] relative">
+          <div className="mb-[7rem] mr-10 mx-[5rem] relative">
             <button
               onClick={togglePopup}
-              className="outline-none p-3  w-[10rem] rounded-md bg-[#726135] text-white absolute bottom-0 right-0 hover:scale-110 hover:bg-[#aa9c7a]"
+              className="outline-none p-3  w-[10rem] rounded-md bg-[#726135] text-white absolute bottom-5 right-20 hover:scale-110 hover:bg-[#aa9c7a]"
             >
               Add Project
             </button>

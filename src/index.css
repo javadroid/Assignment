@@ -34,7 +34,7 @@ html body {
 
 /*  */
 .component {
-  @apply font-pop h-screen w-screen text-base text-gray-500;
+  @apply font-pop  text-base text-gray-500;
 }
 
 .inputField {
@@ -48,3 +48,5 @@ html body {
 .btn {
   @apply w-full flex flex-row justify-center items-center px-8 py-2.5 rounded-xl bg-[#a1812e];
 }
+
+

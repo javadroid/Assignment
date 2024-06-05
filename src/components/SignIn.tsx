@@ -5,19 +5,19 @@ import InputField from "./Reusable-Code/InputField";
 import ShowPassword from "./Reusable-Code/ShowPassword";
 
 function SignIn() {
-  useEffect(() => {
-    window.scrollTo(0, 0); // Scroll to the top when component mounts
-  }, []); // Empty dependency array to ensure it only runs once
+  // useEffect(() => {
+  //   window.scrollTo(0, 0); // Scroll to the top when component mounts
+  // }, []); // Empty dependency array to ensure it only runs once
 
   return (
-    <div className="component">
+    <div className="font-pop text-gray-500">
       {/* Container */}
-      <div className="flex flex-row text-gray-900">
+      <div className="flex flex-wrap lg:flex-nowrap justify-center lg:justify-between lg:w-full text-gray-900">
         {/* Side Image */}
-        <div className="image basis-1/2 h-screen"></div>
+        <div className="image lg:w-1/2 xl:w-2/3 hidden lg:block h-screen bg-cover bg-center"></div>
         {/* The Signup page */}
-        <div className="basis-1/2 w-full flex flex-col px-40 py-16">
-          <div className="flex justify-end">
+        <div className="lg:w-1/2 xl:w-1/3 p-10 lg:p-20 flex flex-col justify-center">
+          <div className="flex justify-end mb-4">
             <caption className="text-sm">
               Don't have an account?{" "}
               <Link to="/SignUp" className="text-[#a1812e]">
