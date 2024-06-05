@@ -1,7 +1,7 @@
-import React from "react";
-
 function SideDesign() {
-  return <div className="h-screen bg-[#57430e] w-[4rem]"></div>;
+  return (
+    <div className="lg:h-screen bg-[#57430e] lg:visible lg:w-[4rem]"></div>
+  );
 }
 
 export default SideDesign;

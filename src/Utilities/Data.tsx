@@ -44,19 +44,13 @@ const commentsDataATH = [
 const uploadDataATH = [
   {
     id: 1,
-    topicNo: "TOPIC 1",
+    topicNo: "TOPIC",
     mainTopic: "MOBILE BASED INFORMATION SYSTEM FOR VEGETABLE FARMING",
     button: true,
   },
   {
     id: 2,
-    topicNo: "TOPIC 2",
-    mainTopic: "WEB BASED CIVIL SERVICE PERFORMANCE EVALUATION SYSTEM",
-    button: true,
-  },
-  {
-    id: 3,
-    topicNo: "TOPIC 3",
+    topicNo: "TOPIC",
     mainTopic: "WEB BASED CIVIL SERVICE PERFORMANCE EVALUATION SYSTEM",
     button: true,
   },
