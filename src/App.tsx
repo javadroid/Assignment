@@ -7,6 +7,7 @@ import NewPassword from "./components/Reset-Password/NewPassword";
 import UploadedProject from "./components/Student-Dashboard/UploadedProject";
 import Dashboard from "./components/Student-Dashboard/Dashboard";
 import Proposal from "./components/Student-Dashboard/Proposal";
+import HodDashboard from "./components/HOD Dashboard/HodDashboard";
 
 const App: React.FC = () => {
   return (
@@ -20,6 +21,7 @@ const App: React.FC = () => {
         <Route path="/uploaded" element={<UploadedProject />}></Route>
         <Route path="/dash" element={<Dashboard />}></Route>
         <Route path="/proposal" element={<Proposal />}></Route>
+        <Route path="/hodDash" element={<HodDashboard />}></Route>
       </Routes>
     </Router>
   );
