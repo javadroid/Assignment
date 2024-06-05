@@ -49,7 +49,7 @@ function UploadedProject({}: UploadedProjectProps) {
                       {uploadDatas.mainTopic}
                     </p>
                     <div>
-                      {uploadDatas.button ? (
+                      {!uploadDatas.button ? (
                         <div className="text-white text-center cursor-not-allowed p-2 w-[7rem] outline-none rounded-md absolute bottom-4 bg-[#ef1616] right-5">
                           Rejected
                         </div>
