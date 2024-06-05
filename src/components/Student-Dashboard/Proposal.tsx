@@ -92,7 +92,7 @@ const Proposal = () => {
               </div> */}
             </div>
             <div className="flex flex-col items-end mt-4">
-              <button className="transform transition hover:scale-110 bg-[#A89D82] text-black p-3 text-lg mr-4 rounded-md hover:bg-[#bebcb6]">
+              <button className="transform transition ease-linear hover:scale-110 bg-[#A89D82] text-black p-3 text-lg mr-4 rounded-md hover:bg-[#bebcb6]">
                 Update PDF
               </button>
             </div>
