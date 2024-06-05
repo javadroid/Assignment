@@ -9,7 +9,7 @@ interface CheckBoxProps {
 const CheckBox: React.FC<CheckBoxProps> = ({ value, id, onChange }) => {
   return (
     <input
-      className="rounded-full  checked:bg-[#EDBE44] bg-none w-6 h-6"
+      className="checked:bg-[#EDBE44] bg-none w-5 h-5 lg:w-6 lg:h-6"
       type="checkbox"
       id={id}
       checked={value}

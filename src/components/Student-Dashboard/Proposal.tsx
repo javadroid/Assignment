@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import SideDesign from "../Reusable-Code/SideDesign";
 import Navigation from "../Reusable-Code/Navigation";
 import { Link } from "react-router-dom";
-import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
+// import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
 import Avatar from "@mui/material/Avatar";
 import CheckBox from "../Reusable-Code/CheckBox";
-import { commentsDataATH } from "../../Utilities/Data";
+import { commentsDataATH, uploadDataATH } from "../../Utilities/Data";
 
 const Proposal = () => {
   const [, setCheckedBox] = React.useState(false);
   const [commentsData, setcommentsData] = useState(commentsDataATH);
+  const filteredTopics = uploadDataATH.filter((topic) => topic.button);
+  console.log(filteredTopics);
 
   const handleChange = (newValue: boolean, i: any) => {
     setCheckedBox(newValue);
@@ -24,26 +26,31 @@ const Proposal = () => {
   };
 
   return (
-    <div className="font-pop flex flex-row">
+    <div className="font-pop h-screen flex flex-row overflow-hidden">
       <SideDesign />
       <div className="w-full text-black">
         <Navigation />
         <div className="pt-3 px-10 bg-[#F6F6F6] h-screen">
-          <h1 className="font-semibold text-lg">Project Proposal</h1>
+          <h1 className="font-semibold text-sm lg:text-lg">Project Proposal</h1>
           <hr className="border-gray-400" />
           <div className="flex flex-col pt-4">
             <main className="flex flex-row items-end justify-between w-full">
-              <h2>Comments:</h2>
-              <div className="bg-[#FAEDCB] shadow p-4 text-right">
-                <h2 className="uppercase font-semibold pb-2">
-                  Web Based Civil Service Performance Evaluation System
-                </h2>
-                <Link to={"#"} className="text-[#57430E] font-medium">
-                  Click to view project pdf
-                </Link>
-              </div>
+              <h2 className="text-sm lg:text-base">Comments:</h2>
+              {filteredTopics.map((upLoadedTopicS, i) => (
+                <div
+                  key={i}
+                  className="bg-[#FAEDCB] shadow p-4 text-right w-2/3 text-xs lg:text-base lg:w-1/2"
+                >
+                  <h2 className="uppercase font-semibold pb-2" id={String(i)}>
+                    {upLoadedTopicS.mainTopic}
+                  </h2>
+                  <Link to={"#"} className="text-[#57430E] font-medium">
+                    Click to view project pdf
+                  </Link>
+                </div>
+              ))}
             </main>
-            <div className="bg-white mt-4 flex flex-col p-6 overflow-y-auto h-[24rem]">
+            <div className="bg-white mt-4 flex flex-col p-6 overflow-y-auto lg:w-[100%] h-[24rem]">
               {commentsData.map((commentData, i) => {
                 return (
                   <section key={i} className="border p-5 text-gray-700 mb-4">
@@ -52,17 +59,22 @@ const Proposal = () => {
                         <Avatar
                           alt=""
                           src={commentData.image}
-                          sx={{ width: 56, height: 56 }}
+                          sx={{
+                            width: { sm: 23, lg: 56 },
+                            height: { sm: 23, lg: 56 },
+                          }}
                           className="mr-3"
                         />
                         <div className="flex flex-col ">
-                          <h3 className="font-semibold text-lg">
+                          <h3 className="font-semibold text-base lg:text-lg">
                             {commentData.name}
-                            <span className="bold text-black">
+                            <span className="bold text-sm lg:text-base text-black">
                               ({commentData.type})
                             </span>
                           </h3>
-                          <p className="text-sm pl-6">{commentData.date}</p>
+                          <p className="text-xs lg:text-base pl-6">
+                            {commentData.date}
+                          </p>
                         </div>
                       </div>
                       <CheckBox
@@ -75,11 +87,10 @@ const Proposal = () => {
                   </section>
                 );
               })}
-
-              <div className="flex flex-row justify-end mt-2">
+              {/* <div className="flex flex-row justify-end mt-2">
                 <BiSolidLeftArrow className="mr-4 text-xl text-[#B5B5B5]" />
                 <BiSolidRightArrow className="ml-4 text-xl text-[#B5B5B5]" />
-              </div>
+              </div> */}
             </div>
             <div className="flex flex-col items-end mt-4">
               <button className="transform transition hover:scale-110 bg-[#A89D82] text-black p-3 text-lg mr-4 rounded-md hover:bg-[#bebcb6]">
