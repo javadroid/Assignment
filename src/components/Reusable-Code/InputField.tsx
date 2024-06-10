@@ -5,7 +5,7 @@ interface Props {
   id: string;
   type: string;
   className: string;
-  divClassName: string;
+  divClassName?: string;
 }
 
 const InputField: React.FC<Props> = ({

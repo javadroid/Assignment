@@ -55,4 +55,72 @@ const uploadDataATH = [
     button: true,
   },
 ];
-export { commentsDataATH, uploadDataATH };
+
+const assignStudentDataATH = [
+  {
+    id: 2345093,
+    fullName: "John Mike",
+    approvedTopic: "WEB BASED CIVIL SERVICE PERFORMANCE EVALUATION SYSTEM",
+    first_supervisor: "",
+    second_supervisor: "",
+    assignBtn: false,
+  },
+  {
+    id: 2345093,
+    fullName: "John Mike",
+    approvedTopic: "WEB BASED CIVIL SERVICE PERFORMANCE EVALUATION SYSTEM",
+    first_supervisor: "",
+    second_supervisor: "",
+    assignBtn: false,
+  },
+  {
+    id: 2345093,
+    fullName: "John Mike",
+    approvedTopic: "WEB BASED CIVIL SERVICE PERFORMANCE EVALUATION SYSTEM",
+    first_supervisor: "",
+    second_supervisor: "",
+    assignBtn: false,
+  },
+  {
+    id: 2345093,
+    fullName: "John Mike",
+    approvedTopic: "WEB BASED CIVIL SERVICE PERFORMANCE EVALUATION SYSTEM",
+    first_supervisor: "",
+    second_supervisor: "",
+    assignBtn: false,
+  },
+  {
+    id: 2345093,
+    fullName: "John Mike",
+    approvedTopic: "WEB BASED CIVIL SERVICE PERFORMANCE EVALUATION SYSTEM",
+    first_supervisor: "",
+    second_supervisor: "",
+    assignBtn: false,
+  },
+  {
+    id: 2345093,
+    fullName: "John Mike",
+    approvedTopic: "WEB BASED CIVIL SERVICE PERFORMANCE EVALUATION SYSTEM",
+    first_supervisor: "",
+    second_supervisor: "",
+    assignBtn: false,
+  },
+  {
+    id: 2345093,
+    fullName: "John Mike",
+    approvedTopic: "WEB BASED CIVIL SERVICE PERFORMANCE EVALUATION SYSTEM",
+    first_supervisor: "",
+    second_supervisor: "",
+    assignBtn: false,
+  },
+  {
+    id: 2345093,
+    fullName: "John Mike",
+    approvedTopic: "WEB BASED CIVIL SERVICE PERFORMANCE EVALUATION SYSTEM",
+    first_supervisor: "",
+    second_supervisor: "",
+    assignBtn: false,
+  },
+];
+
+export { commentsDataATH, uploadDataATH, assignStudentDataATH };
