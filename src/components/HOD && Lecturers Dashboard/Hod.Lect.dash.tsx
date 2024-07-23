@@ -40,7 +40,8 @@ const Proposal = () => {
                   key={i}
                   className="bg-[#FAEDCB] shadow p-4 text-right w-2/3 text-xs lg:text-base lg:w-1/2"
                 >
-                  <h2 className="uppercase font-semibold pb-2" id={String(i)}>
+                  {/* make sure to work on this for mutiple topics */}
+                  <h2 className={`uppercase font-semibold pb-2`} id={String(i)}>
                     {upLoadedTopicS.mainTopic}
                   </h2>
                   <Link to={"#"} className="text-[#57430E] font-medium">

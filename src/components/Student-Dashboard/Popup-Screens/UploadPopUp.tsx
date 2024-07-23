@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { IoClose } from "react-icons/io5";
 import InputField from "../../Reusable-Code/InputField";
 import FileUpload from "../../Reusable-Code/FileUpload";
