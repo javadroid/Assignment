@@ -87,46 +87,22 @@ const assignStudentDataATH = [
     second_supervisor: "",
     assignBtn: false,
   },
-  {
-    id: 2345093,
-    fullName: "John Mike",
-    approvedTopic: "WEB BASED CIVIL SERVICE PERFORMANCE EVALUATION SYSTEM",
-    first_supervisor: "",
-    second_supervisor: "",
-    assignBtn: false,
-  },
-  {
-    id: 2345093,
-    fullName: "John Mike",
-    approvedTopic: "WEB BASED CIVIL SERVICE PERFORMANCE EVALUATION SYSTEM",
-    first_supervisor: "",
-    second_supervisor: "",
-    assignBtn: false,
-  },
-  {
-    id: 2345093,
-    fullName: "John Mike",
-    approvedTopic: "WEB BASED CIVIL SERVICE PERFORMANCE EVALUATION SYSTEM",
-    first_supervisor: "",
-    second_supervisor: "",
-    assignBtn: false,
-  },
-  {
-    id: 2345093,
-    fullName: "John Mike",
-    approvedTopic: "WEB BASED CIVIL SERVICE PERFORMANCE EVALUATION SYSTEM",
-    first_supervisor: "",
-    second_supervisor: "",
-    assignBtn: false,
-  },
-  {
-    id: 2345093,
-    fullName: "John Mike",
-    approvedTopic: "WEB BASED CIVIL SERVICE PERFORMANCE EVALUATION SYSTEM",
-    first_supervisor: "",
-    second_supervisor: "",
-    assignBtn: false,
-  },
 ];
 
-export { commentsDataATH, uploadDataATH, assignStudentDataATH };
+const lecturersListDataATH = [
+  "Mr. Mark John",
+  "Mrs Pauline John",
+  "Dr. Mark John",
+  "Mr. Jona John",
+  "Mr. Juwon John",
+  "Mr. Javadriod Emma",
+  "Mrs Just Do It",
+  "Mrs.Mary John",
+];
+
+export {
+  commentsDataATH,
+  uploadDataATH,
+  assignStudentDataATH,
+  lecturersListDataATH,
+};

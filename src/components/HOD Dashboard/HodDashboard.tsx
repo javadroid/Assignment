@@ -74,6 +74,7 @@ export default function HodDashboard() {
             Project Topics
           </p>
           <div className="m-4">
+            {/* search input */}
             <InputField
               labelText="search:"
               id=""
@@ -138,7 +139,7 @@ export default function HodDashboard() {
                 </Table>
               </TableContainer>
               <TablePagination
-                rowsPerPageOptions={[3, 10, 30]}
+                rowsPerPageOptions={[3, 10]}
                 component="div"
                 count={assignStudentDataATH.length}
                 rowsPerPage={rowsPerPage}
