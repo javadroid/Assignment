@@ -11,6 +11,7 @@ import HodDashboard from "./components/HOD Dashboard/HodDashboard";
 import HodLectdash from "./components/HOD && Lecturers Dashboard/Hod.Lect.dash";
 import InternalDisscussant from "./components/HOD Dashboard/InternalDisscussant";
 import SPGSRep from "./components/Dean/SPGSRep";
+import InternalDiscussantDash from "./components/InternalDiscussant/InternalDiscussantDash";
 
 const App: React.FC = () => {
   return (
@@ -29,6 +30,10 @@ const App: React.FC = () => {
         <Route
           path="/InternalDisscussant"
           element={<InternalDisscussant />}
+        ></Route>
+        <Route
+          path="/InternalDisscussantDash"
+          element={<InternalDiscussantDash />}
         ></Route>
         <Route path="/spgs" element={<SPGSRep />}></Route>
       </Routes>
