@@ -47,7 +47,9 @@ export default function HodDashboard() {
   );
 
   const tableContainerClass =
-    rowsPerPage >= 10 ? "max-h-[400px] overflow-y-auto" : "";
+    rowsPerPage >= 10 ? "max-h-[320px] overflow-y-auto" : "";
+
+  const pageScrollBar = rowsPerPage >= 10 ? "overflow-y-hidden" : "";
 
   return (
     <div className="font-pop h-screen flex flex-row lg:overflow-hidden bg-gray-100">
@@ -83,7 +85,9 @@ export default function HodDashboard() {
               divClassName="flex flex-row gap-2 items-center justify-end"
             />
             {/* The Table view */}
-            <div className={`flex flex-col p-2 lg:p-2 ${tableContainerClass}`}>
+            <div
+              className={`flex flex-col max-h-[370px] p-2 lg:p-2 ${tableContainerClass}`}
+            >
               <TableContainer component={Paper} className="border-2">
                 <Table sx={{ minWidth: 400 }} aria-label="customized table">
                   <TableHead>
@@ -138,16 +142,18 @@ export default function HodDashboard() {
                   </TableBody>
                 </Table>
               </TableContainer>
-              <TablePagination
-                rowsPerPageOptions={[3, 10]}
-                component="div"
-                count={assignStudentDataATH.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-                className=""
-              />
+              <div className="">
+                <TablePagination
+                  rowsPerPageOptions={[3, 10, 30]}
+                  component="div"
+                  count={assignStudentDataATH.length}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  onPageChange={handleChangePage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                  className={`${pageScrollBar}`}
+                />
+              </div>
             </div>
           </div>
         </section>
