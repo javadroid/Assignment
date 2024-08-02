@@ -40,6 +40,10 @@ html body {
   @apply w-full my-1 px-3 py-1 rounded-xl pr-8 border-2 border-gray-500 outline-none focus:border-[#a1812e];
 }
 
+.errorInputField{
+  @apply w-full my-1 px-3 py-1 rounded-xl pr-8 border-2 border-red-500 outline-none
+}
+
 .resetInput {
   @apply w-12 text-2xl h-10 p-3 rounded-xl border-2 border-gray-500 outline-none focus:border-[#a1812e];
 }
