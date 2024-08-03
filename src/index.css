@@ -19,7 +19,7 @@ html body {
   padding: 0;
 }
 
-.mobileResponsiveness {
+/* .mobileResponsiveness {
 }
 .tableResponsiveness {
   @apply md:my-2 md:mx-[3rem] md:text-[0.8rem];
@@ -29,7 +29,7 @@ html body {
 }
 .largeScreenResponsiveness {
   @apply xl:mx-[21rem] 2xl:mx-[55rem] 2xl:my-[10rem];
-}
+} */
 
 /*  */
 .component {

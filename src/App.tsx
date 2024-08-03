@@ -1,6 +1,11 @@
 import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import ForgetPassword from "./components/Reset-Password/ForgetPassword";
 import ResetPassword from "./components/Reset-Password/ResetPassword";
 import NewPassword from "./components/Reset-Password/NewPassword";
@@ -15,13 +20,21 @@ import InternalDiscussantDash from "./components/InternalDiscussant/InternalDisc
 import Admin from "./components/Admin/Admin";
 
 const App: React.FC = () => {
-  const userData=JSON.parse(localStorage.getItem("userdata")!)
- 
+  const userData = JSON.parse(localStorage.getItem("userdata")!);
+
   return (
     <Router>
       <Routes>
-       
-        <Route path="/"  element={userData?.auth ? <Dashboard /> : <Navigate to={"/login"}  />}></Route> 
+        <Route
+          path="/"
+          element={
+            userData?.auth ? (
+              <Navigate to={"/dash"} />
+            ) : (
+              <Navigate to={"/login"} />
+            )
+          }
+        ></Route>
         <Route path="/SignUp" element={<SignUp />}></Route>
         <Route path="/login" element={<SignIn />}></Route>
 

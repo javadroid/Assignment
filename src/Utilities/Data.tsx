@@ -151,10 +151,17 @@ const lecturersListDataATH = [
   "Mrs.Mary John",
 ];
 
+const deptListDataATH = ["Computing", "Mathematics"];
+const facultyDataATH = ["Computing"];
+const typeDataATH = ["MSC", "PHD"];
+
 export {
   commentsDataATH,
   uploadDataATH,
   assignStudentDataATH,
   lecturersListDataATH,
   loginandsignout,
+  deptListDataATH,
+  facultyDataATH,
+  typeDataATH,
 };

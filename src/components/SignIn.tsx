@@ -3,14 +3,10 @@ import Button from "./Reusable-Code/Button";
 import InputField from "./Reusable-Code/InputField";
 import ShowPassword from "./Reusable-Code/ShowPassword";
 import React, { ChangeEvent, useState } from "react";
-import { useDispatch } from "react-redux";
-import { loginUser } from "../features/UserSlice";
-import { AppDispatch } from "../app/store";
 import axios from "axios";
 import Swal from "sweetalert2";
 
 const SignIn: React.FC = () => {
-  const dispatch = useDispatch<AppDispatch>(); // Typing dispatch with AppDispatch
   const navigate = useNavigate();
 
   // State for form fields and errors
@@ -23,25 +19,30 @@ const SignIn: React.FC = () => {
   const handSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    axios.post("https://hodbackend.onrender.com/api/v1/auth/login",{email,password}).then((data)=>{
-      localStorage.setItem("userdata",JSON.stringify(data.data))
-       
-       Swal.fire({
-        title: data.data.msg,
-        
-        icon: "success"
-      });
+    axios
+      .post("https://hodbackend.onrender.com/api/v1/auth/login", {
+        email,
+        password,
+      })
+      .then((data) => {
+        localStorage.setItem("userdata", JSON.stringify(data.data));
 
-      navigate("../")
-    }).catch((err)=>{
-      console.log(err.response.data.error.message)
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: err.response.data.error.message||"Something happen",
-        
+        Swal.fire({
+          title: data.data.msg,
+
+          icon: "success",
+        });
+
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err.response.data.error.message);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: err.response.data.error.message || "Something happen",
+        });
       });
-    })
   };
 
   // Handle input changes
@@ -90,6 +91,7 @@ const SignIn: React.FC = () => {
                     value={email}
                   />
                   <ShowPassword
+                    divClassName="flex flex-col lg:w-full"
                     labelText="Password:"
                     id="password"
                     className={`inputField ${
