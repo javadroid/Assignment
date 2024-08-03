@@ -5,6 +5,8 @@ import "../index.css";
 import { GoArrowRight } from "react-icons/go";
 import InputField from "./Reusable-Code/InputField";
 import ShowPassword from "./Reusable-Code/ShowPassword";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const SignUp: React.FC = () => {
   const initialState = {
@@ -148,7 +150,7 @@ const SignUp: React.FC = () => {
                 className="borderBlack border-2 xs:w-[12rem] lg:w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
               outline-none  focus:border-[#a1812e]"
               />
-              <FacultyDropDown
+              <DropDown
                 divClassName="flex flex-col"
                 labelText="Faculty:"
                 id="dropDown"
@@ -172,7 +174,7 @@ const SignUp: React.FC = () => {
                 className="borderBlack border-2 xs:w-[12rem] lg:w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
               outline-none  focus:border-[#a1812e]"
               />
-              <TypeDropDown
+              <DropDown
                 divClassName="flex flex-col"
                 labelText="Type:"
                 id="dropDown"
@@ -184,13 +186,13 @@ const SignUp: React.FC = () => {
               outline-none  focus:border-[#a1812e]"
               />
             </div>
-            <DropDown
+            {/* <DropDown
               divClassName="flex flex-col"
               labelText="Type:"
               id="dropDown"
               className="borderBlack border-2 xs:w-[12rem] lg:w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
               outline-none  focus:border-[#a1812e]"
-            />
+            /> */}
             <div className="flex justify-between">
               <ShowPassword
                 labelText="Password:"
