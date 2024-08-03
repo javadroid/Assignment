@@ -197,6 +197,7 @@ const SignUp: React.FC = () => {
             /> */}
             <div className="flex xs:flex-col xs:items-center xs:justify-center lg:flex-row lg:gap-48">
               <ShowPassword
+                divClassName="flex flex-col xs:w-[80%]  lg:w-full"
                 labelText="Password:"
                 id="confirmPassword"
                 onChange={(e) =>
@@ -206,6 +207,7 @@ const SignUp: React.FC = () => {
               outline-none  focus:border-[#a1812e]"
               />
               <ShowPassword
+                divClassName="flex flex-col xs:w-[80%]  lg:w-full"
                 labelText="Confirm Password:"
                 id="password"
                 onChange={(e) => handleInputChange("password", e.target.value)}

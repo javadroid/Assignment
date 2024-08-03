@@ -6,6 +6,7 @@ interface Props {
   className?: string;
   divClass?: string;
   value?: any;
+  divClassName?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -15,14 +16,14 @@ const ShowPassword: React.FC<Props> = ({
   className,
   onChange,
   divClass,
-  value,
+  divClassName,
 }) => {
   const [showPassword, setPasswordVisible] = useState(false);
   const passwordChange = () => {
     setPasswordVisible(!showPassword);
   };
   return (
-    <div className="flex flex-col xs:w-[80%]">
+    <div className={divClassName}>
       <label htmlFor={id}>{labelText}</label>
       <div className={`flex items-center relative ${divClass}`}>
         <input

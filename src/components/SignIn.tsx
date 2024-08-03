@@ -91,6 +91,7 @@ const SignIn: React.FC = () => {
                     value={email}
                   />
                   <ShowPassword
+                    divClassName="flex flex-col lg:w-full"
                     labelText="Password:"
                     id="password"
                     className={`inputField ${
