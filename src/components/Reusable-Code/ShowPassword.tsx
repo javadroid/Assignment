@@ -22,7 +22,7 @@ const ShowPassword: React.FC<Props> = ({
     setPasswordVisible(!showPassword);
   };
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col xs:w-[80%]">
       <label htmlFor={id}>{labelText}</label>
       <div className={`flex items-center relative ${divClass}`}>
         <input
