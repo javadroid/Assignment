@@ -1,12 +1,13 @@
 import React from "react";
 import { IoClose } from "react-icons/io5";
 import { IoMdCheckmark } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 interface LogoutScreenProps {
   onClose: () => void;
 }
 
 const LogoutScreen = ({ onClose }: LogoutScreenProps) => {
+  const navigate=useNavigate()
   return (
     <div className="font-pop fixed top-0 left-0 w-full h-full bg-black bg-opacity-50   flex justify-center items-center z-10">
       <div className="bg-slate-50 p-[2rem] rounded-md z-[7rem] w-[30rem]  shadow-lg">
@@ -21,8 +22,11 @@ const LogoutScreen = ({ onClose }: LogoutScreenProps) => {
               style={{ cursor: "pointer", fill: "#e11d48" }}
               size={35}
             />
-            <Link to={"/"}>
-              <IoMdCheckmark size={35} style={{ fill: "#a1812e" }} />
+            <Link to={"/login"}>
+              <IoMdCheckmark onClick={()=>{
+                localStorage.clear()
+                
+              }} size={35} style={{ fill: "#a1812e" }} />
             </Link>
           </div>
         </div>
