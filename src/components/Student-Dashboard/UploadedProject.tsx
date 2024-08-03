@@ -31,9 +31,7 @@ function UploadedProject({}: UploadedProjectProps) {
         <Navigation />
         <div className="flex sm:relative lg:space-x-1 lg:h-screen border-none">
           <div className="md:grid md:grid-cols-1 lg:flex  lg:flex-row  items-center">
-            {uploadData
-              .filter((uploadDatas) => uploadDatas.id !== 2)
-              .map((uploadDatas, i) => (
+            {uploadData.map((uploadDatas, i) => (
                 <section
                   key={i}
                   className="w-[100%] grid sm:grid-rows-2 lg:grid-cols-2 h-[100%]"

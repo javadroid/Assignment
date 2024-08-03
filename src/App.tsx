@@ -17,6 +17,7 @@ import HodLectdash from "./components/HOD && Lecturers Dashboard/Hod.Lect.dash";
 import InternalDisscussant from "./components/HOD Dashboard/InternalDisscussant";
 import SPGSRep from "./components/Dean/SPGSRep";
 import InternalDiscussantDash from "./components/InternalDiscussant/InternalDiscussantDash";
+import Admin from "./components/Admin/Admin";
 
 const App: React.FC = () => {
   const userData = JSON.parse(localStorage.getItem("userdata")!);
@@ -37,6 +38,13 @@ const App: React.FC = () => {
         <Route path="/SignUp" element={<SignUp />}></Route>
         <Route path="/login" element={<SignIn />}></Route>
 
+        {
+          userData?.auth && <>
+           <Route path="/admin" element={<Admin />}></Route>
+
+          </>
+        }
+       
         <Route path="/forget" element={<ForgetPassword />}></Route>
         <Route path="/reset" element={<ResetPassword />}></Route>
         <Route path="/new" element={<NewPassword />}></Route>
