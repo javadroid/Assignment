@@ -1,3 +1,22 @@
+const loginandsignout = [
+  {
+    email: "test121@gmail.com",
+    password: "test123",
+  },
+  {
+    email: "test131@gmail.com",
+    password: "test123",
+  },
+  {
+    email: "test111@gmail.com",
+    password: "test123",
+  },
+  {
+    email: "test101@gmail.com",
+    password: "test123",
+  },
+];
+
 const commentsDataATH = [
   {
     id: 1,
@@ -137,4 +156,5 @@ export {
   uploadDataATH,
   assignStudentDataATH,
   lecturersListDataATH,
+  loginandsignout,
 };

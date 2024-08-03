@@ -1,0 +1,354 @@
+import { Link, useNavigate } from "react-router-dom";
+import Button from "./Reusable-Code/Button";
+import InputField from "./Reusable-Code/InputField";
+import ShowPassword from "./Reusable-Code/ShowPassword";
+import React, { ChangeEvent, useState } from "react";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../features/UserSlice";
+import { AppDispatch } from "../app/store";
+
+const SignIn: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>(); // Typing dispatch with AppDispatch
+  const navigate = useNavigate();
+
+  // State for form fields and errors
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [emailError, setEmailError] = useState<boolean>(false);
+  const [passwordError, setPasswordError] = useState<boolean>(false);
+
+  // Handle form submission
+  const handSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Dispatch loginUser with the email and password
+    const res = await dispatch(loginUser({ email, password }));
+
+    if (loginUser.fulfilled.match(res)) {
+      console.log("Login Successfully");
+      navigate("/dash");
+    } else {
+      alert("Not Found");
+      if (!email) {
+        setEmailError(true);
+      }
+      if (!password) {
+        setPasswordError(true);
+      }
+    }
+  };
+
+  // Handle input changes
+  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    setEmail(e.target.value);
+    setEmailError(false);
+  };
+
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    setPassword(e.target.value);
+    setPasswordError(false);
+  };
+
+  return (
+    <div className="lg:overflow-hidden font-pop h-screen text-gray-500">
+      {/* Container */}
+      <div className="h-full flex flex-wrap lg:flex-nowrap justify-center lg:justify-between lg:w-full text-gray-900">
+        {/* Side Image */}
+        <div className="image lg:w-1/2 xl:w-2/3 hidden lg:block h-screen bg-cover bg-center lg:overflow-hidden"></div>
+        {/* The SignIn page */}
+        <div className="lg:w-1/2 xl:w-1/3 p-10 lg:p-20 flex flex-col justify-center ">
+          <div className="flex justify-end mb-4">
+            <caption className="text-sm">
+              Don't have an account?{" "}
+              <Link to="/SignUp" className="text-[#a1812e]">
+                Sign Up!
+              </Link>
+            </caption>
+          </div>
+          <div className="pt-20 flex flex-col">
+            <h1 className="pb-2 font-bold text-gray-700 text-4xl">Sign In</h1>
+            <caption className="flex">Fill in your details to sign in</caption>
+            <form onSubmit={handSubmit}>
+              <div className="pt-5">
+                <div className="mb-10">
+                  <InputField
+                    labelText="Email:"
+                    id="email"
+                    type="email"
+                    divClassName="my-4"
+                    className={`inputField ${
+                      emailError ? "errorInputField" : ""
+                    }`}
+                    onChange={handleEmailChange}
+                    value={email}
+                  />
+                  <ShowPassword
+                    labelText="Password:"
+                    id="password"
+                    className={`inputField ${
+                      passwordError ? "errorInputField" : ""
+                    }`}
+                    onChange={handlePasswordChange}
+                    value={password}
+                  />
+                </div>
+
+                <div className="mb-6">
+                  <Button
+                    label="Sign In"
+                    type="submit"
+                    className="group btn"
+                    arrow={true}
+                  />
+                </div>
+
+                <div className="pt-4 flex">
+                  <caption className="">
+                    Forget your password?{" "}
+                    <Link to={"/forget"} className="text-[#a1812e]">
+                      Reset Now!
+                    </Link>
+                  </caption>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default SignIn;
+
+//new sign in
+
+import React, { useState, ChangeEvent, FormEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
+import InputField from './InputField';
+import ShowPassword from './ShowPassword';
+import Button from './Button';
+
+interface User {
+  email: string;
+  password: string;
+}
+
+const loginandsignout: User[] = [
+  { email: "test121@gmail.com", password: "test123" },
+  { email: "test131@gmail.com", password: "test123" },
+  { email: "test111@gmail.com", password: "test123" },
+  { email: "test101@gmail.com", password: "test123" },
+];
+
+const LoginForm: React.FC = () => {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [emailError, setEmailError] = useState<boolean>(false);
+  const [passwordError, setPasswordError] = useState<boolean>(false);
+  const navigate = useNavigate();
+
+  const handSubmit = (e: FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+
+    // Reset error states
+    setEmailError(false);
+    setPasswordError(false);
+
+    const user = loginandsignout.find(
+      (user) => user.email === email && user.password === password
+    );
+
+    if (user) {
+      console.log("Login successful");
+      navigate('/dashboard');
+    } else {
+      console.log("Invalid credentials");
+      // Set error states based on which fields are incorrect
+      if (!loginandsignout.some((user) => user.email === email)) {
+        setEmailError(true);
+      }
+      if (!loginandsignout.some((user) => user.password === password && user.email === email)) {
+        setPasswordError(true);
+      }
+    }
+  };
+
+  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    setEmail(e.target.value);
+    // Clear email error when the user types
+    setEmailError(false);
+  };
+
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    setPassword(e.target.value);
+    // Clear password error when the user types
+    setPasswordError(false);
+  };
+
+  return (
+    <form onSubmit={handSubmit}>
+      <div className="pt-5">
+        <div className="mb-10">
+          <InputField
+            labelText="Email:"
+            id="email"
+            type="email"
+            divClassName="my-4"
+            className={`inputField ${emailError ? 'border-red-500' : ''}`} // Apply error class conditionally
+            value={email}
+            onchange={handleEmailChange}
+          />
+          <ShowPassword
+            labelText="Password:"
+            id="password"
+            className={`inputField ${passwordError ? 'border-red-500' : ''}`} // Apply error class conditionally
+            value={password}
+            onchange={handlePasswordChange}
+          />
+        </div>
+
+        <div className="mb-6">
+          <Button
+            label="Sign In"
+            type="submit"
+            className="group btn"
+            arrow={true}
+          />
+        </div>
+
+        <div className="pt-4 flex">
+          <caption>
+            Forget your password?{" "}
+            <Link to="/forget" className="text-[#a1812e]">
+              Reset Now!
+            </Link>
+          </caption>
+        </div>
+      </div>
+    </form>
+  );
+};
+
+export default LoginForm;
+
+
+//new sign up
+//header
+ <div className="flex justify-between md:mx-[3rem] md:mb-0">
+    <div className="">
+      <h1
+        style={{ fontFamily: "Poppins" }}
+        className="md:text-[2rem] font-semibold text-black text-5xl mb-3"
+      >
+        Sign Up
+      </h1>
+      <caption className="flex flex-row font-medium text-[0.8rem]">
+        Fill in your details to sign up
+      </caption>
+    </div>
+    <div className="flex">
+      <p className="font-pop font-medium mt-1 text-[0.8rem] md:text-[1rem] ">
+        Already have an account?
+      </p>
+      <Link
+        className="px-2 font-pop text-[#a1812e] font-[600] text-[1rem]"
+        to="/"
+      >
+        Sign In!
+      </Link>
+    </div>
+  </div>
+
+      //form
+      <form
+        className="flex flex-col mt-3 md:mx-[3rem] md:mt-8
+      lg:max-[5rem]"
+      >
+        <div className="flex flex-row justify-between">
+          <div className="flex flex-col">
+            <InputField
+              labelText="First Name:"
+              id="fname"
+              type="text"
+              divClassName="flex flex-col"
+              className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
+              outline-none  focus:border-[#a1812e]"
+            />
+            <InputField
+              labelText="User ID:"
+              id="userId"
+              type="text"
+              divClassName="flex flex-col"
+              className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
+              outline-none  focus:border-[#a1812e]"
+            />
+            <InputField
+              labelText="Email: "
+              id="email"
+              type="email"
+              divClassName="flex flex-col"
+              className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
+              outline-none  focus:border-[#a1812e]"
+            />
+            <label htmlFor="dropDownDept">Department:</label>
+            <DropDown />
+            <label htmlFor="dropdownType">Type:</label>
+            <DropDown />
+          </div>
+          <div className="flex flex-col">
+            <InputField
+              labelText="Last Name:"
+              id="lname"
+              type="text"
+              divClassName="flex flex-col"
+              className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem] outline-none  focus:border-[#a1812e]"
+            />
+            <InputField
+              labelText="Phone No:"
+              id="tel"
+              type="tel"
+              divClassName="flex flex-col"
+              className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
+         outline-none  focus:border-[#a1812e]"
+            />
+            <label htmlFor="Faculty">Faculty:</label>
+            <DropDown />
+            <ShowPassword
+              labelText="Password:"
+              id="confirmPassword"
+              className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
+              outline-none  focus:border-[#a1812e]"
+            />
+            <ShowPassword
+              labelText="Confirm Password:"
+              id="password"
+              className="borderBlack border-2 w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
+              outline-none  focus:border-[#a1812e]"
+            />
+          </div>
+        </div>
+        
+      </form>
+
+      <div>
+        <p className="lg:text-sm text-wrap w-full mt-2">
+          By clicking continue, I agree to{" "}
+          <Link className="text-[#a1812e]" to="/">
+            Terms of Use
+          </Link>{" "}
+          and acknoledge that I have read the{" "}
+          <Link className="text-[#a1812e]" to="/">
+            Privacy Policy
+          </Link>
+        </p>
+        <div className="mt-3 flex justify-center">
+          <button
+            type="submit"
+            className="group lg:mt-2 w-[50rem] h-[3rem] flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e]"
+          >
+            <span className="text-base text-white">Sign Up</span>
+            <GoArrowRight className="ml-2 text-xl text-white opacity-70 group-hover:translate-x-1 transition" />
+          </button>
+        </div>
+      </div>

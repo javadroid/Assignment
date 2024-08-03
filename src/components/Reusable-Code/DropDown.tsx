@@ -1,6 +1,19 @@
 import React, { useState } from "react";
+import { lecturersListDataATH } from "../../Utilities/Data";
 
-function DropDown() {
+interface Props {
+  id?: string;
+  className?: string;
+  labelText: string;
+  divClassName?: string;
+}
+
+const DropDown: React.FC<Props> = ({
+  id,
+  className,
+  labelText,
+  divClassName,
+}) => {
   const [selectOption, setSelectOption] = useState("");
   const handleChange = (event: {
     target: { value: React.SetStateAction<string> };
@@ -8,25 +21,25 @@ function DropDown() {
     setSelectOption(event.target.value);
   };
   return (
-    <div>
+    <div className={divClassName}>
+      <label htmlFor="">{labelText}</label>
       <select
-        id="dropDown"
+        id={id}
         value={selectOption}
         onChange={handleChange}
-        className="border-gray-500 border-2 w-[17rem] mb-1 h-[2.5rem] px-2  rounded-[0.7rem]
-        outline-none  focus:border-[#a1812e]
-        "
+        className={className}
       >
-        <option value="">Select...</option>
-        <option value="option1">Option 1</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
-        <option value="option1">Option 1</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
+        <option value="" disabled>
+          <em>Select...</em>
+        </option>
+        {lecturersListDataATH.map((name) => (
+          <option key={name} value={name}>
+            {name}
+          </option>
+        ))}
       </select>
     </div>
   );
-}
+};
 
 export default DropDown;
