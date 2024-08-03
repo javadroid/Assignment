@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { deptListDataATH } from "../../Utilities/Data";
+import { facultyDataATH } from "../../Utilities/Data";
 
 interface Props {
   id?: string;
@@ -8,7 +8,7 @@ interface Props {
   divClassName?: string;
 }
 
-const DropDown: React.FC<Props> = ({
+const FacultyDropDown: React.FC<Props> = ({
   id,
   className,
   labelText,
@@ -32,7 +32,7 @@ const DropDown: React.FC<Props> = ({
         <option value="" disabled>
           <em>Select...</em>
         </option>
-        {deptListDataATH.map((name) => (
+        {facultyDataATH.map((name) => (
           <option key={name} value={name}>
             {name}
           </option>
@@ -42,4 +42,4 @@ const DropDown: React.FC<Props> = ({
   );
 };
 
-export default DropDown;
+export default FacultyDropDown;

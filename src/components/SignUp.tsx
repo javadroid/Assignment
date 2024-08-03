@@ -5,6 +5,8 @@ import "../index.css";
 import { GoArrowRight } from "react-icons/go";
 import InputField from "./Reusable-Code/InputField";
 import ShowPassword from "./Reusable-Code/ShowPassword";
+import FacultyDropDown from "./Reusable-Code/FacultyDropDown";
+import TypeDropDown from "./Reusable-Code/TypeDropDown";
 
 const SignUp: React.FC = () => {
   return (
@@ -84,7 +86,7 @@ const SignUp: React.FC = () => {
                 className="borderBlack border-2 xs:w-[12rem] lg:w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
               outline-none  focus:border-[#a1812e]"
               />
-              <DropDown
+              <FacultyDropDown
                 divClassName="flex flex-col"
                 labelText="Faculty:"
                 id="dropDown"
@@ -100,21 +102,22 @@ const SignUp: React.FC = () => {
                 className="borderBlack border-2 xs:w-[12rem] lg:w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
               outline-none  focus:border-[#a1812e]"
               />
-              <DropDown
+              <TypeDropDown
+                divClassName="flex flex-col"
+                labelText="Type:"
+                id="dropDown"
+                className="borderBlack border-2 xs:w-[12rem] lg:w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
+              outline-none  focus:border-[#a1812e]"
+              />
+              {/* <DropDown
                 divClassName="flex flex-col"
                 labelText="Role:"
                 id="dropDown"
                 className="borderBlack border-2 xs:w-[12rem] lg:w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
               outline-none  focus:border-[#a1812e]"
-              />
+              /> */}
             </div>
-            <DropDown
-              divClassName="flex flex-col"
-              labelText="Type:"
-              id="dropDown"
-              className="borderBlack border-2 xs:w-[12rem] lg:w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
-              outline-none  focus:border-[#a1812e]"
-            />
+
             <div className="flex justify-between">
               <ShowPassword
                 labelText="Password:"
@@ -122,15 +125,15 @@ const SignUp: React.FC = () => {
                 className="borderBlack border-2 xs:w-[12rem] lg:w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
               outline-none  focus:border-[#a1812e]"
               />
-              <ShowPassword
+              {/* <ShowPassword
                 labelText="Confirm Password:"
                 id="password"
                 className="borderBlack border-2 xs:w-[12rem] lg:w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
               outline-none  focus:border-[#a1812e]"
-              />
+              /> */}
             </div>
             {/* submit btn */}
-            <div className="my-5">
+            <div className="my-10">
               <p className="lg:text-sm text-wrap w-full mt-2">
                 By clicking continue, I agree to{" "}
                 <Link className="text-[#a1812e]" to="/">
