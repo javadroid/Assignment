@@ -6,6 +6,10 @@ interface Props {
   className?: string;
   labelText: string;
   divClassName?: string;
+  data?: any[];
+  setSelectOption?: any;
+  selectOption?: string;
+  name?: string;
 }
 
 const DropDown: React.FC<Props> = ({
@@ -13,12 +17,15 @@ const DropDown: React.FC<Props> = ({
   className,
   labelText,
   divClassName,
+  data,
+  name,
+  setSelectOption,
+  selectOption,
 }) => {
-  const [selectOption, setSelectOption] = useState("");
   const handleChange = (event: {
     target: { value: React.SetStateAction<string> };
   }) => {
-    setSelectOption(event.target.value);
+    setSelectOption(name, event.target.value);
   };
   return (
     <div className={divClassName}>
@@ -32,7 +39,7 @@ const DropDown: React.FC<Props> = ({
         <option value="" disabled>
           <em>Select...</em>
         </option>
-        {deptListDataATH.map((name) => (
+        {data?.map((name: any) => (
           <option key={name} value={name}>
             {name}
           </option>

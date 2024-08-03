@@ -6,6 +6,8 @@ import React, { ChangeEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../features/UserSlice";
 import { AppDispatch } from "../app/store";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const SignIn: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>(); // Typing dispatch with AppDispatch
@@ -21,22 +23,25 @@ const SignIn: React.FC = () => {
   const handSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Dispatch loginUser with the email and password
-    const res = await dispatch(loginUser({ email, password }));
-    console.log(res);
+    axios.post("https://hodbackend.onrender.com/api/v1/auth/login",{email,password}).then((data)=>{
+      localStorage.setItem("userdata",JSON.stringify(data.data))
+       
+       Swal.fire({
+        title: data.data.msg,
+        
+        icon: "success"
+      });
 
-    if (loginUser.fulfilled.match(res)) {
-      console.log("Login Successfully");
-      navigate("/dash");
-    } else {
-      if (!email) {
-        setEmailError(true);
-      }
-      if (!password) {
-        setPasswordError(true);
-      }
-      alert("Not Found");
-    }
+      navigate("../")
+    }).catch((err)=>{
+      console.log(err.response.data.error.message)
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: err.response.data.error.message||"Something happen",
+        
+      });
+    })
   };
 
   // Handle input changes
