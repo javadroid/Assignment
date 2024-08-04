@@ -29,7 +29,7 @@ const App: React.FC = () => {
           path="/"
           element={
             userData?.auth ? (
-              <Navigate to={"/dash"} />
+              <Navigate to={"/uploaded"} />
             ) : (
               <Navigate to={"/login"} />
             )
@@ -52,7 +52,7 @@ const App: React.FC = () => {
         <Route path="/dash" element={<Dashboard />}></Route>
         <Route path="/proposal" element={<Proposal />}></Route>
         <Route path="/hodDash" element={<HodDashboard />}></Route>
-        <Route path="/hodLecDash" element={<HodLectdash />}></Route>
+        <Route path="/view-uploaded" element={<HodLectdash />}></Route>
         <Route
           path="/InternalDisscussant"
           element={<InternalDisscussant />}

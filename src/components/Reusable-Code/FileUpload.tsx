@@ -7,6 +7,7 @@ interface Props {
   id: string;
   className: string;
   divClassName: string;
+  setUpload:any
 }
 
 const FileUpload: React.FC<Props> = ({
@@ -14,6 +15,7 @@ const FileUpload: React.FC<Props> = ({
   id,
   className,
   divClassName,
+  setUpload
 }) => {
   const [acceptedFiles, setAcceptedFiles] = useState<File[]>([]);
   const [, setFileContents] = useState<string[]>([]);
@@ -46,8 +48,13 @@ const FileUpload: React.FC<Props> = ({
       reader.readAsText(file);
     });
 
-    localStorage.setItem("files", JSON.stringify(acceptedFiles));
-    console.log(acceptedFiles);
+    // localStorage.setItem("files", JSON.stringify(acceptedFiles));
+    const selectedFile = acceptedFiles[0];
+    const formData=new FormData()
+    formData.append("file",selectedFile)
+    setUpload(formData);
+
+    console.log(selectedFile,formData)
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
@@ -60,7 +67,7 @@ const FileUpload: React.FC<Props> = ({
         {...getRootProps()}
         className={divClassName}
       >
-        <input {...getInputProps()} id={id} className={className} multiple />
+        <input  {...getInputProps()} id={id} className={className}  />
         {isDragActive ? (
           <p>Drop the files here....</p>
         ) : (

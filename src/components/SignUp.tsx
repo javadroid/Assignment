@@ -142,20 +142,20 @@ const SignUp: React.FC = () => {
               outline-none  focus:border-[#a1812e]"
               />
             </div>
-            <div className="flex justify-between ">
-              <InputField
+            <div className="flex w-full xs:flex-col xs:items-center xs:justify-center lg:flex-row lg:gap-48">
+            <InputField
                 labelText="Matric No:"
                 id="userID"
                 type="text"
                 onChange={(e)=>handleInputChange("userID",e.target.value)}
                 value={userData.userID}
-                divClassName="flex flex-col"
-                className="borderBlack border-2 xs:w-[12rem] lg:w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
+                divClassName="flex flex-col xs:w-[80%]"
+                className="borderBlack w-full border-2 xs:w-[100%] lg:w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
               outline-none  focus:border-[#a1812e]"
               />
+           
             </div>
-            
-            <div className="flex justify-between">
+            <div className="flex xs:flex-col xs:items-center xs:justify-center lg:flex-row lg:gap-48">
               <InputField
                 labelText="Email:"
                 id="email"
