@@ -25,34 +25,33 @@ function UploadedProject({}: UploadedProjectProps) {
   };
 
   return (
-    <div className="lg:h-screen lg:overflow-hidden flex flex-row font-pop">
+    <div className="flex overflow-hidden h-screen font-pop">
       <SideDesign />
       <div className="w-full">
         <Navigation />
-        <div className="flex sm:relative lg:space-x-1 lg:h-screen border-none">
-          <div className="md:grid md:grid-cols-1 lg:flex  lg:flex-row  items-center">
-            {uploadData.map((uploadDatas, i) => (
-                <section
-                  key={i}
-                  className="w-[100%] grid sm:grid-rows-2 lg:grid-cols-2 h-[100%]"
-                >
+        <div className="flex flex-col h-full relative">
+          {/* uploaded cards */}
+          <div className=" p-5 overflow-y-auto h-[65%]">
+            <div className="flex flex-col ">
+              {uploadData.map((uploadDatas, i) => (
+                <section key={i} className="w-[90%] h-full">
                   <div
-                    className="bg-[#f6dd9e] shadow-lg mt-5 h-2/3 lg:mt-10 ml-[5rem] w-full lg:h-2/3 lg:w-full relative"
+                    className="bg-[#f6dd9e] shadow-lg relative pb-4"
                     id={String(i)}
                   >
                     <h3 className="font-semibold text-[1.3rem] my-3 pl-5 border-b-2 border-gray-500 shadow-sm">
                       {uploadDatas.topicNo}
                     </h3>
-                    <p className="px-5 text-wrap w-full font-medium text-[1rem] pt-3">
+                    <p className="px-5 text-wrap w-[45%] font-medium text-[1rem] pt-3">
                       {uploadDatas.mainTopic}
                     </p>
-                    <div>
+                    <div className="absolute bottom-2 right-10">
                       {!uploadDatas.button ? (
-                        <div className="text-white text-center cursor-not-allowed p-2 w-[7rem] outline-none rounded-md absolute bottom-4 bg-[#ef1616] right-5">
+                        <div className="text-white text-center cursor-not-allowed p-2 w-[7rem] outline-none rounded-md  bg-[#ef1616] right-5">
                           Rejected
                         </div>
                       ) : (
-                        <div className="text-white text-center cursor-progress p-2 w-[7rem] outline-none rounded-md absolute bottom-4 bg-[#edbe44] right-5">
+                        <div className="text-white text-center cursor-progress p-2 w-[7rem] outline-none rounded-md  bg-[#edbe44] right-5">
                           ONGOING
                         </div>
                       )}
@@ -60,43 +59,14 @@ function UploadedProject({}: UploadedProjectProps) {
                   </div>
                 </section>
               ))}
-
-            {uploadData
-              .filter((uploadDatas) => uploadDatas.id === 2)
-              .map((uploadDatas, i) => (
-                <section
-                  key={`3-${i}`}
-                  className="w-[100%] grid sm:grid-rows-2 lg:grid-cols-2 h-[100%]"
-                >
-                  <div
-                    className="bg-[#f6dd9e] shadow-lg mt-5 h-2/3 lg:mt-10 ml-[5rem] w-full lg:h-full lg:w-full relative"
-                    id={String(uploadDatas.id)}
-                  >
-                    <h3 className="font-semibold text-[1.3rem] my-3 pl-5 border-b-2 border-gray-500 shadow-sm">
-                      {uploadDatas.topicNo}
-                    </h3>
-                    <p className="px-5 text-wrap w-full font-medium text-[1.1rem] pt-3">
-                      {uploadDatas.mainTopic}
-                    </p>
-                    <div>
-                      {!uploadDatas.button ? (
-                        <div className="text-white text-center cursor-not-allowed p-2 w-[7rem] outline-none rounded-md absolute bottom-4 bg-[#ef1616] right-5">
-                          Rejected
-                        </div>
-                      ) : (
-                        <div className="text-white text-center cursor-progress p-2 w-[7rem] outline-none rounded-md absolute bottom-4 bg-[#edbe44] right-5">
-                          ONGOING
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </section>
-              ))}
+            </div>
           </div>
-          <div className="mb-[7rem] mx-[5rem] lg:mx-[5rem] sm:absolute bottom-5 right-5  lg:relative">
+
+          {/* upload btn */}
+          <div className="absolute bottom-32 right-10">
             <button
               onClick={togglePopup}
-              className="outline-none p-3  w-[10rem] rounded-md bg-[#726135] text-white absolute bottom-5 right-5 lg:right-20 hover:scale-110 hover:bg-[#aa9c7a]"
+              className="outline-none p-3  w-[10rem] rounded-md bg-[#726135] text-white  hover:scale-110 hover:bg-[#aa9c7a]"
             >
               Add Project
             </button>
