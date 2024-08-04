@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -7,7 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Navigation from "../Reusable-Code/Navigation";
 import SideDesign from "../Reusable-Code/SideDesign";
-import InputField from "../Reusable-Code/InputField";
+// import InputField from "../Reusable-Code/InputField";
 import { MdOutlineNotificationsActive } from "react-icons/md";
 import { assignStudentDataATH } from "../../Utilities/Data";
 import { ThemeProvider } from "@mui/material/styles";
@@ -27,6 +29,7 @@ export default function Admin() {
   const [data, setData] = useState([]);
   const [dataFiltered, setDataFiltered] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(3);
+  const [showSideBar, setShowSideBar] = useState(true);
 
   const [type, setType] = useState("");
   const [isStudent, setIsStudent] = useState(true);
@@ -35,16 +38,14 @@ export default function Admin() {
     getData();
   }, []);
 
-  useEffect(() => {
-
-    
-  }, [isStudent]);
-
+  useEffect(() => {}, [isStudent]);
 
   const getData = async () => {
     const userdata = await axios.get("http://localhost:3001/api/v1/user");
     setData(userdata.data);
-    setDataFiltered(userdata.data.filter((t: any) => t.is_student===isStudent));
+    setDataFiltered(
+      userdata.data.filter((t: any) => t.is_student === isStudent)
+    );
     console.log(userdata.data);
   };
   // Handle page change
@@ -74,16 +75,20 @@ export default function Admin() {
 
   const pageScrollBar = rowsPerPage >= 10 ? "overflow-y-hidden" : "";
 
+  const sildeBarClick = () => {
+    setShowSideBar(!showSideBar);
+  };
+
   return (
     <div className="font-pop h-screen flex flex-row lg:overflow-hidden bg-gray-100">
-      <SideDesign />
+      {showSideBar ? "" : <SideDesign />}
       <div className="w-full text-black">
-        <Navigation />
+        <Navigation sildeBarClick={sildeBarClick} />
         <main className="w-full m-0 p-0 ">
           <div className="m-4">
             <div className="flex sm:flex-row justify-between items-center">
               <h1 className="font-semibold my-2 text-sm lg:text-lg">
-              Lecturers And Students Management
+                Lecturers And Students Management
               </h1>
               <MdOutlineNotificationsActive
                 className="fill-[#726135] w-5 h-5 lg:w-6 lg:h-6 mr-4 cursor-pointer transform transition ease-linear hover:scale-110"
@@ -94,7 +99,7 @@ export default function Admin() {
         </main>
         <section className="sm:overflow-x-hidden bg-[#ffffff] lg:overflow-auto border-2 border-gray-300 shadow-md m-4">
           <p className="px-4 py-1 border-b-2 border-b-gray-300 shadow-md">
-            {isStudent?"Students":"Lecturers"}
+            {isStudent ? "Students" : "Lecturers"}
           </p>
           <div className="m-4">
             {/* search input */}
@@ -103,18 +108,30 @@ export default function Admin() {
               color="primary"
               value={true}
               exclusive
-             
               aria-label="Platform"
             >
-              <ToggleButton  onChange={(e)=>{
-                setIsStudent(true)
-                setDataFiltered(data.filter((t: any) => t.is_student===true));
-                }} value={isStudent}>Students</ToggleButton>
-              <ToggleButton onChange={(e)=>{
-                setIsStudent(false)
-                setDataFiltered(data.filter((t: any) => t.is_student===false));
-                }} value={!isStudent}>Lecturers</ToggleButton>
-              
+              <ToggleButton
+                onChange={(e) => {
+                  setIsStudent(true);
+                  setDataFiltered(
+                    data.filter((t: any) => t.is_student === true)
+                  );
+                }}
+                value={isStudent}
+              >
+                Students
+              </ToggleButton>
+              <ToggleButton
+                onChange={(e) => {
+                  setIsStudent(false);
+                  setDataFiltered(
+                    data.filter((t: any) => t.is_student === false)
+                  );
+                }}
+                value={!isStudent}
+              >
+                Lecturers
+              </ToggleButton>
             </ToggleButtonGroup>
             {/* <InputField
               labelText="search:"
@@ -132,10 +149,7 @@ export default function Admin() {
                   <TableHead>
                     <TableRow>
                       <StyledTableCell>
-                        {isStudent
-                          ? "Matric NO"
-                          : "Staff ID"}
-                        .
+                        {isStudent ? "Matric NO" : "Staff ID"}.
                       </StyledTableCell>
                       <StyledTableCell align="center">
                         Full Name
@@ -167,7 +181,9 @@ export default function Admin() {
 
                         <StyledTableCell align="center">
                           <ThemeProvider theme={theme}>
-                            <Button color="error" variant="contained">Delete</Button>
+                            <Button color="error" variant="contained">
+                              Delete
+                            </Button>
                           </ThemeProvider>
                         </StyledTableCell>
                       </StyledTableRow>

@@ -24,11 +24,16 @@ const Proposal = () => {
     setcommentsData(updatedCommentsData);
   };
 
+  const [showSideBar, setShowSideBar] = useState(true);
+  const sildeBarClick = () => {
+    setShowSideBar(!showSideBar);
+  };
+
   return (
     <div className="font-pop h-screen flex flex-row overflow-hidden">
-      <SideDesign />
+      {showSideBar ? "" : <SideDesign />}
       <div className="w-full text-black">
-        <Navigation />
+        <Navigation sildeBarClick={sildeBarClick} />
         <div className="pt-3 px-10 bg-[#F6F6F6] h-screen">
           <h1 className="font-semibold text-sm lg:text-lg">Project Proposal</h1>
           <hr className="border-gray-400" />
