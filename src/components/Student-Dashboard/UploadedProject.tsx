@@ -10,11 +10,12 @@ import { useNavigate } from "react-router-dom";
 
 interface UploadedProjectProps {}
 
-function UploadedProject({}: UploadedProjectProps) {
+const UploadedProject: React.FC<UploadedProjectProps> = () => {
   const [uploadData, setUploadData] = useState([]);
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [showSideBar, setShowSideBar] = useState(true);
 
   useEffect(() => {
     getData();
@@ -32,11 +33,15 @@ function UploadedProject({}: UploadedProjectProps) {
 
   const nativate = useNavigate();
 
+  const sildeBarClick = () => {
+    setShowSideBar(!showSideBar);
+  };
+
   return (
     <div className="flex overflow-hidden h-screen font-pop">
-      <SideDesign />
+      {showSideBar ? "" : <SideDesign />}
       <div className="w-full">
-        <Navigation />
+        <Navigation sildeBarClick={sildeBarClick} />
         <div className="flex flex-col h-full relative">
           <div className="p-5 overflow-y-auto h-[65%]">
             <div className="flex flex-col ">
@@ -89,6 +94,6 @@ function UploadedProject({}: UploadedProjectProps) {
       </div>
     </div>
   );
-}
+};
 
 export default UploadedProject;
