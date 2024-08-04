@@ -12,9 +12,9 @@ const SignUp: React.FC = () => {
   const initialState = {
     lname: "",
     fname: "",
-    mname:"",
-    userID:"",
-    confirmPassword:"",
+    mname: "",
+    userID: "",
+    confirmPassword: "",
     is_student: true,
     type: "",
     department: "",
@@ -95,10 +95,10 @@ const SignUp: React.FC = () => {
       </div>
 
       {/* container */}
-      <div className="xs:mx-[1.5rem] lg:mx-[15rem] my-4">
+      <div className="xs:mx-[1.5rem] lg:mx-[3rem] my-4">
         {/* form container */}
         <form className="">
-          <div className="xs:text-[1rem] md:text-[1.2rem] gap-y-2 lg:flex lg:flex-col lg:items-center">
+          <div className="xs:text-[1rem] md:text-[1.2rem] gap-y-2 lg:flex lg:flex-col lg:items-center w-full">
             <div className="flex xs:flex-col xs:items-center xs:justify-center lg:flex-row lg:gap-48">
               <InputField
                 labelText="First Name:"
@@ -142,18 +142,17 @@ const SignUp: React.FC = () => {
               outline-none  focus:border-[#a1812e]"
               />
             </div>
-            <div className="flex w-full xs:flex-col xs:items-center xs:justify-center lg:flex-row lg:gap-48">
-            <InputField
+            <div className="flex w-full xs:flex-col xs:items-center xs:justify-center lg:ml-[5rem] lg:flex-row lg:gap-48">
+              <InputField
                 labelText="Matric No:"
                 id="userID"
                 type="text"
-                onChange={(e)=>handleInputChange("userID",e.target.value)}
+                onChange={(e) => handleInputChange("userID", e.target.value)}
                 value={userData.userID}
-                divClassName="flex flex-col xs:w-[80%]"
-                className="borderBlack w-full border-2 xs:w-[100%] lg:w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
+                divClassName="flex flex-col xs:w-[80%] "
+                className="borderBlack  w-full border-2 xs:w-[100%] lg:w-[17rem] mb-1 h-[2.5rem] px-2 rounded-[0.7rem]
               outline-none  focus:border-[#a1812e]"
               />
-           
             </div>
             <div className="flex xs:flex-col xs:items-center xs:justify-center lg:flex-row lg:gap-48">
               <InputField
