@@ -12,7 +12,7 @@ const SideDesign: React.FC<props> = ({ isOpen, isClose }) => {
     <div
       className={`h-screen bg-[#57430e] xs:w-[17%] fixed top-0 left-0 w-64  text-white transition-transform duration-300 ease-in-out  ${
         isOpen ? "translate-x-0" : "-translate-x-full"
-      } text-slate-100 xs:text-[10px] lg:text-[20px]`}
+      } text-slate-100 xs:text-[10px] lg:text-[20px] space-y-3`}
     >
       <div className="cursor-pointer absolute top-4 right-4" onClick={isClose}>
         <IoClose size={20} />
