@@ -35,16 +35,10 @@ export default function InternalDiscussantDash() {
     sortNewest ? b.id - a.id : a.id - b.id
   );
 
-  const [showSideBar, setShowSideBar] = useState(true);
-  const sildeBarClick = () => {
-    setShowSideBar(!showSideBar);
-  };
-
   return (
     <div className="font-pop h-screen flex flex-row lg:overflow-hidden bg-gray-100">
-      {showSideBar ? "" : <SideDesign />}
       <div className="w-full text-black">
-        <Navigation sildeBarClick={sildeBarClick} />
+        <Navigation />
         <main className="w-full m-0 p-0">
           <div className="m-4">
             <div className="flex sm:flex-row justify-between items-center">

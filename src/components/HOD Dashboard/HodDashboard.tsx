@@ -53,16 +53,10 @@ export default function HodDashboard() {
 
   const pageScrollBar = rowsPerPage >= 10 ? "overflow-y-hidden" : "";
 
-  const [showSideBar, setShowSideBar] = useState(true);
-  const sildeBarClick = () => {
-    setShowSideBar(!showSideBar);
-  };
-
   return (
     <div className="font-pop h-screen flex flex-row  lg:overflow-hidden bg-gray-100">
-      {showSideBar ? "" : <SideDesign />}
       <div className="w-full text-black">
-        <Navigation sildeBarClick={sildeBarClick} />
+        <Navigation />
         <main className="w-full m-0 p-0 ">
           <div className="m-4">
             <div className="flex sm:flex-row justify-between items-center">
@@ -85,42 +79,40 @@ export default function HodDashboard() {
           <div className="m-4 ">
             <div className="flex  flex-row justify-between">
               <div className="flex  flex-row">
-               <DropDown
-                // divClassName="flex flex-col xs:w-[30%]"
-                labelText="Section:"
-                id="dropDown"
-                name="Section"
-                data={["2022/2024", "2024/2025"]}
-                className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
-              />
-              <DropDown
-                // divClassName="flex flex-col xs:w-[30%]"
-                labelText="Batch:"
-                id="dropDown"
-                name="Section"
-                data={["A", "B"]}
-                className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
-              />  
+                <DropDown
+                  // divClassName="flex flex-col xs:w-[30%]"
+                  labelText="Section:"
+                  id="dropDown"
+                  name="Section"
+                  data={["2022/2024", "2024/2025"]}
+                  className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
+                />
+                <DropDown
+                  // divClassName="flex flex-col xs:w-[30%]"
+                  labelText="Batch:"
+                  id="dropDown"
+                  name="Section"
+                  data={["A", "B"]}
+                  className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
+                />
               </div>
-             
-              <div className="flex  flex-row ">
-              <button
-                  onClick={()=>{}}
-                  className="group flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e]"
-                > <span className="text-base text-white">Auto Assign</span>
-                
-              </button>
-                 <InputField
-                labelText="search:"
-                id=""
-                className=" border-2  border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
-                type="text"
-                divClassName="flex ml-10 flex-row gap-2 items-end justify-end"
-              />
 
-              
+              <div className="flex  flex-row ">
+                <button
+                  onClick={() => {}}
+                  className="group flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e]"
+                >
+                  {" "}
+                  <span className="text-base text-white">Auto Assign</span>
+                </button>
+                <InputField
+                  labelText="search:"
+                  id=""
+                  className=" border-2  border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
+                  type="text"
+                  divClassName="flex ml-10 flex-row gap-2 items-end justify-end"
+                />
               </div>
-             
             </div>
 
             <div
