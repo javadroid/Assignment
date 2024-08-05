@@ -9,8 +9,8 @@ interface props {
 const SideDesign: React.FC<props> = ({ isOpen, isClose }) => {
   return (
     <div
-      className={`fixed top-0 left-0  h-screen bg-[#57430e] xs:w-[15%]  transition-transform duration-300 ease-in-out ${
-        isOpen ? "translate-x-0" : "-translate-x-full"
+      className={`fixed top-0 left-0  h-screen bg-[#57430e] xs:w-[15%]  transition-transform duration-300 ease-linear ${
+        isOpen ? "translate-x-0 z-30" : "-translate-x-full"
       } text-slate-100 xs:text-[7px] lg:text-[15px] `}
     >
       <div className="absolute top-4 right-4 cursor-pointer">
