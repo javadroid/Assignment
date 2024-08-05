@@ -4,54 +4,53 @@ import Navigation from "../Reusable-Code/Navigation";
 import SideDesign from "../Reusable-Code/SideDesign";
 import UploadPopUp from "./Popup-Screens/UploadPopUp";
 import ConfirmationPopup from "./Popup-Screens/ConfirmationPopup";
-import { uploadDataATH } from "../../Utilities/Data";
 import axios from "axios";
 import { BaseUrl } from "../../service";
 import { useNavigate } from "react-router-dom";
 
 interface UploadedProjectProps {}
 
-function UploadedProject({}: UploadedProjectProps) {
-  const [uploadData,setUploadData] = useState([]);
+const UploadedProject: React.FC<UploadedProjectProps> = () => {
+  const [uploadData, setUploadData] = useState([]);
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
-
+  const [showSideBar, setShowSideBar] = useState(true);
 
   useEffect(() => {
-getData()
-  }, [])
-  
+    getData();
+  }, []);
+
   const getData = async () => {
-   const data=await axios.get(`${BaseUrl}user/project`)
-   console.log(data)
-   setUploadData(data.data) 
+    const data = await axios.get(`${BaseUrl}user/project`);
+    console.log(data);
+    setUploadData(data.data);
   };
-  
+
   const togglePopup = () => {
     setIsPopupOpen(!isPopupOpen);
   };
 
-  const nativate=useNavigate()
+  const nativate = useNavigate();
+
+  const sildeBarClick = () => {
+    setShowSideBar(!showSideBar);
+  };
 
   return (
     <div className="flex overflow-hidden h-screen font-pop">
-      <SideDesign />
+      {showSideBar ? "" : <SideDesign />}
       <div className="w-full">
-        <Navigation />
+        <Navigation sildeBarClick={sildeBarClick} />
         <div className="flex flex-col h-full relative">
           <div className="p-5 overflow-y-auto h-[65%]">
-          <div className="flex flex-col ">
-
-               {uploadData.map((uploadDatas:any, i) => (
-                <section
-                  key={i}
-                  className="w-[90%] h-full"
-                >
+            <div className="flex flex-col ">
+              {uploadData.map((uploadDatas: any, i) => (
+                <section key={i} className="w-[90%] h-full">
                   <div
-                  onClick={()=>{
-                    nativate("/view-uploaded",{ state: uploadDatas })
-                  }}
+                    onClick={() => {
+                      nativate("/view-uploaded", { state: uploadDatas });
+                    }}
                     className="bg-[#f6dd9e] shadow-lg relative pb-4"
                     id={String(i)}
                   >
@@ -62,7 +61,7 @@ getData()
                       {uploadDatas.name}
                     </p>
                     <div className="absolute bottom-2 right-10">
-                      {uploadDatas.status ==="rejected" ? (
+                      {uploadDatas.status === "rejected" ? (
                         <div className="text-white text-center cursor-not-allowed p-2 w-[7rem] outline-none rounded-md  bg-[#ef1616] right-5">
                           Rejected
                         </div>
@@ -76,19 +75,16 @@ getData()
                 </section>
               ))}
             </div>
-           
-
-           
           </div>
           <div className="absolute bottom-32 right-10">
-            <button 
+            <button
               onClick={togglePopup}
               className="outline-none p-3  w-[10rem] rounded-md bg-[#726135] text-white  hover:scale-110 hover:bg-[#aa9c7a]"
             >
               Add Project
             </button>
             {isPopupOpen && (
-              <UploadPopUp getData={getData} onClose={togglePopup}  />
+              <UploadPopUp getData={getData} onClose={togglePopup} />
             )}
             {showConfirmation && (
               <ConfirmationPopup onClose={() => setShowConfirmation(true)} />
@@ -98,6 +94,6 @@ getData()
       </div>
     </div>
   );
-}
+};
 
 export default UploadedProject;

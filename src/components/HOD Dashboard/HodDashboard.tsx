@@ -51,11 +51,16 @@ export default function HodDashboard() {
 
   const pageScrollBar = rowsPerPage >= 10 ? "overflow-y-hidden" : "";
 
+  const [showSideBar, setShowSideBar] = useState(true);
+  const sildeBarClick = () => {
+    setShowSideBar(!showSideBar);
+  };
+
   return (
     <div className="font-pop h-screen flex flex-row lg:overflow-hidden bg-gray-100">
-      <SideDesign />
+      {showSideBar ? "" : <SideDesign />}
       <div className="w-full text-black">
-        <Navigation />
+        <Navigation sildeBarClick={sildeBarClick} />
         <main className="w-full m-0 p-0 ">
           <div className="m-4">
             <div className="flex sm:flex-row justify-between items-center">
