@@ -18,6 +18,7 @@ import InternalDisscussant from "./components/HOD Dashboard/InternalDisscussant"
 import SPGSRep from "./components/Dean/SPGSRep";
 import InternalDiscussantDash from "./components/InternalDiscussant/InternalDiscussantDash";
 import Admin from "./components/Admin/Admin";
+import Section from "./components/Admin/Section";
 
 const App: React.FC = () => {
   const userData = JSON.parse(localStorage.getItem("userdata")!);
@@ -41,7 +42,7 @@ const App: React.FC = () => {
         {
           userData?.auth && <>
            <Route path="/admin" element={<Admin />}></Route>
-
+           <Route path="/section" element={<Section />}></Route>
           </>
         }
        
@@ -62,6 +63,7 @@ const App: React.FC = () => {
           element={<InternalDiscussantDash />}
         ></Route>
         <Route path="/spgs" element={<SPGSRep />}></Route>
+        <Route path="/**" element={<Navigate to={"/"} />}></Route>
       </Routes>
     </Router>
   );

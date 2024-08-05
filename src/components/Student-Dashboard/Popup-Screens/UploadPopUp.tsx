@@ -23,7 +23,6 @@ function UploadPopUp({ onClose, getData }: UploadPopUpProps) {
     // setShowConfirmation(true);
     console.log("upload",upload)
     axios.post(`${BaseUrl}upload`, upload).then((data) => {
-      
       const dataUp={
         name:projectTopic,
         url:data.data.url,
@@ -31,8 +30,6 @@ function UploadPopUp({ onClose, getData }: UploadPopUpProps) {
         type: "MSC", 
         student_id: JSON.parse(localStorage.getItem("userdata")!)?.user_data._id,
       }
-      
-      
       axios
         .post(`${BaseUrl}user/project`, dataUp)
         .then((data) => {
@@ -43,9 +40,7 @@ function UploadPopUp({ onClose, getData }: UploadPopUpProps) {
     });
     
   };
-  // const handleInputChange = (name: string, value: string) => {
-  //   setUpload((prevData) => ({ ...prevData, [name]: value }));
-  // };
+
   return (
     <div className="font-pop fixed top-0 left-0 w-full h-full bg-black bg-opacity-50   flex justify-center items-center z-10">
       <form
