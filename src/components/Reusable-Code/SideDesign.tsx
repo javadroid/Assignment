@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const SideDesign = () => {
   return (
-    <div className="h-screen bg-[#57430e] xs:w-[17%]  transition-transform ease-in-out text-slate-100 xs:text-[10px] lg:text-[20px]">
+    <div className="h-screen bg-[#57430e] xs:w-[28%]  transition-transform ease-in-out text-slate-100 xs:text-[10px] lg:text-[20px]">
       <ul className="flex flex-col text-center gap-y-28 h-full justify-center ">
         <li className="group flex  rounded-md h-[4rem] cursor-pointer hover:bg-[#f6dd9e] ">
           <Link
