@@ -22,9 +22,14 @@ import {
 } from "../Functions/ThemeFunction";
 import axios from "axios";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import UploadPopUp from "../Student-Dashboard/Popup-Screens/UploadPopUp";
+import AssignSupervisor from "../Student-Dashboard/Popup-Screens/AssignSupervisor";
+import AddUSer from "../Student-Dashboard/Popup-Screens/AddUser";
+import { BaseUrl } from "../../service";
 
 export default function Admin() {
   // State for pagination
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [page, setPage] = useState(0);
   const [data, setData] = useState([]);
   const [dataFiltered, setDataFiltered] = useState([]);
@@ -41,7 +46,7 @@ export default function Admin() {
   useEffect(() => {}, [isStudent]);
 
   const getData = async () => {
-    const userdata = await axios.get("http://localhost:3001/api/v1/user");
+    const userdata = await axios.get(BaseUrl+"user");
     setData(userdata.data);
     setDataFiltered(
       userdata.data.filter((t: any) => t.is_student === isStudent)
@@ -78,12 +83,17 @@ export default function Admin() {
   const sildeBarClick = () => {
     setShowSideBar(!showSideBar);
   };
+  
 
   return (
     <div className="font-pop h-screen flex flex-row lg:overflow-hidden bg-gray-100">
       {showSideBar ? "" : <SideDesign />}
       <div className="w-full text-black">
         <Navigation sildeBarClick={sildeBarClick} />
+
+        {isPopupOpen && (
+      <AddUSer  onClose={setIsPopupOpen} getData={getData}  />  
+      )}
         <main className="w-full m-0 p-0 ">
           <div className="m-4">
             <div className="flex sm:flex-row justify-between items-center">
@@ -103,43 +113,52 @@ export default function Admin() {
           </p>
           <div className="m-4">
             {/* search input */}
-
-            <ToggleButtonGroup
-              color="primary"
-              value={true}
-              exclusive
-              aria-label="Platform"
-            >
-              <ToggleButton
-                onChange={(e) => {
-                  setIsStudent(true);
-                  setDataFiltered(
-                    data.filter((t: any) => t.is_student === true)
-                  );
-                }}
-                value={isStudent}
+            <div className="flex flex-row justify-between">
+              <ToggleButtonGroup
+                color="primary"
+                value={true}
+                exclusive
+                aria-label="Platform"
               >
-                Students
-              </ToggleButton>
-              <ToggleButton
-                onChange={(e) => {
-                  setIsStudent(false);
-                  setDataFiltered(
-                    data.filter((t: any) => t.is_student === false)
-                  );
-                }}
-                value={!isStudent}
-              >
-                Lecturers
-              </ToggleButton>
-            </ToggleButtonGroup>
-            {/* <InputField
+                <ToggleButton
+                  onChange={(e) => {
+                    setIsStudent(true);
+                    setDataFiltered(
+                      data.filter((t: any) => t.is_student === true)
+                    );
+                  }}
+                  value={isStudent}
+                >
+                  Students
+                </ToggleButton>
+                <ToggleButton
+                  onChange={(e) => {
+                    setIsStudent(false);
+                    setDataFiltered(
+                      data.filter((t: any) => t.is_student === false)
+                    );
+                  }}
+                  value={!isStudent}
+                >
+                  Lecturers
+                </ToggleButton>
+              </ToggleButtonGroup>
+              {/* <InputField
               labelText="search:"
               id=""
               className="w-[40%] border-2 border-gray-500 py-1 px-2 mr-2 rounded-md lg:w-[25%] focus:active:border-gray-500"
               type="text"
               divClassName="flex flex-row gap-2 items-center justify-end"
             /> */}
+              <button
+                onClick={() => {setIsPopupOpen(true)}}
+                className="group flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e]"
+              >
+                {" "}
+                <span className="text-base text-white">Add</span>
+              </button>
+            </div>
+           
             {/* The Table view */}
             <div
               className={`flex flex-col max-h-[370px] p-2 lg:p-2 ${tableContainerClass}`}
