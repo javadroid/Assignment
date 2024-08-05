@@ -6,7 +6,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Navigation from "../Reusable-Code/Navigation";
-import SideDesign from "../Reusable-Code/SideDesign";
 import InputField from "../Reusable-Code/InputField";
 import { MdOutlineNotificationsActive } from "react-icons/md";
 import { FaSortDown } from "react-icons/fa";
@@ -35,16 +34,10 @@ export default function InternalDiscussantDash() {
     sortNewest ? b.id - a.id : a.id - b.id
   );
 
-  const [showSideBar, setShowSideBar] = useState(true);
-  const sildeBarClick = () => {
-    setShowSideBar(!showSideBar);
-  };
-
   return (
     <div className="font-pop h-screen flex flex-row lg:overflow-hidden bg-gray-100">
-      {showSideBar ? "" : <SideDesign />}
       <div className="w-full text-black">
-        <Navigation sildeBarClick={sildeBarClick} />
+        <Navigation />
         <main className="w-full m-0 p-0">
           <div className="m-4">
             <div className="flex sm:flex-row justify-between items-center">

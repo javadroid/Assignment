@@ -19,15 +19,11 @@ import {
   theme,
 } from "../Functions/ThemeFunction";
 import DropDown from "../Reusable-Code/DropDown";
-import { GoArrowRight } from "react-icons/go";
-import UploadPopUp from "../Student-Dashboard/Popup-Screens/UploadPopUp";
 import AssignSupervisor from "../Student-Dashboard/Popup-Screens/AssignSupervisor";
-import CheckBox from "../Reusable-Code/CheckBox";
 import axios from "axios";
 import { BaseUrl } from "../../service";
 import Swal from "sweetalert2";
 import { ToggleButtonGroup, ToggleButton } from "@mui/material";
-import { data } from "autoprefixer";
 
 export default function HodDashboard() {
   // State for pagination
@@ -74,11 +70,6 @@ export default function HodDashboard() {
     rowsPerPage >= 10 ? "max-h-[320px] overflow-y-auto" : "";
 
   const pageScrollBar = rowsPerPage >= 10 ? "overflow-y-hidden" : "";
-
-  const [showSideBar, setShowSideBar] = useState(true);
-  const sildeBarClick = () => {
-    setShowSideBar(!showSideBar);
-  };
   // Handler for checkbox change
   const onClickChecker = (checked: any, row: any) => {
     if (checked) {
@@ -95,17 +86,20 @@ export default function HodDashboard() {
     }
   };
 
-   const [isAssigned,setAssigned] =useState(false)
+  const [isAssigned, setAssigned] = useState(false);
 
   return (
     <div className="font-pop h-screen flex flex-row lg:overflow-hidden bg-gray-100">
-      {showSideBar ? "" : <SideDesign />}
       {isPopupOpen && (
-        <AssignSupervisor  selectedStudent={seletedStudent} onClose={setIsPopupOpen} getData={getData} />
+        <AssignSupervisor
+          selectedStudent={seletedStudent}
+          onClose={setIsPopupOpen}
+          getData={getData}
+        />
       )}
 
       <div className="w-full text-black">
-        <Navigation sildeBarClick={sildeBarClick} />
+        <Navigation />
         <main className="w-full m-0 p-0 ">
           <div className="m-4">
             <div className="flex sm:flex-row justify-between items-center">
@@ -127,7 +121,7 @@ export default function HodDashboard() {
           </p>
           <div className="m-4 ">
             <div className="flex  flex-row justify-between">
-            <ToggleButtonGroup
+              <ToggleButtonGroup
                 color="primary"
                 value={true}
                 exclusive
@@ -135,32 +129,28 @@ export default function HodDashboard() {
               >
                 <ToggleButton
                   onChange={(e) => {
-                   setAssigned(!isAssigned)
-                    if(isAssigned){
+                    setAssigned(!isAssigned);
+                    if (isAssigned) {
                       setDataFiltered(
-                        SData.filter((t: any) => t.supervisors&&t.is_student)
+                        SData.filter((t: any) => t.supervisors && t.is_student)
                       );
-                    }else{
+                    } else {
                       setDataFiltered(
-                        SData.filter((t: any) => !t.supervisors&&t.is_student)
+                        SData.filter((t: any) => !t.supervisors && t.is_student)
                       );
                     }
-                    
                   }}
                   value={isAssigned}
                 >
-                  {isAssigned?"Assigned":"UnAssigned"}
+                  {isAssigned ? "Assigned" : "UnAssigned"}
                 </ToggleButton>
-               
               </ToggleButtonGroup>
               <div className="flex  flex-row">
-
-             
                 <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
                   labelText="Section:"
                   id="dropDown"
-                  setSelectOption={()=>{}}
+                  setSelectOption={() => {}}
                   name="Section"
                   data={["2022/2024", "2024/2025"]}
                   className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
@@ -169,7 +159,7 @@ export default function HodDashboard() {
                   // divClassName="flex flex-col xs:w-[30%]"
                   labelText="Batch:"
                   id="dropDown"
-                  setSelectOption={()=>{}}
+                  setSelectOption={() => {}}
                   name="Section"
                   data={["A", "B"]}
                   className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
@@ -194,7 +184,7 @@ export default function HodDashboard() {
                   {" "}
                   <span className="text-base text-white">Assign</span>
                 </button>
-                  {/* <InputField
+                {/* <InputField
                     labelText="search:"
                     id=""
                     className=" border-2  border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
@@ -251,10 +241,12 @@ export default function HodDashboard() {
                           </StyledTableCell>
 
                           <StyledTableCell align="center">
-                            {row?.supervisors?.major?.fname} {row?.supervisors?.major?.lname}
+                            {row?.supervisors?.major?.fname}{" "}
+                            {row?.supervisors?.major?.lname}
                           </StyledTableCell>
                           <StyledTableCell align="center">
-                          {row?.supervisors?.minor?.fname} {row?.supervisors?.minor?.lname}
+                            {row?.supervisors?.minor?.fname}{" "}
+                            {row?.supervisors?.minor?.lname}
                           </StyledTableCell>
                         </StyledTableRow>
                       );

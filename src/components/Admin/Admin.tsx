@@ -34,7 +34,6 @@ export default function Admin() {
   const [data, setData] = useState([]);
   const [dataFiltered, setDataFiltered] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(3);
-  const [showSideBar, setShowSideBar] = useState(true);
 
   const [type, setType] = useState("");
   const [isStudent, setIsStudent] = useState(true);
@@ -46,7 +45,7 @@ export default function Admin() {
   useEffect(() => {}, [isStudent]);
 
   const getData = async () => {
-    const userdata = await axios.get(BaseUrl+"user");
+    const userdata = await axios.get(BaseUrl + "user");
     setData(userdata.data);
     setDataFiltered(
       userdata.data.filter((t: any) => t.is_student === isStudent)
@@ -80,20 +79,12 @@ export default function Admin() {
 
   const pageScrollBar = rowsPerPage >= 10 ? "overflow-y-hidden" : "";
 
-  const sildeBarClick = () => {
-    setShowSideBar(!showSideBar);
-  };
-  
-
   return (
     <div className="font-pop h-screen flex flex-row lg:overflow-hidden bg-gray-100">
-      {showSideBar ? "" : <SideDesign />}
       <div className="w-full text-black">
-        <Navigation sildeBarClick={sildeBarClick} />
+        <Navigation />
 
-        {isPopupOpen && (
-      <AddUSer  onClose={setIsPopupOpen} getData={getData}  />  
-      )}
+        {isPopupOpen && <AddUSer onClose={setIsPopupOpen} getData={getData} />}
         <main className="w-full m-0 p-0 ">
           <div className="m-4">
             <div className="flex sm:flex-row justify-between items-center">
@@ -151,14 +142,16 @@ export default function Admin() {
               divClassName="flex flex-row gap-2 items-center justify-end"
             /> */}
               <button
-                onClick={() => {setIsPopupOpen(true)}}
+                onClick={() => {
+                  setIsPopupOpen(true);
+                }}
                 className="group flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e]"
               >
                 {" "}
                 <span className="text-base text-white">Add</span>
               </button>
             </div>
-           
+
             {/* The Table view */}
             <div
               className={`flex flex-col max-h-[370px] p-2 lg:p-2 ${tableContainerClass}`}

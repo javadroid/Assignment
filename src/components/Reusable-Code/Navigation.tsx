@@ -1,39 +1,32 @@
 import { FaBars, FaPowerOff } from "react-icons/fa6";
 import { MdCircle } from "react-icons/md";
 import DateDisplay from "../Functions/DateDisplay";
-import { IoClose } from "react-icons/io5";
 import React, { useState } from "react";
 import LogoutScreen from "../Student-Dashboard/Popup-Screens/LogoutScreen";
+import SideDesign from "./SideDesign";
 
-interface props {
-  sildeBarClick: () => void;
-}
-
-const Navigation: React.FC<props> = ({ sildeBarClick }) => {
+const Navigation = () => {
   const [logOutPopup, setLogoutPopup] = useState(false);
-  const [extendSideBar, setExtendSideBar] = useState(true);
   const closeUp = () => {
     setLogoutPopup(!logOutPopup);
   };
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const sildeBar = () => {
-    setExtendSideBar(!extendSideBar);
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
+  const closeSidebar = () => {
+    setSidebarOpen(false);
   };
 
   return (
     <nav className="p-[1rem] w-full flex flex-row justify-between border-b-2 border-b-gray-300 shadow-md">
-      <div className="" onClick={sildeBarClick}>
-        {extendSideBar ? (
-          <div className="relative cursor-pointer" onClick={sildeBar}>
-            <FaBars size={20} />
-            <MdCircle size={9} className="absolute right-0 top-0" />
-          </div>
-        ) : (
-          <div className="cursor-pointer" onClick={sildeBar}>
-            <IoClose size={20} />
-          </div>
-        )}
+      <div className="relative cursor-pointer" onClick={toggleSidebar}>
+        <FaBars size={20} />
+        <MdCircle size={9} className="absolute right-0 top-0" />
       </div>
+      <SideDesign isOpen={sidebarOpen} isClose={closeSidebar} />
       <div className="flex justify-center ">
         <DateDisplay />
         <FaPowerOff
