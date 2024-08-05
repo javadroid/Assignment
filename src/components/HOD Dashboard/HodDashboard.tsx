@@ -18,6 +18,8 @@ import {
   StyledTableRow,
   theme,
 } from "../Functions/ThemeFunction";
+import DropDown from "../Reusable-Code/DropDown";
+import { GoArrowRight } from "react-icons/go";
 
 export default function HodDashboard() {
   // State for pagination
@@ -80,16 +82,47 @@ export default function HodDashboard() {
           <p className="px-4 py-1 border-b-2 border-b-gray-300 shadow-md">
             Project Topics
           </p>
-          <div className="m-4">
-            {/* search input */}
-            <InputField
-              labelText="search:"
-              id=""
-              className="w-[40%] border-2 border-gray-500 py-1 px-2 mr-2 rounded-md lg:w-[25%] focus:active:border-gray-500"
-              type="text"
-              divClassName="flex flex-row gap-2 items-center justify-end"
-            />
-            {/* The Table view */}
+          <div className="m-4 ">
+            <div className="flex  flex-row justify-between">
+              <div className="flex  flex-row">
+               <DropDown
+                // divClassName="flex flex-col xs:w-[30%]"
+                labelText="Section:"
+                id="dropDown"
+                name="Section"
+                data={["2022/2024", "2024/2025"]}
+                className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
+              />
+              <DropDown
+                // divClassName="flex flex-col xs:w-[30%]"
+                labelText="Batch:"
+                id="dropDown"
+                name="Section"
+                data={["A", "B"]}
+                className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
+              />  
+              </div>
+             
+              <div className="flex  flex-row ">
+              <button
+                  onClick={()=>{}}
+                  className="group flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e]"
+                > <span className="text-base text-white">Auto Assign</span>
+                
+              </button>
+                 <InputField
+                labelText="search:"
+                id=""
+                className=" border-2  border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
+                type="text"
+                divClassName="flex ml-10 flex-row gap-2 items-end justify-end"
+              />
+
+              
+              </div>
+             
+            </div>
+
             <div
               className={`flex flex-col max-h-[370px] p-2 lg:p-2 ${tableContainerClass}`}
             >
