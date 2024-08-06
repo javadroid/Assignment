@@ -8,12 +8,16 @@ import CheckBox from "../Reusable-Code/CheckBox";
 import { commentsDataATH, uploadDataATH } from "../../Utilities/Data";
 import axios from "axios";
 import { BaseUrl } from "../../service";
+import UploadPopUp from "../Student-Dashboard/Popup-Screens/UploadPopUp";
 
 const Proposal = () => {
   const [, setCheckedBox] = React.useState(false);
   const [uploads, setuploads] = useState([]) as any[];
   const [commentsData, setcommentsData] = useState([]) as any[];
   const filteredTopics = uploadDataATH.filter((topic) => topic.button);
+  const [uploadData, setUploadData] = useState([]);
+
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const location = useLocation();
   const state = location.state;
   const nativate = useNavigate();
@@ -43,7 +47,10 @@ const Proposal = () => {
     // Set the state with the updated array
     setcommentsData(updatedCommentsData);
   };
-
+  const togglePopup = () => {
+    setIsPopupOpen(!isPopupOpen);
+  };
+  
   return (
     <div className="font-pop h-screen flex flex-row overflow-hidden">
       <div className="w-full text-black">
@@ -56,7 +63,8 @@ const Proposal = () => {
               <div key={i} className="flex flex-col pt-4">
                 <main className="flex flex-row items-end justify-between w-full">
                   <h2 className="text-sm lg:text-base">Comments:</h2>
-                  <div className="bg-[#FAEDCB] shadow p-4 text-right w-2/3 text-xs lg:text-base lg:w-1/2">
+                  <a  href={upload.url}
+                      target="_blank" className="bg-[#FAEDCB] shadow p-4 text-right w-2/3 text-xs lg:text-base lg:w-1/2">
                     {/* make sure to work on this for mutiple topics */}
                     <h2
                       className={`uppercase font-semibold pb-2`}
@@ -64,15 +72,15 @@ const Proposal = () => {
                     >
                       {state.name}
                     </h2>
-                    <a
-                      href={upload.url}
-                      target="_blank"
+                    <span
+                      // href={upload.url}
+                      // target="_blank"
                       className="text-[#57430E] font-medium"
                       rel="noreferrer"
                     >
                       Click to view project pdf
-                    </a>
-                  </div>
+                    </span>
+                  </a>
                 </main>
                 <div className="bg-white mt-4 flex flex-col p-6 overflow-y-auto lg:w-[100%] h-[24rem]">
                   {commentsData
@@ -128,11 +136,17 @@ const Proposal = () => {
             );
           })}
           <div className="flex flex-col items-end mt-4">
-            <button className="transform transition ease-linear hover:scale-110 bg-[#A89D82] text-black p-3 text-lg mr-10 rounded-md hover:bg-[#bebcb6]">
-              Vote
+            <button 
+            onClick={togglePopup}
+            className="transform transition ease-linear hover:scale-110 bg-[#A89D82] text-black p-3 text-lg mr-10 rounded-md hover:bg-[#bebcb6]">
+              Update Document
             </button>
           </div>
+          
         </div>
+        {isPopupOpen && (
+              <UploadPopUp update={true} getData={getData} onClose={togglePopup} />
+            )}
       </div>
     </div>
   );

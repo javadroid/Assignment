@@ -8,10 +8,11 @@ import axios from "axios";
 
 interface UploadPopUpProps {
   onClose: () => void;
-  getData:any
+  getData:any,
+  update?:any
 }
 
-function UploadPopUp({ onClose, getData }: UploadPopUpProps) {
+function UploadPopUp({ onClose, getData ,update}: UploadPopUpProps) {
   const [projectTopic, setProjectTopic] = useState<string | []>([]);
   const [upload, setUpload] = useState() as any;
   const onPickPDF=(event:any)=>{
@@ -58,7 +59,8 @@ function UploadPopUp({ onClose, getData }: UploadPopUpProps) {
         </div>
 
         <div>
-          <InputField
+          {
+            !update && <InputField
             labelText={"Project Topic: "}
             id={"projectTopic"}
             type={"textarea"}
@@ -68,6 +70,8 @@ function UploadPopUp({ onClose, getData }: UploadPopUpProps) {
             }
             divClassName={"flex flex-col my-5"}
           />
+          }
+         
           <FileUpload
             labelText={"Document: "}
             id={"documentUpload"} 
