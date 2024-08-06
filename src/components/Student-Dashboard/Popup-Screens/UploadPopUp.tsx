@@ -9,10 +9,10 @@ import axios from "axios";
 interface UploadPopUpProps {
   onClose: () => void;
   getData:any,
-  update?:any
+  project_id?:any
 }
 
-function UploadPopUp({ onClose, getData ,update}: UploadPopUpProps) {
+function UploadPopUp({ onClose, getData ,project_id}: UploadPopUpProps) {
   const [projectTopic, setProjectTopic] = useState<string | []>([]);
   const [upload, setUpload] = useState() as any;
   const onPickPDF=(event:any)=>{
@@ -32,7 +32,7 @@ function UploadPopUp({ onClose, getData ,update}: UploadPopUpProps) {
         student_id: JSON.parse(localStorage.getItem("userdata")!)?.user_data._id,
       }
       axios
-        .post(`${BaseUrl}user/project`, dataUp)
+        .post(`${BaseUrl}user/document/${project_id}`, dataUp)
         .then((data) => {
           console.log(data,dataUp)
           getData();
@@ -60,7 +60,7 @@ function UploadPopUp({ onClose, getData ,update}: UploadPopUpProps) {
 
         <div>
           {
-            !update && <InputField
+            !project_id && <InputField
             labelText={"Project Topic: "}
             id={"projectTopic"}
             type={"textarea"}

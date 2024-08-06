@@ -33,9 +33,9 @@ const UploadedProject: React.FC<UploadedProjectProps> = () => {
 
   return (
     <div className="flex overflow-hidden h-screen font-pop">
-      <div className="w-full">
+      <div className="w-full flex flex-col  ">
         <Navigation />
-        <div className="flex flex-col h-full relative">
+        <div className="flex flex-col h-full  relative w-3/4">
           <div className="p-5 overflow-y-auto h-[65%]">
             <div className="flex flex-col ">
               {uploadData.map((uploadDatas: any, i) => (

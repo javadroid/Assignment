@@ -9,13 +9,14 @@ import { commentsDataATH, uploadDataATH } from "../../Utilities/Data";
 import axios from "axios";
 import { BaseUrl } from "../../service";
 import UploadPopUp from "../Student-Dashboard/Popup-Screens/UploadPopUp";
+import { TextField } from "@mui/material";
 
 const Proposal = () => {
   const [, setCheckedBox] = React.useState(false);
   const [uploads, setuploads] = useState([]) as any[];
   const [commentsData, setcommentsData] = useState([]) as any[];
   const filteredTopics = uploadDataATH.filter((topic) => topic.button);
-  const [uploadData, setUploadData] = useState([]);
+  const [comment, setComment] = useState("");
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const location = useLocation();
@@ -25,6 +26,7 @@ const Proposal = () => {
     if (!state) {
       nativate("/");
     }
+
     getData();
   }, []);
 
@@ -50,103 +52,183 @@ const Proposal = () => {
   const togglePopup = () => {
     setIsPopupOpen(!isPopupOpen);
   };
-  
+
+  const sendComment = () => {
+    const upData = {
+      document_id: uploads[uploads.length - 1]._id,
+      project_id: state._id,
+      lecturer_id: JSON.parse(localStorage.getItem("userdata")!).user_data._id,
+      comment,
+    };
+    console.log(upData);
+    axios.post(`${BaseUrl}user/comment`, upData).then(() => {
+      setComment("");
+      getData();
+    });
+  };
+
   return (
     <div className="font-pop h-screen flex flex-row overflow-hidden">
-      <div className="w-full text-black">
+      <div className="w-full text-black flex  flex-col">
         <Navigation />
-        <div className="pt-3 px-10 bg-[#F6F6F6] h-screen">
+        <div className="pt-3 px-10 bg-[#F6F6F6]  h-screen relative">
           <h1 className="font-semibold text-sm lg:text-lg">Project Proposal</h1>
           <hr className="border-gray-400" />
-          {uploads.map((upload: any, i: any) => {
-            return (
-              <div key={i} className="flex flex-col pt-4">
-                <main className="flex flex-row items-end justify-between w-full">
-                  <h2 className="text-sm lg:text-base">Comments:</h2>
-                  <a  href={upload.url}
-                      target="_blank" className="bg-[#FAEDCB] shadow p-4 text-right w-2/3 text-xs lg:text-base lg:w-1/2">
-                    {/* make sure to work on this for mutiple topics */}
-                    <h2
-                      className={`uppercase font-semibold pb-2`}
-                      id={String(i)}
+
+          <div className="overflow-auto h-[70vh]">
+            {uploads.map((upload: any, i: any) => {
+              return (
+                <div key={i} className="flex  flex-col pt-4  ">
+                  <main className="flex flex-row items-end justify-between ">
+                    {commentsData.filter(
+                      (cd: any) => cd.document_id === upload._id
+                    ).length > 0 ? (
+                      <h2 className="text-sm lg:text-base">Comments:</h2>
+                    ) : (
+                      <div></div>
+                    )}
+                    <a
+                      href={upload.url}
+                      target="_blank"
+                      className="bg-[#FAEDCB] shadow p-4  text-xs lg:text-base "
                     >
-                      {state.name}
-                    </h2>
-                    <span
-                      // href={upload.url}
-                      // target="_blank"
-                      className="text-[#57430E] font-medium"
-                      rel="noreferrer"
-                    >
-                      Click to view project pdf
-                    </span>
-                  </a>
-                </main>
-                <div className="bg-white mt-4 flex flex-col p-6 overflow-y-auto lg:w-[100%] h-[24rem]">
-                  {commentsData
-                    .filter((cd: any) => cd.document_id === upload._id)
-                    .map((commentData: any, i: any) => {
-                      return (
-                        <section
-                          key={i}
-                          className="border p-5 text-gray-700 mb-4"
-                        >
-                          <div className="flex flex-row justify-between mb-4">
-                            <div className="flex flex-row items-center">
-                              <Avatar
-                                alt=""
-                                src={commentData?.lecturer_id?.picture}
-                                sx={{
-                                  width: { sm: 23, lg: 56 },
-                                  height: { sm: 23, lg: 56 },
-                                }}
-                                className="mr-3"
-                              />
-                              <div className="flex flex-col ">
-                                <h3 className="font-semibold text-base lg:text-lg">
-                                  {commentData?.lecturer_id?.fname}{" "}
-                                  {commentData?.lecturer_id?.lname}
-                                  <span className="bold text-sm lg:text-base text-black">
-                                    ({commentData?.lecturer_id?.type})
-                                  </span>
-                                </h3>
-                                <p className="text-xs lg:text-base pl-6">
-                                  {new Date(
-                                    commentData?.createdAt
-                                  ).toDateString()}
-                                </p>
+                      {/* make sure to work on this for mutiple topics */}
+                      <h2
+                        className={`uppercase font-semibold pb-2`}
+                        id={String(i)}
+                      >
+                        {state.name}
+                      </h2>
+                      <span
+                        // href={upload.url}
+                        // target="_blank"
+                        className="text-[#57430E] font-medium"
+                        rel="noreferrer"
+                      >
+                        Click to view project pdf
+                      </span>
+                    </a>
+                  </main>
+
+                  {commentsData.filter(
+                    (cd: any) => cd.document_id === upload._id
+                  ).length > 0 && (
+                    <div className="bg-white mt-4 flex flex-col p-6 overflow-y-auto lg:w-[70%] ">
+                      {commentsData
+                        .filter((cd: any) => cd.document_id === upload._id)
+                        .map((commentData: any, i: any) => {
+                          return (
+                            <section
+                              key={i}
+                              className="border p-3 text-gray-700 mb-2"
+                            >
+                              <div className="flex flex-row justify-between mb-2">
+                                <div className="flex flex-row items-center">
+                                  <Avatar
+                                    alt=""
+                                    src={commentData?.lecturer_id?.picture}
+                                    sx={{
+                                      width: { sm: 23, lg: 56 },
+                                      height: { sm: 23, lg: 56 },
+                                    }}
+                                    className="mr-3"
+                                  />
+                                  <div className="flex flex-col justify-start items-start">
+                                    <h3 className="font-semibold text-base lg:text-lg">
+                                      {commentData?.lecturer_id?.fname}{" "}
+                                      {commentData?.lecturer_id?.lname}
+                                      <span className="bold text-sm lg:text-base text-black">
+                                        ({commentData?.lecturer_id?.type})
+                                      </span>
+                                    </h3>
+                                    <p className="text-xs lg:text-sm ">
+                                      {new Date(
+                                        commentData?.createdAt
+                                      ).toDateString()}
+                                    </p>
+                                  </div>
+                                </div>
+                                <CheckBox
+                                  value={commentData?.status}
+                                  onChange={(e) => handleChange(e, i)}
+                                  id={String(i)}
+                                />
                               </div>
-                            </div>
-                            <CheckBox
-                              value={commentData?.status}
-                              onChange={(e) => handleChange(e, i)}
-                              id={String(i)}
-                            />
-                          </div>
-                          <p className="px-4">{commentData?.comment}</p>
-                        </section>
-                      );
-                    })}
-                  {/* <div className="flex flex-row justify-end mt-2">
+
+                              <p className="px-8">{commentData?.comment}</p>
+                            </section>
+                          );
+                        })}
+                      {/* <div className="flex flex-row justify-end mt-2">
                 <BiSolidLeftArrow className="mr-4 text-xl text-[#B5B5B5]" />
                 <BiSolidRightArrow className="ml-4 text-xl text-[#B5B5B5]" />
               </div> */}
+                    </div>
+                  )}
                 </div>
-              </div>
-            );
-          })}
-          <div className="flex flex-col items-end mt-4">
-            <button 
-            onClick={togglePopup}
-            className="transform transition ease-linear hover:scale-110 bg-[#A89D82] text-black p-3 text-lg mr-10 rounded-md hover:bg-[#bebcb6]">
-              Update Document
-            </button>
+              );
+            })}
           </div>
-          
-        </div>
-        {isPopupOpen && (
-              <UploadPopUp update={true} getData={getData} onClose={togglePopup} />
+
+          <div className="flex flex-col items-end mt-4"></div>
+          <div className="z-4  flex flex-row absolute items-center mb-3 bottom-0 w-full ">
+            <div className=" bg-white  mr-2 w-2/3 p-2">
+              <TextField
+                onClick={(e) => e.stopPropagation()}
+                onKeyDown={() => {}}
+                variant="filled"
+                disabled={
+                  JSON.parse(localStorage.getItem("userdata")!).user_data
+                    .is_student
+                }
+                value={comment}
+                className="z-5  "
+                placeholder="Write a comment"
+                onChange={(e) => {
+                  setComment(e.target.value);
+                }}
+                fullWidth
+                margin="dense"
+                sx={{ mb: 1 }}
+              />
+            </div>
+
+            {JSON.parse(localStorage.getItem("userdata")!).user_data
+              .is_student ? (
+              <div>
+                <button
+                  onClick={togglePopup}
+                  className="transform transition ease-linear hover:scale-110 bg-[#A89D82] text-black p-3 text-lg  rounded-md hover:bg-[#bebcb6]"
+                >
+                  Update Document
+                </button>
+              </div>
+            ) : (
+              <div>
+                <button
+                  onClick={sendComment}
+                  className="transform mr-2 transition ease-linear hover:scale-110 bg-[#A89D82] text-black p-3 text-lg  rounded-md hover:bg-[#bebcb6]"
+                >
+                  Send Comment
+                </button>
+                <button
+                  onClick={togglePopup}
+                  className="transform transition ease-linear hover:scale-110 bg-[#A89D82] text-black p-3 text-lg  rounded-md hover:bg-[#bebcb6]"
+                >
+                  Score Project Work
+                </button>
+              </div>
             )}
+          </div>
+        </div>
+
+        {isPopupOpen && (
+          <UploadPopUp
+            project_id={state._id}
+            getData={getData}
+            onClose={togglePopup}
+          />
+        )}
       </div>
     </div>
   );
