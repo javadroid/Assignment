@@ -80,7 +80,7 @@ export default function Admin() {
   const pageScrollBar = rowsPerPage >= 10 ? "overflow-y-hidden" : "";
 
   return (
-    <div className="font-pop h-screen flex flex-row lg:overflow-hidden bg-gray-100">
+    <div className="font-pop scroll-smooth flex flex-row overflow-auto bg-gray-100">
       <div className="w-full text-black">
         <Navigation />
 
