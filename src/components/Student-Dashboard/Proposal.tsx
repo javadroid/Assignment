@@ -24,7 +24,7 @@ const Proposal = () => {
   };
 
   return (
-    <div className="font-pop h-screen flex flex-row overflow-hidden">
+    <div className="font-pop scroll-smooth flex flex-row overflow-auto">
       <div className="w-full text-black">
         <Navigation />
         <div className="pt-3 px-10 bg-[#F6F6F6] h-screen">
