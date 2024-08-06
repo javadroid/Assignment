@@ -171,7 +171,9 @@ const Proposal = () => {
           </div>
 
           <div className="flex flex-col items-end mt-4"></div>
-          <div className="z-4  flex flex-row absolute items-center mb-3 bottom-0 w-full ">
+          {
+            state.status!=="rejected"&&<div className="z-4  flex flex-row absolute items-center mb-3 bottom-0 w-full ">
+            
             <div className=" bg-white  mr-2 w-2/3 p-2">
               <TextField
                 onClick={(e) => e.stopPropagation()}
@@ -220,6 +222,8 @@ const Proposal = () => {
               </div>
             )}
           </div>
+          }
+          
         </div>
 
         {isPopupOpen && (

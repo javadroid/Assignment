@@ -18,23 +18,46 @@ const SideDesign: React.FC<props> = ({ isOpen, isClose }) => {
         <IoClose size={20} />
       </div>
       <ul className="flex flex-col text-center  h-full justify-center ">
-        <li className="group flex  rounded-md h-[4rem] cursor-pointer hover:bg-[#f6dd9e] ">
-          <Link
-            className="group-hover:text-gray-950  group-hover:scale-110 transition-transform ease-linear  flex flex-col text-center m-auto"
-            to={"/uploaded"}
-          >
-            Dashboard
-          </Link>
-        </li>
-        <li className="group flex  rounded-md h-[4rem] cursor-pointer hover:bg-[#f6dd9e]">
+        {JSON.parse(localStorage.getItem("userdata")!).user_data.is_student ? (
+          <>
+            <li className="group flex  rounded-md h-[4rem] cursor-pointer hover:bg-[#f6dd9e] ">
+              <Link
+                className="group-hover:text-gray-950  group-hover:scale-110 transition-transform ease-linear  flex flex-col text-center m-auto"
+                to={"/uploaded"}
+              >
+                Dashboard
+              </Link>
+            </li>
+          </>
+        ) : (
+          <>
+            <li className="group flex  rounded-md h-[4rem] cursor-pointer hover:bg-[#f6dd9e] ">
+              <Link
+                className="group-hover:text-gray-950  group-hover:scale-110 transition-transform ease-linear  flex flex-col text-center m-auto"
+                to={"/lecturer-dashboard"}
+              >
+                Dashboard
+              </Link>
+            </li>
+
+            <li className="group flex  rounded-md h-[4rem] cursor-pointer hover:bg-[#f6dd9e] ">
+              <Link
+                className="group-hover:text-gray-950  group-hover:scale-110 transition-transform ease-linear  flex flex-col text-center m-auto"
+                to={"/hodDash"}
+              >
+                Assign Supervisor
+              </Link>
+            </li>
+          </>
+        )}
+        {/* <li className="group flex  rounded-md h-[4rem] cursor-pointer hover:bg-[#f6dd9e]">
           <Link
             className="group-hover:text-gray-950 group-hover:scale-110 transition-transform ease-linear  flex flex-col text-center m-auto"
             to={"/proposal"}
           >
             Proposal
           </Link>
-        </li>
-     
+        </li> */}
       </ul>
     </div>
   );

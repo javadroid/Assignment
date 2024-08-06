@@ -12,7 +12,7 @@ interface UploadPopUpProps {
   project_id?:any
 }
 
-function UploadPopUp({ onClose, getData ,project_id}: UploadPopUpProps) {
+function UploadPopUp({ onClose, getData ,project_id=null}: UploadPopUpProps) {
   const [projectTopic, setProjectTopic] = useState<string | []>([]);
   const [upload, setUpload] = useState() as any;
   const onPickPDF=(event:any)=>{
@@ -32,7 +32,7 @@ function UploadPopUp({ onClose, getData ,project_id}: UploadPopUpProps) {
         student_id: JSON.parse(localStorage.getItem("userdata")!)?.user_data._id,
       }
       axios
-        .post(`${BaseUrl}user/document/${project_id}`, dataUp)
+        .post(!project_id?`${BaseUrl}user/project`:`${BaseUrl}user/document/${project_id}`, dataUp)
         .then((data) => {
           console.log(data,dataUp)
           getData();

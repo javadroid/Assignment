@@ -5,6 +5,7 @@ import ShowPassword from "./Reusable-Code/ShowPassword";
 import React, { ChangeEvent, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { BaseUrl } from "../service";
 
 const SignIn: React.FC = () => {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ const SignIn: React.FC = () => {
     e.preventDefault();
 
     axios
-      .post("https://hodbackend.onrender.com/api/v1/auth/login", {
+      .post(BaseUrl+"auth/login", {
         email,
         password,
       })
@@ -33,7 +34,7 @@ const SignIn: React.FC = () => {
           icon: "success",
         });
 
-        navigate("/");
+        navigate("../");
       })
       .catch((err) => {
         console.log(err.response.data.error.message);
@@ -104,6 +105,7 @@ const SignIn: React.FC = () => {
 
                 <div className="mb-6">
                   <Button
+                    
                     label="Sign In"
                     type="submit"
                     className="group btn"

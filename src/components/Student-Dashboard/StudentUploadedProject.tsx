@@ -5,22 +5,27 @@ import UploadPopUp from "./Popup-Screens/UploadPopUp";
 import ConfirmationPopup from "./Popup-Screens/ConfirmationPopup";
 import axios from "axios";
 import { BaseUrl } from "../../service";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface UploadedProjectProps {}
 
-const UploadedProject: React.FC<UploadedProjectProps> = () => {
+const StudentUploadedProject: React.FC<UploadedProjectProps> = () => {
   const [uploadData, setUploadData] = useState([]);
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
 
+
+  const location = useLocation();
+  const state = location.state;
   useEffect(() => {
     getData();
   }, []);
 
   const getData = async () => {
-    const data = await axios.get(`${BaseUrl}user/project`);
+    console.log("state",state)
+    // JSON.parse(localStorage.getItem("userdata")!).user
+    const data = await axios.get(`${BaseUrl}user/project?id=${state?state._id:JSON.parse(localStorage.getItem("userdata")!).user_data._id}`);
     console.log(data);
     setUploadData(data.data);
   };
@@ -33,9 +38,9 @@ const UploadedProject: React.FC<UploadedProjectProps> = () => {
 
   return (
     <div className="flex overflow-hidden h-screen font-pop">
-      <div className="w-full">
+      <div className="w-full flex flex-col  ">
         <Navigation />
-        <div className="flex flex-col h-full relative">
+        <div className="flex flex-col h-full  relative w-3/4">
           <div className="p-5 overflow-y-auto h-[65%]">
             <div className="flex flex-col ">
               {uploadData.map((uploadDatas: any, i) => (
@@ -69,7 +74,8 @@ const UploadedProject: React.FC<UploadedProjectProps> = () => {
               ))}
             </div>
           </div>
-          <div className="absolute bottom-32 right-10">
+          {
+            JSON.parse(localStorage.getItem("userdata")!).user_data.is_student&& <div className="absolute bottom-32 right-10">
             <button
               onClick={togglePopup}
               className="outline-none p-3  w-[10rem] rounded-md bg-[#726135] text-white  hover:scale-110 hover:bg-[#aa9c7a]"
@@ -83,10 +89,12 @@ const UploadedProject: React.FC<UploadedProjectProps> = () => {
               <ConfirmationPopup onClose={() => setShowConfirmation(true)} />
             )}
           </div>
+          }
+         
         </div>
       </div>
     </div>
   );
 };
 
-export default UploadedProject;
+export default StudentUploadedProject;

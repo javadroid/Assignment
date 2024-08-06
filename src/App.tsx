@@ -19,6 +19,8 @@ import SPGSRep from "./components/Dean/SPGSRep";
 import InternalDiscussantDash from "./components/InternalDiscussant/InternalDiscussantDash";
 import Admin from "./components/Admin/Admin";
 import Section from "./components/Admin/Section";
+import LecDashboard from "./components/HOD && Lecturers Dashboard/Lecturer.dash";
+import StudentUploadedProject from "./components/Student-Dashboard/StudentUploadedProject";
 
 const App: React.FC = () => {
   const userData = JSON.parse(localStorage.getItem("userdata")!);
@@ -30,7 +32,13 @@ const App: React.FC = () => {
           path="/"
           element={
             userData?.auth ? (
-              <Navigate to={"/uploaded"} />
+              <>
+                {userData?.user_data?.is_student ? (
+                  <Navigate to={"/uploaded"} />
+                ) : (
+                  <Navigate to={"/lecturer-dashboard"} />
+                )}
+              </>
             ) : (
               <Navigate to={"/login"} />
             )
@@ -39,21 +47,40 @@ const App: React.FC = () => {
         <Route path="/SignUp" element={<SignUp />}></Route>
         <Route path="/login" element={<SignIn />}></Route>
 
-        {
-          userData?.auth && <>
-           <Route path="/admin" element={<Admin />}></Route>
-           <Route path="/section" element={<Section />}></Route>
+        {userData?.auth && (
+          <>
+            <Route path="/admin" element={<Admin />}></Route>
+            <Route path="/section" element={<Section />}></Route>
           </>
-        }
-       
+        )}
+
+        {userData?.user_data.is_student ? (
+          <>
+            <Route path="/uploaded" element={<UploadedProject />}></Route>
+          </>
+        ) : (
+          <>
+            <Route
+              path="/student-uploads"
+              element={<StudentUploadedProject />}
+            ></Route>
+            <Route
+              path="/lecturer-dashboard"
+              element={<LecDashboard />}
+            ></Route>
+            <Route path="/hodDash" element={<HodDashboard />}></Route>
+          </>
+        )}
+
         <Route path="/forget" element={<ForgetPassword />}></Route>
         <Route path="/reset" element={<ResetPassword />}></Route>
         <Route path="/new" element={<NewPassword />}></Route>
-        <Route path="/uploaded" element={<UploadedProject />}></Route>
+
         <Route path="/dash" element={<Dashboard />}></Route>
         <Route path="/proposal" element={<Proposal />}></Route>
-        <Route path="/hodDash" element={<HodDashboard />}></Route>
+
         <Route path="/view-uploaded" element={<HodLectdash />}></Route>
+
         <Route
           path="/InternalDisscussant"
           element={<InternalDisscussant />}
