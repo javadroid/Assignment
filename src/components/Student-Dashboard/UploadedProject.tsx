@@ -1,7 +1,6 @@
 /* eslint-disable no-empty-pattern */
 import { useEffect, useState } from "react";
 import Navigation from "../Reusable-Code/Navigation";
-import SideDesign from "../Reusable-Code/SideDesign";
 import UploadPopUp from "./Popup-Screens/UploadPopUp";
 import ConfirmationPopup from "./Popup-Screens/ConfirmationPopup";
 import axios from "axios";
@@ -15,7 +14,6 @@ const UploadedProject: React.FC<UploadedProjectProps> = () => {
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const [showSideBar, setShowSideBar] = useState(true);
 
   useEffect(() => {
     getData();
@@ -33,15 +31,10 @@ const UploadedProject: React.FC<UploadedProjectProps> = () => {
 
   const nativate = useNavigate();
 
-  const sildeBarClick = () => {
-    setShowSideBar(!showSideBar);
-  };
-
   return (
     <div className="flex overflow-hidden h-screen font-pop">
-      {showSideBar ? "" : <SideDesign />}
       <div className="w-full">
-        <Navigation sildeBarClick={sildeBarClick} />
+        <Navigation />
         <div className="flex flex-col h-full relative">
           <div className="p-5 overflow-y-auto h-[65%]">
             <div className="flex flex-col ">

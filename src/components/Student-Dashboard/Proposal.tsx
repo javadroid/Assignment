@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import SideDesign from "../Reusable-Code/SideDesign";
 import Navigation from "../Reusable-Code/Navigation";
 import { Link } from "react-router-dom";
 // import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
@@ -24,16 +23,10 @@ const Proposal = () => {
     setcommentsData(updatedCommentsData);
   };
 
-  const [showSideBar, setShowSideBar] = useState(true);
-  const sildeBarClick = () => {
-    setShowSideBar(!showSideBar);
-  };
-
   return (
     <div className="font-pop h-screen flex flex-row overflow-hidden">
-      {showSideBar ? "" : <SideDesign />}
       <div className="w-full text-black">
-        <Navigation sildeBarClick={sildeBarClick} />
+        <Navigation />
         <div className="pt-3 px-10 bg-[#F6F6F6] h-screen">
           <h1 className="font-semibold text-sm lg:text-lg">Project Proposal</h1>
           <hr className="border-gray-400" />
