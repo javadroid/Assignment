@@ -35,15 +35,70 @@ export default function LecDashboard() {
   const [DataFiltered, setDataFiltered] = useState([]) as any[];
   const [seletedStudent, setseletedStudent] = useState([]) as any[];
 
+  const [section, setsection] = useState("2020/2021");
+  const [batch, setbatch] = useState("A");
+  const [type, settype] = useState("MSC");
+  const [check, setcheck] = useState("Internal Discussant");
+
+  const [state, setstate] = useState("Proposal Defense");
+
   useEffect(() => {
-    getData();
-  }, []);
+    // getData();
+    setDataFiltered(
+      SData.filter(
+        (t: any) =>
+          t.is_student &&
+          t.type === type &&
+          t.batch === batch &&
+          t.section === section
+      )
+    );
+  }, [type]);
+
+  useEffect(() => {
+    // getData();
+    if(state==="Proposal Defense"){
+      setDataFiltered(SData.filter((t: any) => t.project.proposal_defense));
+    }
+    if(state==="Internal Defense"){
+      setDataFiltered(SData.filter((t: any) => t.project.internal_defense));
+    }
+    if(state==="External Defense"){
+      setDataFiltered(SData.filter((t: any) => t.project.external_defense));
+    }
+
+    if(state==="First Seminar"){
+      setDataFiltered(SData.filter((t: any) => t.project.proposal_defense));
+    }
+    if(state==="Second Seminar"){
+      setDataFiltered(SData.filter((t: any) => t.project.internal_defense));
+    }
+    if(state==="Third Seminar"){
+      setDataFiltered(SData.filter((t: any) => t.project.seminar3));
+    }
+
+
+    
+  }, [state]);
+
+  useEffect(() => {
+    getDataSession();
+  }, [check]);
 
   const getData = async () => {
-    const userdata = await axios.get(BaseUrl + "user/supervisor-project-student?lecturer_id="+JSON.parse(localStorage.getItem("userdata")!).user_data._id);
+    const userdata = await axios.get(BaseUrl + "user");
     setSData(userdata.data);
     setDataFiltered(userdata.data.filter((t: any) => t.is_student));
-    console.log(userdata.data[0].project);
+  };
+
+  const getDataSession = async () => {
+    const userdata = await axios.get(
+      BaseUrl +
+        `user/session?type=${check}&lecturer_id=` +
+        JSON.parse(localStorage.getItem("userdata")!).user_data._id
+    );
+    setSData(userdata.data);
+    setDataFiltered(userdata.data.filter((t: any) => t.type === type));
   };
   // Handle page change
   const handleChangePage = (
@@ -88,7 +143,7 @@ export default function LecDashboard() {
   };
 
   const [isAssigned, setAssigned] = useState(false);
-const navigate=useNavigate()
+  const navigate = useNavigate();
   return (
     <div className="font-pop h-screen flex flex-row lg:overflow-hidden bg-gray-100">
       {isPopupOpen && (
@@ -105,7 +160,7 @@ const navigate=useNavigate()
           <div className="m-4">
             <div className="flex sm:flex-row justify-between items-center">
               <h1 className="font-semibold my-2 text-sm lg:text-lg">
-                Project Proposal
+                {JSON.parse(localStorage.getItem("userdata")!).user_data.type}
               </h1>
               <MdOutlineNotificationsActive
                 className="fill-[#726135] w-5 h-5 lg:w-6 lg:h-6 mr-4 cursor-pointer transform transition ease-linear hover:scale-110"
@@ -113,7 +168,13 @@ const navigate=useNavigate()
               />
             </div>
             <hr className="border-gray-400" />
-            <h4 className="text-xs my-3">Dashboard-Project Proposal</h4>
+            <h4 className="text-xs my-3">
+              {" "}
+              {
+                JSON.parse(localStorage.getItem("userdata")!).user_data.fname
+              }{" "}
+              {JSON.parse(localStorage.getItem("userdata")!).user_data.lname}{" "}
+            </h4>
           </div>
         </main>
         <section className="sm:overflow-x-hidden bg-[#ffffff] lg:overflow-auto border-2 border-gray-300 shadow-md m-4">
@@ -122,24 +183,56 @@ const navigate=useNavigate()
           </p>
           <div className="m-4 ">
             <div className="flex  flex-row justify-between">
-              
               <div className="flex  flex-row">
+                <DropDown
+                  // divClassName="flex flex-col xs:w-[30%]"
+                  labelText="Role:"
+                  id="dropDown"
+                  setSelectOption={(e: any, i: any) => setcheck(i)}
+                  name="Section"
+                  data={["Internal Discussant", "SPGS", "External Examiner"]}
+                  className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
+                />
                 <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
                   labelText="Section:"
                   id="dropDown"
-                  setSelectOption={() => {}}
+                  setSelectOption={(e: any, i: any) => setsection(i)}
                   name="Section"
-                  data={["2022/2024", "2024/2025"]}
+                  data={["2020/2021", "2022/2024", "2024/2025"]}
                   className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
                 />
                 <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
                   labelText="Batch:"
                   id="dropDown"
-                  setSelectOption={() => {}}
+                  setSelectOption={(e: any, i: any) => setbatch(i)}
                   name="Section"
                   data={["A", "B"]}
+                  className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
+                />
+
+                <DropDown
+                  // divClassName="flex flex-col xs:w-[30%]"
+                  labelText="Student type:"
+                  id="dropDown"
+                  setSelectOption={(e: any, i: any) => {
+                    settype(i);
+                  }}
+                  name="Section"
+                  data={["MSC", "PGD"]}
+                  className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
+                />
+
+                <DropDown
+                  divClassName="ml-40"
+                  labelText="Student type:"
+                  id="dropDown"
+                  setSelectOption={(e: any, i: any) => {
+                    setstate(i);
+                  }}
+                  name="Section"
+                  data={type==="MSC"?["Proposal Defense", "Internal Defense","External Defense"]:["First Seminar","Second Seminar","Third Seminar","External Defense"]}
                   className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
                 />
               </div>
@@ -167,21 +260,47 @@ const navigate=useNavigate()
                       <StyledTableCell align="center">
                         Full Name
                       </StyledTableCell>
-                      <StyledTableCell align="center">
-                        Topic
-                      </StyledTableCell>
+                      <StyledTableCell align="center">Topic</StyledTableCell>
+
+                      {type === "MSC" ? (
+                        <>
+                          <StyledTableCell align="center">
+                            Proposal Defense
+                          </StyledTableCell>
+                          <StyledTableCell align="center">
+                            Internal Defense
+                          </StyledTableCell>
+                          <StyledTableCell align="center">
+                            External Defense
+                          </StyledTableCell>
+                        </>
+                      ) : (
+                        <>
+                          <StyledTableCell align="center">
+                            First Seminar
+                          </StyledTableCell>
+                          <StyledTableCell align="center">
+                            Second Seminar
+                          </StyledTableCell>
+                          <StyledTableCell align="center">
+                            Third Seminar
+                          </StyledTableCell>
+                          <StyledTableCell align="center">
+                            External Defense
+                          </StyledTableCell>
+                        </>
+                      )}
                       <StyledTableCell align="center"></StyledTableCell>
-                     
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {slicedData.map((row: any,i:any) => {
+                    {slicedData.map((row: any, i: any) => {
                       const checked = seletedStudent.includes(row);
 
                       return (
                         <StyledTableRow key={row.id}>
                           <StyledTableCell component="th" scope="row">
-                            { i+1}
+                            {i + 1}
                           </StyledTableCell>
 
                           <StyledTableCell component="th" scope="row">
@@ -193,51 +312,54 @@ const navigate=useNavigate()
                           <StyledTableCell align="center">
                             {row?.project?.name}
                           </StyledTableCell>
+                          {type === "MSC" ? (
+                            <>
+                              <StyledTableCell align="center">
+                                {row?.project?.proposal_defense?.status || ""}
+                              </StyledTableCell>
+                              <StyledTableCell align="center">
+                                {row?.project?.internal_defense?.status || ""}
+                              </StyledTableCell>
+                              <StyledTableCell align="center">
+                                {row?.project?.external_defense?.status || ""}
+                              </StyledTableCell>
+                            </>
+                          ) : (
+                            <>
+                              <StyledTableCell align="center">
+                                {row?.project?.proposal_defense?.status || ""}
+                              </StyledTableCell>
+                              <StyledTableCell align="center">
+                                {row?.project?.internal_defense?.status || ""}
+                              </StyledTableCell>
+                              <StyledTableCell align="center">
+                                {row?.project?.external_defense?.status || ""}
+                              </StyledTableCell>
+                              <StyledTableCell align="center">
+                                {row?.project?.seminar3?.status || ""}
+                              </StyledTableCell>
+                            </>
+                          )}
                           <StyledTableCell width={600} align="center">
                             <div className="flex flex-row justify-between items-center      ">
-                            <div
-                              onClick={() => {
-                                navigate("/student-uploads",{state:row})
-                              }}
-                              className="group flex flex-row justify-center items-center px-8 py-2 rounded-xl bg-[#a1812e]"
-                            >
-                              {" "}
-                              <span className="text-base text-white">
-                                View Project
-                              </span>
+                              <button
+                                disabled={!row.project}
+                                onClick={() => {
+                                  navigate("/view-uploaded", {
+                                    state: row.project,
+                                  });
+                                }}
+                                className="group flex flex-row justify-center items-center px-8 py-2 rounded-xl bg-[#a1812e]"
+                              >
+                                {" "}
+                                <span className="text-base text-white">
+                                  {!row?.project
+                                    ? "No project"
+                                    : "View Project"}
+                                </span>
+                              </button>
                             </div>
-                            
-                            <button
-                            disabled={row?.project?.status==="rejected"}
-                              onClick={() => {
-                                Swal.fire({
-                                  title: "Do you want to reject this project?",
-                                  cancelButtonColor:"green",
-                                  confirmButtonColor:"red",
-                                  showCancelButton: true,
-                                  confirmButtonText: "Reject",
-                                
-                                }).then(async (result) => {
-                                  /* Read more about isConfirmed, isDenied below */
-                                  if (result.isConfirmed) {
-                                    const userdata = await axios.put(BaseUrl + "user/project/"+row?.project?._id,{status:"rejected"}).then(()=>{
-                                      Swal.fire("Rejected!", "", "success");
-                                    });
-                                   
-                                  } 
-                                });
-                              }}
-                              className="group flex flex-row justify-center items-center px-8 py-2 rounded-xl bg-[#f33b3b]"
-                            >
-                              {" "}
-                              <span className="text-base text-white">
-                                Reject Project
-                              </span>
-                            </button>    
-                            </div>
-                            
                           </StyledTableCell>
-                          
                         </StyledTableRow>
                       );
                     })}

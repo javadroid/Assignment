@@ -24,8 +24,9 @@ import axios from "axios";
 import { BaseUrl } from "../../service";
 import Swal from "sweetalert2";
 import { ToggleButtonGroup, ToggleButton } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function HodDashboard() {
+export default function SupervisorsDashboard() {
   // State for pagination
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(3);
@@ -33,19 +34,24 @@ export default function HodDashboard() {
   const [SData, setSData] = useState([]) as any[];
   const [DataFiltered, setDataFiltered] = useState([]) as any[];
   const [seletedStudent, setseletedStudent] = useState([]) as any[];
+
   const [section, setsection] = useState("2020/2021");
   const [batch, setbatch] = useState("A");
   const [type, settype] = useState("MSC");
+  const [select, setselect] = useState();
 
   useEffect(() => {
     getData();
   }, []);
 
+  useEffect(() => {
+    setDataFiltered(SData.filter((t: any) => t.is_student&&t.type===type&&t.batch===batch&&t.section===section));
+  }, [type]);
   const getData = async () => {
-    const userdata = await axios.get(BaseUrl + "user");
+    const userdata = await axios.get(BaseUrl + "user/supervisor-project-student?lecturer_id="+JSON.parse(localStorage.getItem("userdata")!).user_data._id);
     setSData(userdata.data);
     setDataFiltered(userdata.data.filter((t: any) => t.is_student));
-    console.log(userdata.data);
+    
   };
   // Handle page change
   const handleChangePage = (
@@ -90,7 +96,7 @@ export default function HodDashboard() {
   };
 
   const [isAssigned, setAssigned] = useState(false);
-
+const navigate=useNavigate()
   return (
     <div className="font-pop h-screen flex flex-row lg:overflow-hidden bg-gray-100">
       {isPopupOpen && (
@@ -124,31 +130,8 @@ export default function HodDashboard() {
           </p>
           <div className="m-4 ">
             <div className="flex  flex-row justify-between">
-              <ToggleButtonGroup
-                color="primary"
-                value={true}
-                exclusive
-                aria-label="Platform"
-              >
-                <ToggleButton
-                  onChange={(e) => {
-                    setAssigned(!isAssigned);
-                    if (isAssigned) {
-                      setDataFiltered(
-                        SData.filter((t: any) => t.supervisors && t.is_student)
-                      );
-                    } else {
-                      setDataFiltered(
-                        SData.filter((t: any) => !t.supervisors && t.is_student)
-                      );
-                    }
-                  }}
-                  value={isAssigned}
-                >
-                  {isAssigned ? "Assigned" : "UnAssigned"}
-                </ToggleButton>
-              </ToggleButtonGroup>
-              <div className="flex  flex-row">
+              
+            <div className="flex  flex-row">
                 <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
                   labelText="Section:"
@@ -174,10 +157,7 @@ export default function HodDashboard() {
                   labelText="Student type:"
                   id="dropDown"
                   setSelectOption={(e:any,i:any) =>{
-                    console.log("check",batch,section,i)
-                    setDataFiltered(
-                      SData.filter((t: any) => t.type ===i&&t.section===section&&t.batch===batch)
-                    );
+                    settype(i)
                   }}
                   name="Section"
                   data={["MSC", "PGD"]}
@@ -187,23 +167,6 @@ export default function HodDashboard() {
               </div>
 
               <div className="flex  flex-row ">
-                <button
-                  onClick={() => {
-                    if (seletedStudent.length === 0) {
-                      Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Please Select a student first",
-                      });
-                    } else {
-                      setIsPopupOpen(true);
-                    }
-                  }}
-                  className="group flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e]"
-                >
-                  {" "}
-                  <span className="text-base text-white">Assign</span>
-                </button>
                 {/* <InputField
                     labelText="search:"
                     id=""
@@ -226,31 +189,21 @@ export default function HodDashboard() {
                       <StyledTableCell align="center">
                         Full Name
                       </StyledTableCell>
-
                       <StyledTableCell align="center">
-                        1st Supervisor
+                        Topic
                       </StyledTableCell>
-                      <StyledTableCell align="center">
-                        2nd Supervisor
-                      </StyledTableCell>
+                      <StyledTableCell align="center"></StyledTableCell>
+                     
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {slicedData.map((row: any) => {
+                    {slicedData.map((row: any,i:any) => {
                       const checked = seletedStudent.includes(row);
 
                       return (
                         <StyledTableRow key={row.id}>
                           <StyledTableCell component="th" scope="row">
-                            <input
-                              className="checked:bg-[#EDBE44] bg-none w-5 h-5 lg:w-6 lg:h-6"
-                              type="checkbox"
-                              id={row._id}
-                              checked={checked}
-                              onChange={(e) =>
-                                onClickChecker(e.target.checked, row)
-                              }
-                            />
+                            { i+1}
                           </StyledTableCell>
 
                           <StyledTableCell component="th" scope="row">
@@ -259,15 +212,87 @@ export default function HodDashboard() {
                           <StyledTableCell align="center">
                             {row.fname} {row.lname}
                           </StyledTableCell>
+                          <StyledTableCell align="center">
+                            {row?.project?.name}
+                          </StyledTableCell>
+                          <StyledTableCell width={600} align="center">
+                            <div className="flex flex-row justify-between items-center      ">
+                            <button
+                            disabled={!row?.project}
+                              onClick={() => {
+                                navigate("/student-uploads",{state:row})
+                              }}
+                              className="group flex flex-row justify-center items-center px-8 py-2 rounded-xl bg-[#a1812e]"
+                            >
+                              {" "}
+                              <span className="text-base text-white">
+                               {!row?.project?"No project":"View Project"} 
+                              </span>
+                            </button>
 
-                          <StyledTableCell align="center">
-                            {row?.supervisors?.major?.fname}{" "}
-                            {row?.supervisors?.major?.lname}
+                            {
+                               row?.project?.status!== "approved"&&<>
+                               <button
+                            disabled={row?.project?.status==="rejected"||!row?.project}
+                              onClick={() => {
+                                Swal.fire({
+                                  title: "Do you want to approve this project?",
+                                  cancelButtonColor:"yellow",
+                                  confirmButtonColor:"green",
+                                  showCancelButton: true,
+                                  confirmButtonText: "Approve",
+                                
+                                }).then(async (result) => {
+                                  /* Read more about isConfirmed, isDenied below */
+                                  if (result.isConfirmed) {
+                                    const userdata = await axios.put(BaseUrl + "user/project/"+row?.project?._id,{status:"approved",proposal_defense:{status:"pending"}}).then(()=>{
+                                      Swal.fire("Approved!", "", "success");
+                                    });
+                                   
+                                  } 
+                                });
+                              }}
+                              className="group flex flex-row justify-center items-center px-8 py-2 rounded-xl bg-[#4ce42e]"
+                            >
+                              {" "}
+                              <span className="text-base text-white">
+                                Approve Project
+                              </span>
+                            </button> 
+                            <button
+                            disabled={row?.project?.status==="rejected"||!row?.project}
+                              onClick={() => {
+                                Swal.fire({
+                                  title: "Do you want to reject this project?",
+                                  cancelButtonColor:"green",
+                                  confirmButtonColor:"red",
+                                  showCancelButton: true,
+                                  confirmButtonText: "Reject",
+                                
+                                }).then(async (result) => {
+                                  /* Read more about isConfirmed, isDenied below */
+                                  if (result.isConfirmed) {
+                                    const userdata = await axios.put(BaseUrl + "user/project/"+row?.project?._id,{status:"rejected"}).then(()=>{
+                                      Swal.fire("Rejected!", "", "success");
+                                    });
+                                   
+                                  } 
+                                });
+                              }}
+                              className="group flex flex-row justify-center items-center px-8 py-2 rounded-xl bg-[#f33b3b]"
+                            >
+                              {" "}
+                              <span className="text-base text-white">
+                                Reject Project
+                              </span>
+                            </button>   
+                               </>
+                            }
+                             
+                            </div>
+                            
                           </StyledTableCell>
-                          <StyledTableCell align="center">
-                            {row?.supervisors?.minor?.fname}{" "}
-                            {row?.supervisors?.minor?.lname}
-                          </StyledTableCell>
+                          
                         </StyledTableRow>
                       );
                     })}

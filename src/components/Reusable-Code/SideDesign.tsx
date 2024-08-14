@@ -43,9 +43,44 @@ const SideDesign: React.FC<props> = ({ isOpen, isClose }) => {
             <li className="group flex  rounded-md h-[4rem] cursor-pointer hover:bg-[#f6dd9e] ">
               <Link
                 className="group-hover:text-gray-950  group-hover:scale-110 transition-transform ease-linear  flex flex-col text-center m-auto"
+                to={"/supervisor-dashboard"}
+              >
+                Student Assigned
+              </Link>
+            </li>
+          </>
+        )}
+
+        {JSON.parse(localStorage.getItem("userdata")!).user_data.type ===
+          "Departmental PG Coordinator" && (
+          <>
+            <li className="group flex  rounded-md h-[4rem] cursor-pointer hover:bg-[#f6dd9e] ">
+              <Link
+                className="group-hover:text-gray-950  group-hover:scale-110 transition-transform ease-linear  flex flex-col text-center m-auto"
                 to={"/hodDash"}
               >
                 Assign Supervisor
+              </Link>
+            </li>
+            <li className="group flex  rounded-md h-[4rem] cursor-pointer hover:bg-[#f6dd9e] ">
+              <Link
+                className="group-hover:text-gray-950  group-hover:scale-110 transition-transform ease-linear  flex flex-col text-center m-auto"
+                to={"/InternalDisscussant"}
+              >
+                Internal Discussant
+              </Link>
+            </li>
+          </>
+        )}
+        {JSON.parse(localStorage.getItem("userdata")!).user_data.type ===
+          "Departmental PG Coordinator" && (
+          <>
+            <li className="group flex  rounded-md h-[4rem] cursor-pointer hover:bg-[#f6dd9e] ">
+              <Link
+                className="group-hover:text-gray-950  group-hover:scale-110 transition-transform ease-linear  flex flex-col text-center m-auto"
+                to={"/spgs"}
+              >
+                Assign SPGS
               </Link>
             </li>
           </>
