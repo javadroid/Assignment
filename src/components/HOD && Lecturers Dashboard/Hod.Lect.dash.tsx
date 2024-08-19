@@ -9,7 +9,7 @@ import { commentsDataATH, uploadDataATH } from "../../Utilities/Data";
 import axios from "axios";
 import { BaseUrl } from "../../service";
 import UploadPopUp from "../Student-Dashboard/Popup-Screens/UploadPopUp";
-import { TextField } from "@mui/material";
+import { TextField, ToggleButton, ToggleButtonGroup } from "@mui/material";
 
 const Proposal = () => {
   const [, setCheckedBox] = React.useState(false);
@@ -17,7 +17,7 @@ const Proposal = () => {
   const [commentsData, setcommentsData] = useState([]) as any[];
   const filteredTopics = uploadDataATH.filter((topic) => topic.button);
   const [comment, setComment] = useState("");
-
+  const [isStaff, setisStaff] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const location = useLocation();
   const state = location.state;
@@ -29,6 +29,7 @@ const Proposal = () => {
 
     getData();
   }, []);
+  useEffect(() => {}, [isStaff]);
 
   const getData = async () => {
     const data = await axios.get(`${BaseUrl}user/document/${state._id}`);
@@ -74,7 +75,39 @@ const Proposal = () => {
         <div className="pt-3 px-10 bg-[#F6F6F6]  h-screen relative">
           <h1 className="font-semibold text-sm lg:text-lg">Project Proposal</h1>
           <hr className="border-gray-400" />
-
+          <div className="flex flex-row justify-between">
+            <ToggleButtonGroup
+              color="primary"
+              value={true}
+              exclusive
+              aria-label="Platform"
+            >
+              <ToggleButton
+                onChange={(e) => {
+                  setisStaff(!isStaff);
+                }}
+                value={isStaff}
+              >
+                View {!isStaff ? " all comments" : "only your comment"}
+              </ToggleButton>
+            </ToggleButtonGroup>
+            {/* <InputField
+              labelText="search:"
+              id=""
+              className="w-[40%] border-2 border-gray-500 py-1 px-2 mr-2 rounded-md lg:w-[25%] focus:active:border-gray-500"
+              type="text"
+              divClassName="flex flex-row gap-2 items-center justify-end"
+            /> */}
+            <button
+              onClick={() => {
+                setIsPopupOpen(true);
+              }}
+              className="group flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e]"
+            >
+              {" "}
+              <span className="text-base text-white">Add</span>
+            </button>
+          </div>
           <div className="overflow-auto h-[70vh]">
             {uploads.map((upload: any, i: any) => {
               return (
@@ -115,8 +148,9 @@ const Proposal = () => {
                   ).length > 0 && (
                     <div className="bg-white mt-4 flex flex-col p-6 overflow-y-auto lg:w-[70%] ">
                       {commentsData
-                        .filter((cd: any) => cd.document_id === upload._id)
+                        .filter((cd: any) => cd.document_id === upload._id && (isStaff? cd.lecturer_id:cd.lecturer_id._id===JSON.parse(localStorage.getItem("userdata")!).user_data._id ))
                         .map((commentData: any, i: any) => {
+
                           return (
                             <section
                               key={i}
@@ -171,59 +205,57 @@ const Proposal = () => {
           </div>
 
           <div className="flex flex-col items-end mt-4"></div>
-          {
-            state.status!=="rejected"&&<div className="z-4  flex flex-row absolute items-center mb-3 bottom-0 w-full ">
-            
-            <div className=" bg-white  mr-2 w-2/3 p-2">
-              <TextField
-                onClick={(e) => e.stopPropagation()}
-                onKeyDown={() => {}}
-                variant="filled"
-                disabled={
-                  JSON.parse(localStorage.getItem("userdata")!).user_data
-                    .is_student
-                }
-                value={comment}
-                className="z-5  "
-                placeholder="Write a comment"
-                onChange={(e) => {
-                  setComment(e.target.value);
-                }}
-                fullWidth
-                margin="dense"
-                sx={{ mb: 1 }}
-              />
-            </div>
+          {state.status !== "rejected" && (
+            <div className="z-4  flex flex-row absolute items-center mb-3 bottom-0 w-full ">
+              <div className=" bg-white  mr-2 w-2/3 p-2">
+                <TextField
+                  onClick={(e) => e.stopPropagation()}
+                  onKeyDown={() => {}}
+                  variant="filled"
+                  disabled={
+                    JSON.parse(localStorage.getItem("userdata")!).user_data
+                      .is_student
+                  }
+                  value={comment}
+                  className="z-5  "
+                  placeholder="Write a comment"
+                  onChange={(e) => {
+                    setComment(e.target.value);
+                  }}
+                  fullWidth
+                  margin="dense"
+                  sx={{ mb: 1 }}
+                />
+              </div>
 
-            {JSON.parse(localStorage.getItem("userdata")!).user_data
-              .is_student ? (
-              <div>
-                <button
-                  onClick={togglePopup}
-                  className="transform transition ease-linear hover:scale-110 bg-[#A89D82] text-black p-3 text-lg  rounded-md hover:bg-[#bebcb6]"
-                >
-                  Update Document
-                </button>
-              </div>
-            ) : (
-              <div>
-                <button
-                  onClick={sendComment}
-                  className="transform mr-2 transition ease-linear hover:scale-110 bg-[#A89D82] text-black p-3 text-lg  rounded-md hover:bg-[#bebcb6]"
-                >
-                  Send Comment
-                </button>
-                <button
-                  onClick={togglePopup}
-                  className="transform transition ease-linear hover:scale-110 bg-[#A89D82] text-black p-3 text-lg  rounded-md hover:bg-[#bebcb6]"
-                >
-                  Score Project Work
-                </button>
-              </div>
-            )}
-          </div>
-          }
-          
+              {JSON.parse(localStorage.getItem("userdata")!).user_data
+                .is_student ? (
+                <div>
+                  <button
+                    onClick={togglePopup}
+                    className="transform transition ease-linear hover:scale-110 bg-[#A89D82] text-black p-3 text-lg  rounded-md hover:bg-[#bebcb6]"
+                  >
+                    Update Document
+                  </button>
+                </div>
+              ) : (
+                <div>
+                  <button
+                    onClick={sendComment}
+                    className="transform mr-2 transition ease-linear hover:scale-110 bg-[#A89D82] text-black p-3 text-lg  rounded-md hover:bg-[#bebcb6]"
+                  >
+                    Send Comment
+                  </button>
+                  {/* <button
+                    onClick={togglePopup}
+                    className="transform transition ease-linear hover:scale-110 bg-[#A89D82] text-black p-3 text-lg  rounded-md hover:bg-[#bebcb6]"
+                  >
+                    Score Project Work
+                  </button> */}
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {isPopupOpen && (

@@ -194,7 +194,7 @@ function AddUSer({ onClose, getData }: UploadPopUpProps) {
                       : [
                           "HOD",
                           "Dean",
-                          "Dean PG",
+                          "Provost",
                           "Departmental PG Coordinator",
                           "Faculty PG Coordinator",
                           "Lecturer",
