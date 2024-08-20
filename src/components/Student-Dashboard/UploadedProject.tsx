@@ -70,12 +70,15 @@ const UploadedProject: React.FC<UploadedProjectProps> = () => {
             </div>
           </div>
           <div className="absolute bottom-32 right-10">
-            <button
+            {
+              uploadData.length<1&&<button
               onClick={togglePopup}
               className="outline-none p-3  w-[10rem] rounded-md bg-[#726135] text-white  hover:scale-110 hover:bg-[#aa9c7a]"
             >
               Add Project
             </button>
+            }
+            
             {isPopupOpen && (
               <UploadPopUp getData={getData} onClose={togglePopup} />
             )}

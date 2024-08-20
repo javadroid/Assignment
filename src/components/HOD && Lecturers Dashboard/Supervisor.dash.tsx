@@ -45,13 +45,24 @@ export default function SupervisorsDashboard() {
   }, []);
 
   useEffect(() => {
-    setDataFiltered(SData.filter((t: any) => t.is_student&&t.type===type&&t.batch===batch&&t.section===section));
+    setDataFiltered(
+      SData.filter(
+        (t: any) =>
+          t.is_student &&
+          t.type === type &&
+          t.batch === batch &&
+          t.section === section
+      )
+    );
   }, [type]);
   const getData = async () => {
-    const userdata = await axios.get(BaseUrl + "user/supervisor-project-student?lecturer_id="+JSON.parse(localStorage.getItem("userdata")!).user_data._id);
+    const userdata = await axios.get(
+      BaseUrl +
+        "user/supervisor-project-student?lecturer_id=" +
+        JSON.parse(localStorage.getItem("userdata")!).user_data._id
+    );
     setSData(userdata.data);
     setDataFiltered(userdata.data.filter((t: any) => t.is_student));
-    
   };
   // Handle page change
   const handleChangePage = (
@@ -96,7 +107,7 @@ export default function SupervisorsDashboard() {
   };
 
   const [isAssigned, setAssigned] = useState(false);
-const navigate=useNavigate()
+  const navigate = useNavigate();
   return (
     <div className="font-pop h-screen flex flex-row lg:overflow-hidden bg-gray-100">
       {isPopupOpen && (
@@ -130,40 +141,37 @@ const navigate=useNavigate()
           </p>
           <div className="m-4 ">
             <div className="flex  flex-row justify-between">
-              
-            <div className="flex  flex-row">
+              <div className="flex  flex-row">
                 <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
                   labelText="Section:"
                   id="dropDown"
-                  setSelectOption={(e:any,i:any) =>setsection(i)}
+                  setSelectOption={(e: any, i: any) => setsection(i)}
                   name="Section"
-                  data={["2020/2021","2022/2024", "2024/2025"]}
+                  data={["2020/2021", "2022/2024", "2024/2025"]}
                   className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
                 />
                 <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
                   labelText="Batch:"
                   id="dropDown"
-                  setSelectOption={(e:any,i:any) =>setbatch(i)}
+                  setSelectOption={(e: any, i: any) => setbatch(i)}
                   name="Section"
                   data={["A", "B"]}
                   className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
                 />
 
-          
-                  <DropDown
+                <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
                   labelText="Student type:"
                   id="dropDown"
-                  setSelectOption={(e:any,i:any) =>{
-                    settype(i)
+                  setSelectOption={(e: any, i: any) => {
+                    settype(i);
                   }}
                   name="Section"
                   data={["MSC", "PGD"]}
                   className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
                 />
-                 
               </div>
 
               <div className="flex  flex-row ">
@@ -189,21 +197,18 @@ const navigate=useNavigate()
                       <StyledTableCell align="center">
                         Full Name
                       </StyledTableCell>
-                      <StyledTableCell align="center">
-                        Topic
-                      </StyledTableCell>
+                      <StyledTableCell align="center">Topic</StyledTableCell>
                       <StyledTableCell align="center"></StyledTableCell>
-                     
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {slicedData.map((row: any,i:any) => {
+                    {slicedData.map((row: any, i: any) => {
                       const checked = seletedStudent.includes(row);
 
                       return (
                         <StyledTableRow key={row.id}>
                           <StyledTableCell component="th" scope="row">
-                            { i+1}
+                            {i + 1}
                           </StyledTableCell>
 
                           <StyledTableCell component="th" scope="row">
@@ -217,82 +222,112 @@ const navigate=useNavigate()
                           </StyledTableCell>
                           <StyledTableCell width={600} align="center">
                             <div className="flex flex-row justify-between items-center      ">
-                            <button
-                            disabled={!row?.project}
-                              onClick={() => {
-                                navigate("/student-uploads",{state:row})
-                              }}
-                              className="group flex flex-row justify-center items-center px-8 py-2 rounded-xl bg-[#a1812e]"
-                            >
-                              {" "}
-                              <span className="text-base text-white">
-                               {!row?.project?"No project":"View Project"} 
-                              </span>
-                            </button>
+                              <button
+                                disabled={!row?.project}
+                                onClick={() => {
+                                  navigate("/student-uploads", { state: row });
+                                }}
+                                className="group flex flex-row justify-center items-center px-8 py-2 rounded-xl bg-[#a1812e]"
+                              >
+                                {" "}
+                                <span className="text-base text-white">
+                                  {!row?.project
+                                    ? "No project"
+                                    : "View Project"}
+                                </span>
+                              </button>
 
-                            {
-                               row?.project?.status!== "approved"&&<>
-                               <button
-                            disabled={row?.project?.status==="rejected"||!row?.project}
-                              onClick={() => {
-                                Swal.fire({
-                                  title: "Do you want to approve this project?",
-                                  cancelButtonColor:"yellow",
-                                  confirmButtonColor:"green",
-                                  showCancelButton: true,
-                                  confirmButtonText: "Approve",
-                                
-                                }).then(async (result) => {
-                                  /* Read more about isConfirmed, isDenied below */
-                                  if (result.isConfirmed) {
-                                    const userdata = await axios.put(BaseUrl + "user/project/"+row?.project?._id,{status:"approved",proposal_defense:{status:"pending"}}).then(()=>{
-                                      Swal.fire("Approved!", "", "success");
-                                    });
-                                   
-                                  } 
-                                });
-                              }}
-                              className="group flex flex-row justify-center items-center px-8 py-2 rounded-xl bg-[#4ce42e]"
-                            >
-                              {" "}
-                              <span className="text-base text-white">
-                                Approve Project
-                              </span>
-                            </button> 
-                            <button
-                            disabled={row?.project?.status==="rejected"||!row?.project}
-                              onClick={() => {
-                                Swal.fire({
-                                  title: "Do you want to reject this project?",
-                                  cancelButtonColor:"green",
-                                  confirmButtonColor:"red",
-                                  showCancelButton: true,
-                                  confirmButtonText: "Reject",
-                                
-                                }).then(async (result) => {
-                                  /* Read more about isConfirmed, isDenied below */
-                                  if (result.isConfirmed) {
-                                    const userdata = await axios.put(BaseUrl + "user/project/"+row?.project?._id,{status:"rejected"}).then(()=>{
-                                      Swal.fire("Rejected!", "", "success");
-                                    });
-                                   
-                                  } 
-                                });
-                              }}
-                              className="group flex flex-row justify-center items-center px-8 py-2 rounded-xl bg-[#f33b3b]"
-                            >
-                              {" "}
-                              <span className="text-base text-white">
-                                Reject Project
-                              </span>
-                            </button>   
-                               </>
-                            }
-                             
+                              {row?.project?.status !== "approved" && row.supervisors.major===JSON.parse(localStorage.getItem("userdata")!).user_data._id&& (
+                                <>
+                                  <button
+                                    disabled={
+                                      row?.project?.status === "rejected" ||
+                                      !row?.project
+                                    }
+                                    onClick={() => {
+                                      Swal.fire({
+                                        title:
+                                          "Do you want to approve this project?",
+                                        cancelButtonColor: "yellow",
+                                        confirmButtonColor: "green",
+                                        showCancelButton: true,
+                                        confirmButtonText: "Approve",
+                                      }).then(async (result) => {
+                                        /* Read more about isConfirmed, isDenied below */
+                                        if (result.isConfirmed) {
+                                          const userdata = await axios
+                                            .put(
+                                              BaseUrl +
+                                                "user/project/" +
+                                                row?.project?._id,
+                                              {
+                                                status: "approved",
+                                                proposal_defense: {
+                                                  status: "pending",
+                                                },
+                                              }
+                                            )
+                                            .then(() => {
+                                              Swal.fire(
+                                                "Approved!",
+                                                "",
+                                                "success"
+                                              );
+                                            });
+                                        }
+                                      });
+                                    }}
+                                    className="group flex flex-row justify-center items-center px-8 py-2 rounded-xl bg-[#4ce42e]"
+                                  >
+                                    {" "}
+                                    <span className="text-base text-white">
+                                      Approve Project
+                                    </span>
+                                  </button>
+                                  <button
+                                    disabled={
+                                      row?.project?.status === "rejected" ||
+                                      !row?.project
+                                    }
+                                    onClick={() => {
+                                      Swal.fire({
+                                        title:
+                                          "Do you want to reject this project?",
+                                        cancelButtonColor: "green",
+                                        confirmButtonColor: "red",
+                                        showCancelButton: true,
+                                        confirmButtonText: "Reject",
+                                      }).then(async (result) => {
+                                        /* Read more about isConfirmed, isDenied below */
+                                        if (result.isConfirmed) {
+                                          const userdata = await axios
+                                            .put(
+                                              BaseUrl +
+                                                "user/project/" +
+                                                row?.project?._id,
+                                              { status: "rejected" }
+                                            )
+                                            .then(() => {
+                                              Swal.fire(
+                                                "Rejected!",
+                                                "",
+                                                "success"
+                                              );
+                                            });
+                                        }
+                                      });
+                                    }}
+                                    className="group flex flex-row justify-center items-center px-8 py-2 rounded-xl bg-[#f33b3b]"
+                                  >
+                                    {" "}
+                                    <span className="text-base text-white">
+                                      Reject Project
+                                    </span>
+                                  </button>
+                                </>
+                              )}
                             </div>
-                            
                           </StyledTableCell>
-                          
                         </StyledTableRow>
                       );
                     })}

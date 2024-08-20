@@ -37,7 +37,6 @@ function Assignspgs({
 
   const handleSubmit = () => {
 
-    if(label==="")
     if(major){
       axios
       .post(BaseUrl + "user/session", {

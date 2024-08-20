@@ -54,12 +54,13 @@ export default function LecDashboard() {
   const [dateq, setdate] = useState() as any;
   useEffect(() => {
     if (
-      ["HOD", "Provost", "Dean"].includes(
+      ["HOD", "Provost", "Dean","Departmental PG Coordinator"].includes(
         JSON.parse(localStorage.getItem("userdata")!).user_data.type
       )
     ) {
       setcheck(null);
     }
+    
     setdatatopass({
       session: section,
       batch,
@@ -79,29 +80,88 @@ export default function LecDashboard() {
   useEffect(() => {
     // getData();
     if (state === "Proposal Defense") {
-      setdate(new Date(Number(SData.filter((t: any) => t.project?.proposal_defense && t.type===type )[0]?.full?.proposal_defense.date)).toDateString())
-      setDataFiltered(SData.filter((t: any) => t.project?.proposal_defense&& t.type===type));
+      setdate(
+        new Date(
+          Number(
+            SData.filter(
+              (t: any) => t.project?.proposal_defense && t.type === type
+            )[0]?.full?.proposal_defense.date
+          )
+        ).toDateString()
+      );
+      setDataFiltered(
+        SData.filter((t: any) => t.project?.proposal_defense && t.type === type)
+      );
     }
     if (state === "Internal Defense") {
-      setdate(new Date(Number(SData.filter((t: any) => t.project?.internal_defense&& t.type===type)[0]?.full?.proposal_defense.date)).toDateString())
-      setDataFiltered(SData.filter((t: any) => t.project?.internal_defense&& t.type===type));
+      setdate(
+        new Date(
+          Number(
+            SData.filter(
+              (t: any) => t.project?.internal_defense && t.type === type
+            )[0]?.full?.proposal_defense.date
+          )
+        ).toDateString()
+      );
+      setDataFiltered(
+        SData.filter((t: any) => t.project?.internal_defense && t.type === type)
+      );
     }
     if (state === "External Defense") {
-      setdate(new Date(Number(SData.filter((t: any) => t.project?.external_defense&& t.type===type)[0]?.full?.proposal_defense.date)).toDateString())
-      setDataFiltered(SData.filter((t: any) => t.project?.external_defense&& t.type===type));
+      setdate(
+        new Date(
+          Number(
+            SData.filter(
+              (t: any) => t.project?.external_defense && t.type === type
+            )[0]?.full?.proposal_defense.date
+          )
+        ).toDateString()
+      );
+      setDataFiltered(
+        SData.filter((t: any) => t.project?.external_defense && t.type === type)
+      );
     }
 
     if (state === "First Seminar") {
-      setdate(new Date(Number(SData.filter((t: any) => t.project?.proposal_defense&& t.type===type)[0]?.full?.proposal_defense.date)).toDateString())
-      setDataFiltered(SData.filter((t: any) => t.project?.proposal_defense&& t.type===type));
+      setdate(
+        new Date(
+          Number(
+            SData.filter(
+              (t: any) => t.project?.proposal_defense && t.type === type
+            )[0]?.full?.proposal_defense.date
+          )
+        ).toDateString()
+      );
+      setDataFiltered(
+        SData.filter((t: any) => t.project?.proposal_defense && t.type === type)
+      );
     }
     if (state === "Second Seminar") {
-      setdate(new Date(Number(SData.filter((t: any) => t.project?.internal_defense&& t.type===type)[0]?.full?.proposal_defense.date)).toDateString())
-      setDataFiltered(SData.filter((t: any) => t.project?.internal_defense&& t.type===type));
+      setdate(
+        new Date(
+          Number(
+            SData.filter(
+              (t: any) => t.project?.internal_defense && t.type === type
+            )[0]?.full?.proposal_defense.date
+          )
+        ).toDateString()
+      );
+      setDataFiltered(
+        SData.filter((t: any) => t.project?.internal_defense && t.type === type)
+      );
     }
     if (state === "Third Seminar") {
-      setdate(new Date(Number(SData.filter((t: any) => t.project?.seminar3&& t.type===type)[0]?.full?.proposal_defense.date)).toDateString())
-      setDataFiltered(SData.filter((t: any) => t.project?.seminar3&& t.type===type));
+      setdate(
+        new Date(
+          Number(
+            SData.filter((t: any) => t.project?.seminar3 && t.type === type)[0]
+              ?.full?.proposal_defense.date
+          )
+        ).toDateString()
+      );
+      setDataFiltered(
+        SData.filter((t: any) => t.project?.seminar3 && t.type === type)
+      );
     }
   }, [state]);
 
@@ -123,8 +183,15 @@ export default function LecDashboard() {
     );
     setSData(userdata.data);
     setDataFiltered(userdata.data.filter((t: any) => t.type === type));
-    setdate(new Date(Number(userdata.data.filter((t: any) => t.type === type)[0]?.full?.proposal_defense.date)).toDateString())
-    console.log(userdata.data.filter((t: any) => t.type === type))
+    setdate(
+      new Date(
+        Number(
+          userdata.data.filter((t: any) => t.type === type)[0]?.full
+            ?.proposal_defense.date
+        )
+      ).toDateString()
+    );
+    console.log(userdata.data.filter((t: any) => t.type === type));
   };
   // Handle page change
   const handleChangePage = (
@@ -190,8 +257,8 @@ export default function LecDashboard() {
         />
       )}
 
-{isPopupOpen3 && (
-        <AssignExternalExaminer 
+      {isPopupOpen3 && (
+        <AssignExternalExaminer
           selectedStudent={datatopass}
           onClose={setIsPopupOpen3}
           getData={getDataSession}
@@ -224,12 +291,12 @@ export default function LecDashboard() {
         </main>
         <section className="sm:overflow-x-hidden bg-[#ffffff] lg:overflow-auto border-2 border-gray-300 shadow-md m-4">
           <p className="px-4 py-1 border-b-2 border-b-gray-300 shadow-md">
-            {state} {dateq==="Invalid Date"?"":dateq}
+            Date for {state}: {dateq === "Invalid Date" ? "" : dateq}
           </p>
           <div className="m-4 ">
             <div className="flex  flex-row justify-between">
               <div className="flex  flex-row">
-                {!["HOD", "Provost"].includes(
+                {! ["HOD", "Provost", "Dean","Departmental PG Coordinator"].includes(
                   JSON.parse(localStorage.getItem("userdata")!).user_data.type
                 ) && (
                   <DropDown
@@ -298,49 +365,55 @@ export default function LecDashboard() {
                   }
                   className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
                 />
-                {["HOD", "Provost"].includes(
+               
+              </div>
+              {["HOD", "Provost"].includes(
                   JSON.parse(localStorage.getItem("userdata")!).user_data.type
                 ) && (
-                  <div className="w-full  flex flex-row justify-evenly">
-                    <button
-                      onClick={() => {
-                        setIsPopupOpen(true);
-                      }}
-                      className="group flex flex-row justify-center items-center p-1 px-2  rounded-xl bg-[#a1812e]"
-                    >
-                      {" "}
-                      <span className="text-base text-white">
-                        {"Assign Internal Discussants"}
-                      </span>
-                    </button>
+                  <div className="   flex flex-row justify-evenly">
+                    {state === "Proposal Defense" && (
+                      <button
+                        onClick={() => {
+                          setIsPopupOpen(true);
+                        }}
+                        className="group flex flex-row justify-center items-center p-1 px-2  rounded-xl bg-[#a1812e]"
+                      >
+                        {" "}
+                        <span className="text-base text-white">
+                          {"Assign Internal Discussants"}
+                        </span>
+                      </button>
+                    )}
 
-                    <button
-                      onClick={() => {
-                        setIsPopupOpen2(true);
-                      }}
-                      className="group flex flex-row justify-center items-center p-1 px-2  rounded-xl bg-[#a1812e]"
-                    >
-                      {" "}
-                      <span className="text-base text-white">
-                        {"Assign SPGS"}
-                      </span>
-                    </button>
+                    {state === "Internal Defense" && (
+                      <button
+                        onClick={() => {
+                          setIsPopupOpen2(true);
+                        }}
+                        className="group flex flex-row justify-center items-center p-1 px-2  rounded-xl bg-[#a1812e]"
+                      >
+                        {" "}
+                        <span className="text-base text-white">
+                          {"Assign SPGS"}
+                        </span>
+                      </button>
+                    )}
 
-                    <button
-                      onClick={() => {
-                        setIsPopupOpen2(true);
-                      }}
-                      className="group flex flex-row justify-center items-center p-1 px-2  rounded-xl bg-[#a1812e]"
-                    >
-                      {" "}
-                      <span className="text-base text-white">
-                        {"External Examiner"}
-                      </span>
-                    </button>
+                    {state === "External Defense" && (
+                      <button
+                        onClick={() => {
+                          setIsPopupOpen3(true);
+                        }}
+                        className="group flex flex-row justify-center items-center p-1 px-2  rounded-xl bg-[#a1812e]"
+                      >
+                        {" "}
+                        <span className="text-base text-white">
+                          {"External Examiner"}
+                        </span>
+                      </button>
+                    )}
                   </div>
                 )}
-              </div>
-
               <div className="flex  flex-row ">
                 {/* <InputField
                     labelText="search:"
@@ -398,11 +471,9 @@ export default function LecDashboard() {
                       <StyledTableCell align="center">
                         Internal Discussants
                       </StyledTableCell>
+                      <StyledTableCell align="center">spgs</StyledTableCell>
                       <StyledTableCell align="center">
-                      spgs
-                      </StyledTableCell>
-                      <StyledTableCell align="center">
-                     External Examiner
+                        External Examiner
                       </StyledTableCell>
                       <StyledTableCell align="center"></StyledTableCell>
                     </TableRow>
@@ -456,15 +527,18 @@ export default function LecDashboard() {
                           )}
 
                           <StyledTableCell component="th" scope="row">
-                            {row?.full?.internal_discussants?.fname ||""} {row?.full?.internal_discussants?.lname||"" }
+                            {row?.full?.internal_discussants?.fname || ""}{" "}
+                            {row?.full?.internal_discussants?.lname || ""}
                           </StyledTableCell>
                           <StyledTableCell component="th" scope="row">
-                            {row?.full?.spgs?.fname||"" } {row?.full?.spgs?.lname||"" }
+                            {row?.full?.spgs?.fname || ""}{" "}
+                            {row?.full?.spgs?.lname || ""}
                           </StyledTableCell>
                           <StyledTableCell component="th" scope="row">
-                            {row?.full?.external_examiner?.fname||"" } {row?.full?.external_examiner?.lname||"" }
+                            {row?.full?.external_examiner?.fname || ""}{" "}
+                            {row?.full?.external_examiner?.lname || ""}
                           </StyledTableCell>
-                          <StyledTableCell width={600} align="center">
+                          <StyledTableCell  align="center">
                             <div className="flex flex-row justify-between items-center      ">
                               <button
                                 disabled={!row.project}

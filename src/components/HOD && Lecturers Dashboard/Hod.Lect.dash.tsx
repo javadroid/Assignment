@@ -98,7 +98,7 @@ const Proposal = () => {
               type="text"
               divClassName="flex flex-row gap-2 items-center justify-end"
             /> */}
-            <button
+            {/* <button
               onClick={() => {
                 setIsPopupOpen(true);
               }}
@@ -106,7 +106,7 @@ const Proposal = () => {
             >
               {" "}
               <span className="text-base text-white">Add</span>
-            </button>
+            </button> */}
           </div>
           <div className="overflow-auto h-[70vh]">
             {uploads.map((upload: any, i: any) => {
