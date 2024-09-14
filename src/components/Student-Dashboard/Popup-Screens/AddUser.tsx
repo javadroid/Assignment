@@ -86,12 +86,12 @@ function AddUSer({ onClose, getData }: UploadPopUpProps) {
 
   return (
     <div className="font-pop fixed top-0 left-0 w-full h-full bg-black bg-opacity-50   flex  justify-center items-center z-10">
-      <div className="font-pop    text-gray-500">
+      <div className="font-pop my-2   text-gray-500">
         {/* Sign up header */}
-        <div className="flex flex-1 justify-between items-center my-5 xs:p-10 lg:space-x-10 text-wrap  xs:w-full lg:text-[2rem]"></div>
+        {/* <div className="flex flex-1 justify-between items-center my-5 xs:p-10 lg:space-x-10 text-wrap  xs:w-full lg:text-[2rem]"></div> */}
 
         {/* container */}
-        <div className="xs:mx-[1.5rem] relative bg-white lg:mx-[3rem] my-4">
+        <div className="xs:mx-[1.5rem] relative bg-white lg:mx-[3rem] my-4 rounded-lg">
           {/* form container */}
           <div className="flex flex-col justify-end mt-5 items-end">
             <IoClose
