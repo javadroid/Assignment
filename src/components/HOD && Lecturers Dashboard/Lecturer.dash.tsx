@@ -28,6 +28,7 @@ import { Link, useNavigate } from "react-router-dom";
 import AssignInternalDiscussants from "../Student-Dashboard/Popup-Screens/AssignInternalDiscussants";
 import Assignspgs from "../Student-Dashboard/Popup-Screens/Assignspgs";
 import AssignExternalExaminer from "../Student-Dashboard/Popup-Screens/AssignExternalExaminer";
+import Notification from "../Notifications/Notification";
 
 export default function LecDashboard() {
   // State for pagination
@@ -54,13 +55,13 @@ export default function LecDashboard() {
   const [dateq, setdate] = useState() as any;
   useEffect(() => {
     if (
-      ["HOD", "Provost", "Dean","Departmental PG Coordinator"].includes(
+      ["HOD", "Provost", "Dean", "Departmental PG Coordinator"].includes(
         JSON.parse(localStorage.getItem("userdata")!).user_data.type
       )
     ) {
       setcheck(null);
     }
-    
+
     setdatatopass({
       session: section,
       batch,
@@ -238,13 +239,13 @@ export default function LecDashboard() {
   const [isAssigned, setAssigned] = useState(false);
   const navigate = useNavigate();
   return (
-    <div className="font-pop h-screen  flex flex-row lg:overflow-hidden bg-gray-100">
+    <div className='font-pop h-screen  flex flex-row lg:overflow-hidden bg-gray-100'>
       {isPopupOpen && (
         <AssignInternalDiscussants
           selectedStudent={datatopass}
           onClose={setIsPopupOpen}
           getData={getDataSession}
-          label="Internal Discussant"
+          label='Internal Discussant'
         />
       )}
 
@@ -253,7 +254,7 @@ export default function LecDashboard() {
           selectedStudent={datatopass}
           onClose={setIsPopupOpen2}
           getData={getDataSession}
-          label="SPGS"
+          label='SPGS'
         />
       )}
 
@@ -262,25 +263,22 @@ export default function LecDashboard() {
           selectedStudent={datatopass}
           onClose={setIsPopupOpen3}
           getData={getDataSession}
-          label="External Examiner"
+          label='External Examiner'
         />
       )}
 
-      <div className="w-full text-black">
+      <div className='w-full text-black'>
         <Navigation />
-        <main className="w-full m-0 p-0 ">
-          <div className="m-4">
-            <div className="flex sm:flex-row justify-between items-center">
-              <h1 className="font-semibold my-2 text-sm lg:text-lg">
+        <main className='w-full m-0 p-0 '>
+          <div className='m-4'>
+            <div className='flex sm:flex-row justify-between items-center'>
+              <h1 className='font-semibold my-2 text-sm lg:text-lg'>
                 {JSON.parse(localStorage.getItem("userdata")!).user_data.type}
               </h1>
-              <MdOutlineNotificationsActive
-                className="fill-[#726135] w-5 h-5 lg:w-6 lg:h-6 mr-4 cursor-pointer transform transition ease-linear hover:scale-110"
-                to={"#"}
-              />
+              <Notification />
             </div>
-            <hr className="border-gray-400" />
-            <h4 className="text-xs my-3">
+            <hr className='border-gray-400' />
+            <h4 className='text-xs my-3'>
               {" "}
               {
                 JSON.parse(localStorage.getItem("userdata")!).user_data.fname
@@ -289,66 +287,71 @@ export default function LecDashboard() {
             </h4>
           </div>
         </main>
-        <section className="sm:overflow-x-hidden bg-[#ffffff] lg:overflow-auto border-2 border-gray-300 shadow-md m-4">
-          <p className="px-4 py-1 border-b-2 border-b-gray-300 shadow-md">
+        <section className='sm:overflow-x-hidden bg-[#ffffff] lg:overflow-auto border-2 border-gray-300 shadow-md m-4'>
+          <p className='px-4 py-1 border-b-2 border-b-gray-300 shadow-md'>
             Date for {state}: {dateq === "Invalid Date" ? "" : dateq}
           </p>
-          <div className="m-4 ">
-            <div className="flex  flex-row justify-between">
-              <div className="flex  flex-row">
-                {! ["HOD", "Provost", "Dean","Departmental PG Coordinator"].includes(
+          <div className='m-4 '>
+            <div className='flex  flex-row justify-between'>
+              <div className='flex  flex-row'>
+                {![
+                  "HOD",
+                  "Provost",
+                  "Dean",
+                  "Departmental PG Coordinator",
+                ].includes(
                   JSON.parse(localStorage.getItem("userdata")!).user_data.type
                 ) && (
                   <DropDown
                     // divClassName="flex flex-col xs:w-[30%]"
-                    labelText="Role:"
-                    id="dropDown"
+                    labelText='Role:'
+                    id='dropDown'
                     setSelectOption={(e: any, i: any) => setcheck(i)}
-                    name="Section"
+                    name='Section'
                     data={["Internal Discussant", "SPGS", "External Examiner"]}
-                    className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
+                    className='  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500'
                   />
                 )}
 
                 <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
-                  labelText="Session:"
-                  id="dropDown"
+                  labelText='Session:'
+                  id='dropDown'
                   setSelectOption={(e: any, i: any) => setsection(i)}
-                  name="Section"
+                  name='Section'
                   data={["2020/2021", "2022/2024", "2024/2025"]}
-                  className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
+                  className='  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500'
                 />
                 <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
-                  labelText="Batch:"
-                  id="dropDown"
+                  labelText='Batch:'
+                  id='dropDown'
                   setSelectOption={(e: any, i: any) => setbatch(i)}
-                  name="Section"
+                  name='Section'
                   data={["A", "B"]}
-                  className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
+                  className='  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500'
                 />
 
                 <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
-                  labelText="Student type:"
-                  id="dropDown"
+                  labelText='Student type:'
+                  id='dropDown'
                   setSelectOption={(e: any, i: any) => {
                     settype(i);
                   }}
-                  name="Section"
+                  name='Section'
                   data={["MSC", "PGD"]}
-                  className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
+                  className='  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500'
                 />
 
                 <DropDown
-                  divClassName=""
-                  labelText="Student type:"
-                  id="dropDown"
+                  divClassName=''
+                  labelText='Student type:'
+                  id='dropDown'
                   setSelectOption={(e: any, i: any) => {
                     setstate(i);
                   }}
-                  name="Section"
+                  name='Section'
                   data={
                     type === "MSC"
                       ? [
@@ -363,58 +366,54 @@ export default function LecDashboard() {
                           "External Defense",
                         ]
                   }
-                  className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
+                  className='  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500'
                 />
-               
               </div>
               {["HOD", "Provost"].includes(
-                  JSON.parse(localStorage.getItem("userdata")!).user_data.type
-                ) && (
-                  <div className="   flex flex-row justify-evenly">
-                    {state === "Proposal Defense" && (
-                      <button
-                        onClick={() => {
-                          setIsPopupOpen(true);
-                        }}
-                        className="group flex flex-row justify-center items-center p-1 px-2  rounded-xl bg-[#a1812e]"
-                      >
-                        {" "}
-                        <span className="text-base text-white">
-                          {"Assign Internal Discussants"}
-                        </span>
-                      </button>
-                    )}
+                JSON.parse(localStorage.getItem("userdata")!).user_data.type
+              ) && (
+                <div className='   flex flex-row justify-evenly'>
+                  {state === "Proposal Defense" && (
+                    <button
+                      onClick={() => {
+                        setIsPopupOpen(true);
+                      }}
+                      className='group flex flex-row justify-center items-center p-1 px-2  rounded-xl bg-[#a1812e]'>
+                      {" "}
+                      <span className='text-base text-white'>
+                        {"Assign Internal Discussants"}
+                      </span>
+                    </button>
+                  )}
 
-                    {state === "Internal Defense" && (
-                      <button
-                        onClick={() => {
-                          setIsPopupOpen2(true);
-                        }}
-                        className="group flex flex-row justify-center items-center p-1 px-2  rounded-xl bg-[#a1812e]"
-                      >
-                        {" "}
-                        <span className="text-base text-white">
-                          {"Assign SPGS"}
-                        </span>
-                      </button>
-                    )}
+                  {state === "Internal Defense" && (
+                    <button
+                      onClick={() => {
+                        setIsPopupOpen2(true);
+                      }}
+                      className='group flex flex-row justify-center items-center p-1 px-2  rounded-xl bg-[#a1812e]'>
+                      {" "}
+                      <span className='text-base text-white'>
+                        {"Assign SPGS"}
+                      </span>
+                    </button>
+                  )}
 
-                    {state === "External Defense" && (
-                      <button
-                        onClick={() => {
-                          setIsPopupOpen3(true);
-                        }}
-                        className="group flex flex-row justify-center items-center p-1 px-2  rounded-xl bg-[#a1812e]"
-                      >
-                        {" "}
-                        <span className="text-base text-white">
-                          {"External Examiner"}
-                        </span>
-                      </button>
-                    )}
-                  </div>
-                )}
-              <div className="flex  flex-row ">
+                  {state === "External Defense" && (
+                    <button
+                      onClick={() => {
+                        setIsPopupOpen3(true);
+                      }}
+                      className='group flex flex-row justify-center items-center p-1 px-2  rounded-xl bg-[#a1812e]'>
+                      {" "}
+                      <span className='text-base text-white'>
+                        {"External Examiner"}
+                      </span>
+                    </button>
+                  )}
+                </div>
+              )}
+              <div className='flex  flex-row '>
                 {/* <InputField
                     labelText="search:"
                     id=""
@@ -426,56 +425,55 @@ export default function LecDashboard() {
             </div>
 
             <div
-              className={`flex flex-col max-h-[370px] p-2 lg:p-2 ${tableContainerClass}`}
-            >
-              <TableContainer component={Paper} className="border-2">
-                <Table sx={{ minWidth: 400 }} aria-label="customized table">
+              className={`flex flex-col max-h-[370px] p-2 lg:p-2 ${tableContainerClass}`}>
+              <TableContainer component={Paper} className='border-2'>
+                <Table sx={{ minWidth: 400 }} aria-label='customized table'>
                   <TableHead>
                     <TableRow>
                       <StyledTableCell></StyledTableCell>
                       <StyledTableCell>MAT NO.</StyledTableCell>
-                      <StyledTableCell align="center">
+                      <StyledTableCell align='center'>
                         Full Name
                       </StyledTableCell>
-                      <StyledTableCell align="center">Topic</StyledTableCell>
+                      <StyledTableCell align='center'>Topic</StyledTableCell>
 
                       {type === "MSC" ? (
                         <>
-                          <StyledTableCell align="center">
+                          <StyledTableCell align='center'>
                             Proposal Defense
                           </StyledTableCell>
-                          <StyledTableCell align="center">
+                          <StyledTableCell align='center'>
                             Internal Defense
                           </StyledTableCell>
-                          <StyledTableCell align="center">
+                          <StyledTableCell align='center'>
                             External Defense
                           </StyledTableCell>
                         </>
                       ) : (
                         <>
-                          <StyledTableCell align="center">
+                          <StyledTableCell align='center'>
                             First Seminar
                           </StyledTableCell>
-                          <StyledTableCell align="center">
+                          <StyledTableCell align='center'>
                             Second Seminar
                           </StyledTableCell>
-                          <StyledTableCell align="center">
+                          <StyledTableCell align='center'>
                             Third Seminar
                           </StyledTableCell>
-                          <StyledTableCell align="center">
+                          <StyledTableCell align='center'>
                             External Defense
                           </StyledTableCell>
                         </>
                       )}
 
-                      <StyledTableCell align="center">
+                      <StyledTableCell align='center'>
                         Internal Discussants
                       </StyledTableCell>
-                      <StyledTableCell align="center">spgs</StyledTableCell>
-                      <StyledTableCell align="center">
+                      <StyledTableCell align='center'>spgs</StyledTableCell>
+                      <StyledTableCell align='center'>
                         External Examiner
                       </StyledTableCell>
-                      <StyledTableCell align="center"></StyledTableCell>
+                      <StyledTableCell align='center'></StyledTableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -484,62 +482,62 @@ export default function LecDashboard() {
 
                       return (
                         <StyledTableRow key={row.id}>
-                          <StyledTableCell component="th" scope="row">
+                          <StyledTableCell component='th' scope='row'>
                             {i + 1}
                           </StyledTableCell>
 
-                          <StyledTableCell component="th" scope="row">
+                          <StyledTableCell component='th' scope='row'>
                             {row.userID}
                           </StyledTableCell>
-                          <StyledTableCell align="center">
+                          <StyledTableCell align='center'>
                             {row.fname} {row.lname}
                           </StyledTableCell>
-                          <StyledTableCell align="center">
+                          <StyledTableCell align='center'>
                             {row?.project?.name}
                           </StyledTableCell>
                           {type === "MSC" ? (
                             <>
-                              <StyledTableCell align="center">
+                              <StyledTableCell align='center'>
                                 {row?.project?.proposal_defense?.status || ""}
                               </StyledTableCell>
-                              <StyledTableCell align="center">
+                              <StyledTableCell align='center'>
                                 {row?.project?.internal_defense?.status || ""}
                               </StyledTableCell>
-                              <StyledTableCell align="center">
+                              <StyledTableCell align='center'>
                                 {row?.project?.external_defense?.status || ""}
                               </StyledTableCell>
                             </>
                           ) : (
                             <>
-                              <StyledTableCell align="center">
+                              <StyledTableCell align='center'>
                                 {row?.project?.proposal_defense?.status || ""}
                               </StyledTableCell>
-                              <StyledTableCell align="center">
+                              <StyledTableCell align='center'>
                                 {row?.project?.internal_defense?.status || ""}
                               </StyledTableCell>
-                              <StyledTableCell align="center">
+                              <StyledTableCell align='center'>
                                 {row?.project?.external_defense?.status || ""}
                               </StyledTableCell>
-                              <StyledTableCell align="center">
+                              <StyledTableCell align='center'>
                                 {row?.project?.seminar3?.status || ""}
                               </StyledTableCell>
                             </>
                           )}
 
-                          <StyledTableCell component="th" scope="row">
+                          <StyledTableCell component='th' scope='row'>
                             {row?.full?.internal_discussants?.fname || ""}{" "}
                             {row?.full?.internal_discussants?.lname || ""}
                           </StyledTableCell>
-                          <StyledTableCell component="th" scope="row">
+                          <StyledTableCell component='th' scope='row'>
                             {row?.full?.spgs?.fname || ""}{" "}
                             {row?.full?.spgs?.lname || ""}
                           </StyledTableCell>
-                          <StyledTableCell component="th" scope="row">
+                          <StyledTableCell component='th' scope='row'>
                             {row?.full?.external_examiner?.fname || ""}{" "}
                             {row?.full?.external_examiner?.lname || ""}
                           </StyledTableCell>
-                          <StyledTableCell  align="center">
-                            <div className="flex flex-row justify-between items-center      ">
+                          <StyledTableCell align='center'>
+                            <div className='flex flex-row justify-between items-center      '>
                               <button
                                 disabled={!row.project}
                                 onClick={() => {
@@ -547,10 +545,9 @@ export default function LecDashboard() {
                                     state: row.project,
                                   });
                                 }}
-                                className="group flex flex-row justify-center items-center px-8 py-2 rounded-xl bg-[#a1812e]"
-                              >
+                                className='group flex flex-row justify-center items-center px-8 py-2 rounded-xl bg-[#a1812e]'>
                                 {" "}
-                                <span className="text-base text-white">
+                                <span className='text-base text-white'>
                                   {!row?.project
                                     ? "No project"
                                     : "View Project"}
@@ -564,10 +561,10 @@ export default function LecDashboard() {
                   </TableBody>
                 </Table>
               </TableContainer>
-              <div className="">
+              <div className=''>
                 <TablePagination
                   rowsPerPageOptions={[3, 10, 30]}
-                  component="div"
+                  component='div'
                   count={assignStudentDataATH.length}
                   rowsPerPage={rowsPerPage}
                   page={page}

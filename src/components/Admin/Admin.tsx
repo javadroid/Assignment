@@ -26,6 +26,7 @@ import UploadPopUp from "../Student-Dashboard/Popup-Screens/UploadPopUp";
 import AssignSupervisor from "../Student-Dashboard/Popup-Screens/AssignSupervisor";
 import AddUSer from "../Student-Dashboard/Popup-Screens/AddUser";
 import { BaseUrl } from "../../service";
+import Notification from "../Notifications/Notification";
 
 export default function Admin() {
   // State for pagination
@@ -80,37 +81,33 @@ export default function Admin() {
   const pageScrollBar = rowsPerPage >= 10 ? "overflow-y-hidden" : "";
 
   return (
-    <div className="font-pop scroll-smooth flex flex-row overflow-auto bg-gray-100">
-      <div className="w-full text-black">
+    <div className='font-pop scroll-smooth flex flex-row overflow-auto bg-gray-100'>
+      <div className='w-full text-black'>
         <Navigation />
 
         {isPopupOpen && <AddUSer onClose={setIsPopupOpen} getData={getData} />}
-        <main className="w-full m-0 p-0 ">
-          <div className="m-4">
-            <div className="flex sm:flex-row justify-between items-center">
-              <h1 className="font-semibold my-2 text-sm lg:text-lg">
+        <main className='w-full m-0 p-0 '>
+          <div className='m-4'>
+            <div className='flex sm:flex-row justify-between items-center'>
+              <h1 className='font-semibold my-2 text-sm lg:text-lg'>
                 Lecturers And Students Management
               </h1>
-              <MdOutlineNotificationsActive
-                className="fill-[#726135] w-5 h-5 lg:w-6 lg:h-6 mr-4 cursor-pointer transform transition ease-linear hover:scale-110"
-                to={"#"}
-              />
+              <Notification />
             </div>
           </div>
         </main>
-        <section className="sm:overflow-x-hidden bg-[#ffffff] lg:overflow-auto border-2 border-gray-300 shadow-md m-4">
-          <p className="px-4 py-1 border-b-2 border-b-gray-300 shadow-md">
+        <section className='sm:overflow-x-hidden bg-[#ffffff] lg:overflow-auto border-2 border-gray-300 shadow-md m-4'>
+          <p className='px-4 py-1 border-b-2 border-b-gray-300 shadow-md'>
             {isStudent ? "Students" : "Lecturers"}
           </p>
-          <div className="m-4">
+          <div className='m-4'>
             {/* search input */}
-            <div className="flex flex-row justify-between">
+            <div className='flex flex-row justify-between'>
               <ToggleButtonGroup
-                color="primary"
+                color='primary'
                 value={true}
                 exclusive
-                aria-label="Platform"
-              >
+                aria-label='Platform'>
                 <ToggleButton
                   onChange={(e) => {
                     setIsStudent(true);
@@ -118,8 +115,7 @@ export default function Admin() {
                       data.filter((t: any) => t.is_student === true)
                     );
                   }}
-                  value={isStudent}
-                >
+                  value={isStudent}>
                   Students
                 </ToggleButton>
                 <ToggleButton
@@ -129,8 +125,7 @@ export default function Admin() {
                       data.filter((t: any) => t.is_student === false)
                     );
                   }}
-                  value={!isStudent}
-                >
+                  value={!isStudent}>
                   Lecturers
                 </ToggleButton>
               </ToggleButtonGroup>
@@ -145,55 +140,53 @@ export default function Admin() {
                 onClick={() => {
                   setIsPopupOpen(true);
                 }}
-                className="group flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e]"
-              >
+                className='group flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e]'>
                 {" "}
-                <span className="text-base text-white">Add</span>
+                <span className='text-base text-white'>Add</span>
               </button>
             </div>
 
             {/* The Table view */}
             <div
-              className={`flex flex-col max-h-[370px] p-2 lg:p-2 ${tableContainerClass}`}
-            >
-              <TableContainer component={Paper} className="border-2">
-                <Table sx={{ minWidth: 400 }} aria-label="customized table">
+              className={`flex flex-col max-h-[370px] p-2 lg:p-2 ${tableContainerClass}`}>
+              <TableContainer component={Paper} className='border-2'>
+                <Table sx={{ minWidth: 400 }} aria-label='customized table'>
                   <TableHead>
                     <TableRow>
                       <StyledTableCell>
                         {isStudent ? "Matric NO" : "Staff ID"}.
                       </StyledTableCell>
-                      <StyledTableCell align="center">
+                      <StyledTableCell align='center'>
                         Full Name
                       </StyledTableCell>
-                      <StyledTableCell align="center">
+                      <StyledTableCell align='center'>
                         {isStudent ? "Type" : "Role"}
                       </StyledTableCell>
-                      <StyledTableCell align="center"></StyledTableCell>
-                      <StyledTableCell align="center"></StyledTableCell>
+                      <StyledTableCell align='center'></StyledTableCell>
+                      <StyledTableCell align='center'></StyledTableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
                     {slicedData.map((row: any) => (
                       <StyledTableRow key={row.id}>
-                        <StyledTableCell component="th" scope="row">
+                        <StyledTableCell component='th' scope='row'>
                           {row.userID}
                         </StyledTableCell>
-                        <StyledTableCell align="center">
+                        <StyledTableCell align='center'>
                           {`${row.fname} ${row.lname} `}
                         </StyledTableCell>
-                        <StyledTableCell align="center">
+                        <StyledTableCell align='center'>
                           {row.type}
                         </StyledTableCell>
-                        <StyledTableCell align="center">
+                        <StyledTableCell align='center'>
                           <ThemeProvider theme={theme}>
-                            <Button variant="contained">Edit</Button>
+                            <Button variant='contained'>Edit</Button>
                           </ThemeProvider>
                         </StyledTableCell>
 
-                        <StyledTableCell align="center">
+                        <StyledTableCell align='center'>
                           <ThemeProvider theme={theme}>
-                            <Button color="error" variant="contained">
+                            <Button color='error' variant='contained'>
                               Delete
                             </Button>
                           </ThemeProvider>
@@ -203,10 +196,10 @@ export default function Admin() {
                   </TableBody>
                 </Table>
               </TableContainer>
-              <div className="">
+              <div className=''>
                 <TablePagination
                   rowsPerPageOptions={[3, 10, 30]}
-                  component="div"
+                  component='div'
                   count={assignStudentDataATH.length}
                   rowsPerPage={rowsPerPage}
                   page={page}

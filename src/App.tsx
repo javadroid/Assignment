@@ -24,6 +24,8 @@ import StudentUploadedProject from "./components/Student-Dashboard/StudentUpload
 import SupervisorsDashboard from "./components/HOD && Lecturers Dashboard/Supervisor.dash";
 import LecDashboard from "./components/HOD && Lecturers Dashboard/Lecturer.dash";
 
+import NoticeInfo from "./components/Notifications/NoticeInfo";
+
 const App: React.FC = () => {
   const userData = JSON.parse(localStorage.getItem("userdata")!);
 
@@ -31,7 +33,7 @@ const App: React.FC = () => {
     <Router>
       <Routes>
         <Route
-          path="/"
+          path='/'
           element={
             userData?.auth ? (
               <>
@@ -44,60 +46,56 @@ const App: React.FC = () => {
             ) : (
               <Navigate to={"/login"} />
             )
-          }
-        ></Route>
-        <Route path="/SignUp" element={<SignUp />}></Route>
-        <Route path="/login" element={<SignIn />}></Route>
+          }></Route>
+        <Route path='/SignUp' element={<SignUp />}></Route>
+        <Route path='/login' element={<SignIn />}></Route>
 
         {userData?.auth && (
           <>
-            <Route path="/admin" element={<Admin />}></Route>
-            <Route path="/section" element={<Section />}></Route>
+            <Route path='/admin' element={<Admin />}></Route>
+            <Route path='/section' element={<Section />}></Route>
           </>
         )}
 
         {userData?.user_data.is_student ? (
           <>
-            <Route path="/uploaded" element={<UploadedProject />}></Route>
+            <Route path='/uploaded' element={<UploadedProject />}></Route>
           </>
         ) : (
           <>
             <Route
-              path="/student-uploads"
-              element={<StudentUploadedProject />}
-            ></Route>
+              path='/student-uploads'
+              element={<StudentUploadedProject />}></Route>
             <Route
-              path="/supervisor-dashboard"
-              element={<SupervisorsDashboard />}
-            ></Route>
+              path='/supervisor-dashboard'
+              element={<SupervisorsDashboard />}></Route>
 
-<Route
-              path="/lecturer-dashboard"
-              element={<LecDashboard />}
-            ></Route>
-            <Route path="/hodDash" element={<HodDashboard />}></Route>
+            <Route
+              path='/lecturer-dashboard'
+              element={<LecDashboard />}></Route>
+            <Route path='/hodDash' element={<HodDashboard />}></Route>
           </>
         )}
 
-        <Route path="/forget" element={<ForgetPassword />}></Route>
-        <Route path="/reset" element={<ResetPassword />}></Route>
-        <Route path="/new" element={<NewPassword />}></Route>
+        <Route path='/forget' element={<ForgetPassword />}></Route>
+        <Route path='/reset' element={<ResetPassword />}></Route>
+        <Route path='/new' element={<NewPassword />}></Route>
 
-        <Route path="/dash" element={<Dashboard />}></Route>
-        <Route path="/proposal" element={<Proposal />}></Route>
+        <Route path='/dash' element={<Dashboard />}></Route>
+        <Route path='/proposal' element={<Proposal />}></Route>
 
-        <Route path="/view-uploaded" element={<HodLectdash />}></Route>
+        <Route path='/view-uploaded' element={<HodLectdash />}></Route>
+
+        <Route path='/notification' element={<NoticeInfo />}></Route>
 
         <Route
-          path="/InternalDisscussant"
-          element={<InternalDisscussant />}
-        ></Route>
+          path='/InternalDisscussant'
+          element={<InternalDisscussant />}></Route>
         <Route
-          path="/InternalDisscussantDash"
-          element={<InternalDiscussantDash />}
-        ></Route>
-        <Route path="/spgs" element={<SPGSRep />}></Route>
-        <Route path="/**" element={<Navigate to={"/"} />}></Route>
+          path='/InternalDisscussantDash'
+          element={<InternalDiscussantDash />}></Route>
+        <Route path='/spgs' element={<SPGSRep />}></Route>
+        <Route path='/**' element={<Navigate to={"/"} />}></Route>
       </Routes>
     </Router>
   );

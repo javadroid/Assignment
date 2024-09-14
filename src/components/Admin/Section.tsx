@@ -23,6 +23,7 @@ import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { BaseUrl } from "../../service";
 import AddScoreSheet from "../Student-Dashboard/Popup-Screens/AddScoreSheet";
 import DropDown from "../Reusable-Code/DropDown";
+import Notification from "../Notifications/Notification";
 
 export default function Section() {
   // State for pagination
@@ -41,20 +42,22 @@ export default function Section() {
   }, []);
 
   useEffect(() => {
-    getData()
+    getData();
   }, [type]);
 
   const getData = async () => {
-    const userdata = await axios.post(BaseUrl+"user/getscore",{session:section,batch,type});
-    setData(userdata.data);
-    setDataFiltered(
-      userdata.data
-    );
-    let scr=0
-    userdata.data.forEach((s:any)=> {
-     scr+=s.score
+    const userdata = await axios.post(BaseUrl + "user/getscore", {
+      session: section,
+      batch,
+      type,
     });
-    setscore(scr)
+    setData(userdata.data);
+    setDataFiltered(userdata.data);
+    let scr = 0;
+    userdata.data.forEach((s: any) => {
+      scr += s.score;
+    });
+    setscore(scr);
   };
   // Handle page change
   const handleChangePage = (
@@ -64,15 +67,10 @@ export default function Section() {
     setPage(newPage);
   };
 
-
-   // Handle page change
-  const handleDelete = (score:any) => {
-    axios
-    .post(`${BaseUrl}user/deletescore/${score._id}`)
-    .then((data) => {
-     
+  // Handle page change
+  const handleDelete = (score: any) => {
+    axios.post(`${BaseUrl}user/deletescore/${score._id}`).then((data) => {
       getData();
-     
     });
   };
   // Handle rows per page change
@@ -95,112 +93,111 @@ export default function Section() {
   const pageScrollBar = rowsPerPage >= 10 ? "overflow-y-hidden" : "";
 
   return (
-    <div className="font-pop h-screen flex flex-row lg:overflow-hidden bg-gray-100">
-      <div className="w-full text-black">
+    <div className='font-pop h-screen flex flex-row lg:overflow-hidden bg-gray-100'>
+      <div className='w-full text-black'>
         <Navigation />
-        {isPopupOpen && <AddScoreSheet project={{session:section,batch,type,score}} onClose={setIsPopupOpen} getData={getData} />}
-        <main className="w-full m-0 p-0 ">
-          <div className="m-4">
-            <div className="flex sm:flex-row justify-between items-center">
-              <h1 className="font-semibold my-2 text-sm lg:text-lg">
+        {isPopupOpen && (
+          <AddScoreSheet
+            project={{ session: section, batch, type, score }}
+            onClose={setIsPopupOpen}
+            getData={getData}
+          />
+        )}
+        <main className='w-full m-0 p-0 '>
+          <div className='m-4'>
+            <div className='flex sm:flex-row justify-between items-center'>
+              <h1 className='font-semibold my-2 text-sm lg:text-lg'>
                 Score Sheet
               </h1>
-              <MdOutlineNotificationsActive
-                className="fill-[#726135] w-5 h-5 lg:w-6 lg:h-6 mr-4 cursor-pointer transform transition ease-linear hover:scale-110"
-                to={"#"}
-              />
+              <Notification />
             </div>
           </div>
         </main>
-        <section className="sm:overflow-x-hidden bg-[#ffffff] lg:overflow-auto border-2 border-gray-300 shadow-md m-4">
-          <p className="px-4 py-1 border-b-2 border-b-gray-300 shadow-md">
-           
-          </p>
-          <div className="m-4">
+        <section className='sm:overflow-x-hidden bg-[#ffffff] lg:overflow-auto border-2 border-gray-300 shadow-md m-4'>
+          <p className='px-4 py-1 border-b-2 border-b-gray-300 shadow-md'></p>
+          <div className='m-4'>
             {/* search input */}
 
-            <div className="flex mb-2 flex-row justify-between">
-              <div className="flex flex-row">
-              <DropDown
+            <div className='flex mb-2 flex-row justify-between'>
+              <div className='flex flex-row'>
+                <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
-                  labelText="Section:"
-                  id="dropDown"
-                  setSelectOption={(e:any,i:any) =>setsection(i)}
-                  name="Section"
-                  data={["2020/2021","2022/2024", "2024/2025"]}
-                  className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
+                  labelText='Section:'
+                  id='dropDown'
+                  setSelectOption={(e: any, i: any) => setsection(i)}
+                  name='Section'
+                  data={["2020/2021", "2022/2024", "2024/2025"]}
+                  className='  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500'
                 />
                 <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
-                  labelText="Batch:"
-                  id="dropDown"
-                  setSelectOption={(e:any,i:any) =>setbatch(i)}
-                  name="Section"
+                  labelText='Batch:'
+                  id='dropDown'
+                  setSelectOption={(e: any, i: any) => setbatch(i)}
+                  name='Section'
                   data={["A", "B"]}
-                  className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
+                  className='  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500'
                 />
 
-          
-                  <DropDown
+                <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
-                  labelText="Student type:"
-                  id="dropDown"
-                  setSelectOption={(e:any,i:any) =>{
-                    settype(i)
+                  labelText='Student type:'
+                  id='dropDown'
+                  setSelectOption={(e: any, i: any) => {
+                    settype(i);
                   }}
-                  name="Section"
+                  name='Section'
                   data={["MSC", "PGD"]}
-                  className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
+                  className='  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500'
                 />
               </div>
-              
-                 
-                 
+
               <ToggleButtonGroup
-                color="primary"
+                color='primary'
                 value={true}
                 exclusive
-                aria-label="Platform"
-              >
-               
-              </ToggleButtonGroup>
-              <div className="flex flex-row gap-2 items-center mr-5 bg-green-600 ">
-                <ToggleButton onClick={()=>{
-                    setIsPopupOpen(true)
-                }} value={true} style={{ color: "white" }}>
+                aria-label='Platform'></ToggleButtonGroup>
+              <div className='flex flex-row gap-2 items-center mr-5 bg-green-600 '>
+                <ToggleButton
+                  onClick={() => {
+                    setIsPopupOpen(true);
+                  }}
+                  value={true}
+                  style={{ color: "white" }}>
                   Add
                 </ToggleButton>
               </div>
-            
             </div>
 
             {/* The Table view */}
             <div
-              className={`flex flex-col max-h-[370px] p-2 lg:p-2 ${tableContainerClass}`}
-            >
-              <TableContainer component={Paper} className="border-2">
-                <Table sx={{ minWidth: 400 }} aria-label="customized table">
+              className={`flex flex-col max-h-[370px] p-2 lg:p-2 ${tableContainerClass}`}>
+              <TableContainer component={Paper} className='border-2'>
+                <Table sx={{ minWidth: 400 }} aria-label='customized table'>
                   <TableHead>
                     <TableRow>
                       <StyledTableCell>Name</StyledTableCell>
-                      
-                      <StyledTableCell>Score ({100-score})</StyledTableCell>
-                      <StyledTableCell align="center"></StyledTableCell>
+
+                      <StyledTableCell>Score ({100 - score})</StyledTableCell>
+                      <StyledTableCell align='center'></StyledTableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
                     {slicedData.map((row: any) => (
                       <StyledTableRow key={row.id}>
-                        <StyledTableCell component="th" scope="row">
+                        <StyledTableCell component='th' scope='row'>
                           {row.name}
                         </StyledTableCell>
-                       
-                        <StyledTableCell component="th" scope="row">
+
+                        <StyledTableCell component='th' scope='row'>
                           {row.score}
                         </StyledTableCell>
-                        <StyledTableCell align="center">
+                        <StyledTableCell align='center'>
                           <ThemeProvider theme={theme}>
-                            <Button onClick={()=>handleDelete(row)} color="error" variant="contained">
+                            <Button
+                              onClick={() => handleDelete(row)}
+                              color='error'
+                              variant='contained'>
                               Delete
                             </Button>
                           </ThemeProvider>
@@ -210,10 +207,10 @@ export default function Section() {
                   </TableBody>
                 </Table>
               </TableContainer>
-              <div className="">
+              <div className=''>
                 <TablePagination
                   rowsPerPageOptions={[3, 10, 30]}
-                  component="div"
+                  component='div'
                   count={assignStudentDataATH.length}
                   rowsPerPage={rowsPerPage}
                   page={page}

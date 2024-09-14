@@ -24,6 +24,7 @@ import axios from "axios";
 import { BaseUrl } from "../../service";
 import Swal from "sweetalert2";
 import { ToggleButtonGroup, ToggleButton } from "@mui/material";
+import Notification from "../Notifications/Notification";
 
 export default function HodDashboard() {
   // State for pagination
@@ -92,7 +93,7 @@ export default function HodDashboard() {
   const [isAssigned, setAssigned] = useState(false);
 
   return (
-    <div className="font-pop h-screen flex flex-row lg:overflow-hidden bg-gray-100">
+    <div className='font-pop h-screen flex flex-row lg:overflow-hidden bg-gray-100'>
       {isPopupOpen && (
         <AssignSupervisor
           selectedStudent={seletedStudent}
@@ -101,35 +102,31 @@ export default function HodDashboard() {
         />
       )}
 
-      <div className="w-full text-black">
+      <div className='w-full text-black'>
         <Navigation />
-        <main className="w-full m-0 p-0 ">
-          <div className="m-4">
-            <div className="flex sm:flex-row justify-between items-center">
-              <h1 className="font-semibold my-2 text-sm lg:text-lg">
+        <main className='w-full m-0 p-0 '>
+          <div className='m-4'>
+            <div className='flex sm:flex-row justify-between items-center'>
+              <h1 className='font-semibold my-2 text-sm lg:text-lg'>
                 Project Proposal
               </h1>
-              <MdOutlineNotificationsActive
-                className="fill-[#726135] w-5 h-5 lg:w-6 lg:h-6 mr-4 cursor-pointer transform transition ease-linear hover:scale-110"
-                to={"#"}
-              />
+              <Notification />
             </div>
-            <hr className="border-gray-400" />
-            <h4 className="text-xs my-3">Dashboard-Project Proposal</h4>
+            <hr className='border-gray-400' />
+            <h4 className='text-xs my-3'>Dashboard-Project Proposal</h4>
           </div>
         </main>
-        <section className="sm:overflow-x-hidden bg-[#ffffff] lg:overflow-auto border-2 border-gray-300 shadow-md m-4">
-          <p className="px-4 py-1 border-b-2 border-b-gray-300 shadow-md">
+        <section className='sm:overflow-x-hidden bg-[#ffffff] lg:overflow-auto border-2 border-gray-300 shadow-md m-4'>
+          <p className='px-4 py-1 border-b-2 border-b-gray-300 shadow-md'>
             Project Topics
           </p>
-          <div className="m-4 ">
-            <div className="flex  flex-row justify-between">
+          <div className='m-4 '>
+            <div className='flex  flex-row justify-between'>
               <ToggleButtonGroup
-                color="primary"
+                color='primary'
                 value={true}
                 exclusive
-                aria-label="Platform"
-              >
+                aria-label='Platform'>
                 <ToggleButton
                   onChange={(e) => {
                     setAssigned(!isAssigned);
@@ -143,50 +140,52 @@ export default function HodDashboard() {
                       );
                     }
                   }}
-                  value={isAssigned}
-                >
+                  value={isAssigned}>
                   {isAssigned ? "Assigned" : "UnAssigned"}
                 </ToggleButton>
               </ToggleButtonGroup>
-              <div className="flex  flex-row">
+              <div className='flex  flex-row'>
                 <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
-                  labelText="Session:"
-                  id="dropDown"
-                  setSelectOption={(e:any,i:any) =>setsection(i)}
-                  name="Section"
-                  data={["2020/2021","2022/2024", "2024/2025"]}
-                  className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
+                  labelText='Session:'
+                  id='dropDown'
+                  setSelectOption={(e: any, i: any) => setsection(i)}
+                  name='Section'
+                  data={["2020/2021", "2022/2024", "2024/2025"]}
+                  className='  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500'
                 />
                 <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
-                  labelText="Batch:"
-                  id="dropDown"
-                  setSelectOption={(e:any,i:any) =>setbatch(i)}
-                  name="Section"
+                  labelText='Batch:'
+                  id='dropDown'
+                  setSelectOption={(e: any, i: any) => setbatch(i)}
+                  name='Section'
                   data={["A", "B"]}
-                  className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
+                  className='  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500'
                 />
 
-          
-                  <DropDown
+                <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
-                  labelText="Student type:"
-                  id="dropDown"
-                  setSelectOption={(e:any,i:any) =>{
-                    console.log("check",batch,section,i)
+                  labelText='Student type:'
+                  id='dropDown'
+                  setSelectOption={(e: any, i: any) => {
+                    console.log("check", batch, section, i);
                     setDataFiltered(
-                      SData.filter((t: any) => t.type ===i&&t.section===section&&t.batch===batch)
+                      SData.filter(
+                        (t: any) =>
+                          t.type === i &&
+                          t.section === section &&
+                          t.batch === batch
+                      )
                     );
                   }}
-                  name="Section"
+                  name='Section'
                   data={["MSC", "PGD"]}
-                  className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
+                  className='  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500'
                 />
-                 
               </div>
 
-              <div className="flex  flex-row ">
+              <div className='flex  flex-row '>
                 <button
                   onClick={() => {
                     if (seletedStudent.length === 0) {
@@ -199,10 +198,9 @@ export default function HodDashboard() {
                       setIsPopupOpen(true);
                     }
                   }}
-                  className="group flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e]"
-                >
+                  className='group flex flex-row justify-center items-center px-16 py-2 rounded-xl bg-[#a1812e]'>
                   {" "}
-                  <span className="text-base text-white">Assign</span>
+                  <span className='text-base text-white'>Assign</span>
                 </button>
                 {/* <InputField
                     labelText="search:"
@@ -215,22 +213,21 @@ export default function HodDashboard() {
             </div>
 
             <div
-              className={`flex flex-col max-h-[370px] p-2 lg:p-2 ${tableContainerClass}`}
-            >
-              <TableContainer component={Paper} className="border-2">
-                <Table sx={{ minWidth: 400 }} aria-label="customized table">
+              className={`flex flex-col max-h-[370px] p-2 lg:p-2 ${tableContainerClass}`}>
+              <TableContainer component={Paper} className='border-2'>
+                <Table sx={{ minWidth: 400 }} aria-label='customized table'>
                   <TableHead>
                     <TableRow>
                       <StyledTableCell></StyledTableCell>
                       <StyledTableCell>MAT NO.</StyledTableCell>
-                      <StyledTableCell align="center">
+                      <StyledTableCell align='center'>
                         Full Name
                       </StyledTableCell>
 
-                      <StyledTableCell align="center">
+                      <StyledTableCell align='center'>
                         1st Supervisor
                       </StyledTableCell>
-                      <StyledTableCell align="center">
+                      <StyledTableCell align='center'>
                         2nd Supervisor
                       </StyledTableCell>
                     </TableRow>
@@ -241,10 +238,10 @@ export default function HodDashboard() {
 
                       return (
                         <StyledTableRow key={row.id}>
-                          <StyledTableCell component="th" scope="row">
+                          <StyledTableCell component='th' scope='row'>
                             <input
-                              className="checked:bg-[#EDBE44] bg-none w-5 h-5 lg:w-6 lg:h-6"
-                              type="checkbox"
+                              className='checked:bg-[#EDBE44] bg-none w-5 h-5 lg:w-6 lg:h-6'
+                              type='checkbox'
                               id={row._id}
                               checked={checked}
                               onChange={(e) =>
@@ -253,18 +250,18 @@ export default function HodDashboard() {
                             />
                           </StyledTableCell>
 
-                          <StyledTableCell component="th" scope="row">
+                          <StyledTableCell component='th' scope='row'>
                             {row.userID}
                           </StyledTableCell>
-                          <StyledTableCell align="center">
+                          <StyledTableCell align='center'>
                             {row.fname} {row.lname}
                           </StyledTableCell>
 
-                          <StyledTableCell align="center">
+                          <StyledTableCell align='center'>
                             {row?.supervisors?.major?.fname}{" "}
                             {row?.supervisors?.major?.lname}
                           </StyledTableCell>
-                          <StyledTableCell align="center">
+                          <StyledTableCell align='center'>
                             {row?.supervisors?.minor?.fname}{" "}
                             {row?.supervisors?.minor?.lname}
                           </StyledTableCell>
@@ -274,10 +271,10 @@ export default function HodDashboard() {
                   </TableBody>
                 </Table>
               </TableContainer>
-              <div className="">
+              <div className=''>
                 <TablePagination
                   rowsPerPageOptions={[3, 10, 30]}
-                  component="div"
+                  component='div'
                   count={assignStudentDataATH.length}
                   rowsPerPage={rowsPerPage}
                   page={page}

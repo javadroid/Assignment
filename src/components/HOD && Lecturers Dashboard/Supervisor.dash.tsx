@@ -25,6 +25,7 @@ import { BaseUrl } from "../../service";
 import Swal from "sweetalert2";
 import { ToggleButtonGroup, ToggleButton } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
+import Notification from "../Notifications/Notification";
 
 export default function SupervisorsDashboard() {
   // State for pagination
@@ -109,7 +110,7 @@ export default function SupervisorsDashboard() {
   const [isAssigned, setAssigned] = useState(false);
   const navigate = useNavigate();
   return (
-    <div className="font-pop h-screen flex flex-row lg:overflow-hidden bg-gray-100">
+    <div className='font-pop h-screen flex flex-row lg:overflow-hidden bg-gray-100'>
       {isPopupOpen && (
         <AssignSupervisor
           selectedStudent={seletedStudent}
@@ -118,63 +119,60 @@ export default function SupervisorsDashboard() {
         />
       )}
 
-      <div className="w-full text-black">
+      <div className='w-full text-black'>
         <Navigation />
-        <main className="w-full m-0 p-0 ">
-          <div className="m-4">
-            <div className="flex sm:flex-row justify-between items-center">
-              <h1 className="font-semibold my-2 text-sm lg:text-lg">
+        <main className='w-full m-0 p-0 '>
+          <div className='m-4'>
+            <div className='flex sm:flex-row justify-between items-center'>
+              <h1 className='font-semibold my-2 text-sm lg:text-lg'>
                 Project Proposal
               </h1>
-              <MdOutlineNotificationsActive
-                className="fill-[#726135] w-5 h-5 lg:w-6 lg:h-6 mr-4 cursor-pointer transform transition ease-linear hover:scale-110"
-                to={"#"}
-              />
+              <Notification />
             </div>
-            <hr className="border-gray-400" />
-            <h4 className="text-xs my-3">Dashboard-Project Proposal</h4>
+            <hr className='border-gray-400' />
+            <h4 className='text-xs my-3'>Dashboard-Project Proposal</h4>
           </div>
         </main>
-        <section className="sm:overflow-x-hidden bg-[#ffffff] lg:overflow-auto border-2 border-gray-300 shadow-md m-4">
-          <p className="px-4 py-1 border-b-2 border-b-gray-300 shadow-md">
+        <section className='sm:overflow-x-hidden bg-[#ffffff] lg:overflow-auto border-2 border-gray-300 shadow-md m-4'>
+          <p className='px-4 py-1 border-b-2 border-b-gray-300 shadow-md'>
             Project Topics
           </p>
-          <div className="m-4 ">
-            <div className="flex  flex-row justify-between">
-              <div className="flex  flex-row">
+          <div className='m-4 '>
+            <div className='flex  flex-row justify-between'>
+              <div className='flex  flex-row'>
                 <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
-                  labelText="Session:"
-                  id="dropDown"
+                  labelText='Session:'
+                  id='dropDown'
                   setSelectOption={(e: any, i: any) => setsection(i)}
-                  name="Section"
+                  name='Section'
                   data={["2020/2021", "2022/2024", "2024/2025"]}
-                  className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
+                  className='  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500'
                 />
                 <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
-                  labelText="Batch:"
-                  id="dropDown"
+                  labelText='Batch:'
+                  id='dropDown'
                   setSelectOption={(e: any, i: any) => setbatch(i)}
-                  name="Section"
+                  name='Section'
                   data={["A", "B"]}
-                  className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
+                  className='  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500'
                 />
 
                 <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
-                  labelText="Student type:"
-                  id="dropDown"
+                  labelText='Student type:'
+                  id='dropDown'
                   setSelectOption={(e: any, i: any) => {
                     settype(i);
                   }}
-                  name="Section"
+                  name='Section'
                   data={["MSC", "PGD"]}
-                  className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
+                  className='  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500'
                 />
               </div>
 
-              <div className="flex  flex-row ">
+              <div className='flex  flex-row '>
                 {/* <InputField
                     labelText="search:"
                     id=""
@@ -186,19 +184,18 @@ export default function SupervisorsDashboard() {
             </div>
 
             <div
-              className={`flex flex-col max-h-[370px] p-2 lg:p-2 ${tableContainerClass}`}
-            >
-              <TableContainer component={Paper} className="border-2">
-                <Table sx={{ minWidth: 400 }} aria-label="customized table">
+              className={`flex flex-col max-h-[370px] p-2 lg:p-2 ${tableContainerClass}`}>
+              <TableContainer component={Paper} className='border-2'>
+                <Table sx={{ minWidth: 400 }} aria-label='customized table'>
                   <TableHead>
                     <TableRow>
                       <StyledTableCell></StyledTableCell>
                       <StyledTableCell>MAT NO.</StyledTableCell>
-                      <StyledTableCell align="center">
+                      <StyledTableCell align='center'>
                         Full Name
                       </StyledTableCell>
-                      <StyledTableCell align="center">Topic</StyledTableCell>
-                      <StyledTableCell align="center"></StyledTableCell>
+                      <StyledTableCell align='center'>Topic</StyledTableCell>
+                      <StyledTableCell align='center'></StyledTableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -207,125 +204,125 @@ export default function SupervisorsDashboard() {
 
                       return (
                         <StyledTableRow key={row.id}>
-                          <StyledTableCell component="th" scope="row">
+                          <StyledTableCell component='th' scope='row'>
                             {i + 1}
                           </StyledTableCell>
 
-                          <StyledTableCell component="th" scope="row">
+                          <StyledTableCell component='th' scope='row'>
                             {row.userID}
                           </StyledTableCell>
-                          <StyledTableCell align="center">
+                          <StyledTableCell align='center'>
                             {row.fname} {row.lname}
                           </StyledTableCell>
-                          <StyledTableCell align="center">
+                          <StyledTableCell align='center'>
                             {row?.project?.name}
                           </StyledTableCell>
-                          <StyledTableCell width={600} align="center">
-                            <div className="flex flex-row justify-between items-center      ">
+                          <StyledTableCell width={600} align='center'>
+                            <div className='flex flex-row justify-between items-center      '>
                               <button
                                 disabled={!row?.project}
                                 onClick={() => {
                                   navigate("/student-uploads", { state: row });
                                 }}
-                                className="group flex flex-row justify-center items-center px-8 py-2 rounded-xl bg-[#a1812e]"
-                              >
+                                className='group flex flex-row justify-center items-center px-8 py-2 rounded-xl bg-[#a1812e]'>
                                 {" "}
-                                <span className="text-base text-white">
+                                <span className='text-base text-white'>
                                   {!row?.project
                                     ? "No project"
                                     : "View Project"}
                                 </span>
                               </button>
 
-                              {row?.project?.status !== "approved" && row.supervisors.major===JSON.parse(localStorage.getItem("userdata")!).user_data._id&& (
-                                <>
-                                  <button
-                                    disabled={
-                                      row?.project?.status === "rejected" ||
-                                      !row?.project
-                                    }
-                                    onClick={() => {
-                                      Swal.fire({
-                                        title:
-                                          "Do you want to approve this project?",
-                                        cancelButtonColor: "yellow",
-                                        confirmButtonColor: "green",
-                                        showCancelButton: true,
-                                        confirmButtonText: "Approve",
-                                      }).then(async (result) => {
-                                        /* Read more about isConfirmed, isDenied below */
-                                        if (result.isConfirmed) {
-                                          const userdata = await axios
-                                            .put(
-                                              BaseUrl +
-                                                "user/project/" +
-                                                row?.project?._id,
-                                              {
-                                                status: "approved",
-                                                proposal_defense: {
-                                                  status: "pending",
-                                                },
-                                              }
-                                            )
-                                            .then(() => {
-                                              Swal.fire(
-                                                "Approved!",
-                                                "",
-                                                "success"
-                                              );
-                                            });
-                                        }
-                                      });
-                                    }}
-                                    className="group flex flex-row justify-center items-center px-8 py-2 rounded-xl bg-[#4ce42e]"
-                                  >
-                                    {" "}
-                                    <span className="text-base text-white">
-                                      Approve Project
-                                    </span>
-                                  </button>
-                                  <button
-                                    disabled={
-                                      row?.project?.status === "rejected" ||
-                                      !row?.project
-                                    }
-                                    onClick={() => {
-                                      Swal.fire({
-                                        title:
-                                          "Do you want to reject this project?",
-                                        cancelButtonColor: "green",
-                                        confirmButtonColor: "red",
-                                        showCancelButton: true,
-                                        confirmButtonText: "Reject",
-                                      }).then(async (result) => {
-                                        /* Read more about isConfirmed, isDenied below */
-                                        if (result.isConfirmed) {
-                                          const userdata = await axios
-                                            .put(
-                                              BaseUrl +
-                                                "user/project/" +
-                                                row?.project?._id,
-                                              { status: "rejected" }
-                                            )
-                                            .then(() => {
-                                              Swal.fire(
-                                                "Rejected!",
-                                                "",
-                                                "success"
-                                              );
-                                            });
-                                        }
-                                      });
-                                    }}
-                                    className="group flex flex-row justify-center items-center px-8 py-2 rounded-xl bg-[#f33b3b]"
-                                  >
-                                    {" "}
-                                    <span className="text-base text-white">
-                                      Reject Project
-                                    </span>
-                                  </button>
-                                </>
-                              )}
+                              {row?.project?.status !== "approved" &&
+                                row.supervisors.major ===
+                                  JSON.parse(localStorage.getItem("userdata")!)
+                                    .user_data._id && (
+                                  <>
+                                    <button
+                                      disabled={
+                                        row?.project?.status === "rejected" ||
+                                        !row?.project
+                                      }
+                                      onClick={() => {
+                                        Swal.fire({
+                                          title:
+                                            "Do you want to approve this project?",
+                                          cancelButtonColor: "yellow",
+                                          confirmButtonColor: "green",
+                                          showCancelButton: true,
+                                          confirmButtonText: "Approve",
+                                        }).then(async (result) => {
+                                          /* Read more about isConfirmed, isDenied below */
+                                          if (result.isConfirmed) {
+                                            const userdata = await axios
+                                              .put(
+                                                BaseUrl +
+                                                  "user/project/" +
+                                                  row?.project?._id,
+                                                {
+                                                  status: "approved",
+                                                  proposal_defense: {
+                                                    status: "pending",
+                                                  },
+                                                }
+                                              )
+                                              .then(() => {
+                                                Swal.fire(
+                                                  "Approved!",
+                                                  "",
+                                                  "success"
+                                                );
+                                              });
+                                          }
+                                        });
+                                      }}
+                                      className='group flex flex-row justify-center items-center px-8 py-2 rounded-xl bg-[#4ce42e]'>
+                                      {" "}
+                                      <span className='text-base text-white'>
+                                        Approve Project
+                                      </span>
+                                    </button>
+                                    <button
+                                      disabled={
+                                        row?.project?.status === "rejected" ||
+                                        !row?.project
+                                      }
+                                      onClick={() => {
+                                        Swal.fire({
+                                          title:
+                                            "Do you want to reject this project?",
+                                          cancelButtonColor: "green",
+                                          confirmButtonColor: "red",
+                                          showCancelButton: true,
+                                          confirmButtonText: "Reject",
+                                        }).then(async (result) => {
+                                          /* Read more about isConfirmed, isDenied below */
+                                          if (result.isConfirmed) {
+                                            const userdata = await axios
+                                              .put(
+                                                BaseUrl +
+                                                  "user/project/" +
+                                                  row?.project?._id,
+                                                { status: "rejected" }
+                                              )
+                                              .then(() => {
+                                                Swal.fire(
+                                                  "Rejected!",
+                                                  "",
+                                                  "success"
+                                                );
+                                              });
+                                          }
+                                        });
+                                      }}
+                                      className='group flex flex-row justify-center items-center px-8 py-2 rounded-xl bg-[#f33b3b]'>
+                                      {" "}
+                                      <span className='text-base text-white'>
+                                        Reject Project
+                                      </span>
+                                    </button>
+                                  </>
+                                )}
                             </div>
                           </StyledTableCell>
                         </StyledTableRow>
@@ -334,10 +331,10 @@ export default function SupervisorsDashboard() {
                   </TableBody>
                 </Table>
               </TableContainer>
-              <div className="">
+              <div className=''>
                 <TablePagination
                   rowsPerPageOptions={[3, 10, 30]}
-                  component="div"
+                  component='div'
                   count={assignStudentDataATH.length}
                   rowsPerPage={rowsPerPage}
                   page={page}

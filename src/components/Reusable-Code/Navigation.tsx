@@ -21,13 +21,13 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="p-[1rem] w-full flex flex-row justify-between border-b-2 border-b-gray-300 shadow-md">
-      <div className="relative cursor-pointer" onClick={toggleSidebar}>
+    <nav className='p-[1rem] w-full flex flex-row justify-between border-b-2 border-b-gray-300 shadow-md'>
+      <div className='relative cursor-pointer' onClick={toggleSidebar}>
         <FaBars size={20} />
-        <MdCircle size={9} className="absolute right-0 top-0" />
+        <MdCircle size={9} className='absolute right-0 top-0' />
       </div>
       <SideDesign isOpen={sidebarOpen} isClose={closeSidebar} />
-      <div className="flex justify-center ">
+      <div className='flex justify-center '>
         <DateDisplay />
         <FaPowerOff
           onClick={closeUp}
