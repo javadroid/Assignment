@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useState } from "react";
 
 interface Props {
   labelText: string;
@@ -19,10 +19,24 @@ const InputField: React.FC<Props> = ({
   value,
   onChange,
 }) => {
+  const [val, setValue] = useState(value)
+  const handled = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value)
+   if(onChange){
+    onChange(e);
+   }
+   
+  };
   return (
     <div className={divClassName}>
       <label htmlFor={id}>{labelText}</label>
-      <input type={type} id={id} className={className} onChange={onChange} />
+      <input
+        value={val}
+        type={type}
+        id={id}
+        className={className}
+        onChange={handled}
+      />
     </div>
   );
 };
