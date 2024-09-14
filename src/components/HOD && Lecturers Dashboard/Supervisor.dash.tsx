@@ -144,7 +144,7 @@ export default function SupervisorsDashboard() {
               <div className="flex  flex-row">
                 <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
-                  labelText="Section:"
+                  labelText="Session:"
                   id="dropDown"
                   setSelectOption={(e: any, i: any) => setsection(i)}
                   name="Section"

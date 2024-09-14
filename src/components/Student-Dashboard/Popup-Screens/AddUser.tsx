@@ -232,7 +232,7 @@ function AddUSer({ onClose, getData }: UploadPopUpProps) {
                 <div className="flex xs:flex-col xs:items-center xs:justify-center lg:flex-row lg:gap-48">
                   <DropDown
                     divClassName="flex flex-col xs:w-[80%]"
-                    labelText="Section:"
+                    labelText="Session:"
                     id="dropDown"
                     name="section"
                     setSelectOption={handleInputChange}

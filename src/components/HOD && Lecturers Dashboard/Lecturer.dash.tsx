@@ -85,7 +85,7 @@ export default function LecDashboard() {
           Number(
             SData.filter(
               (t: any) => t.project?.proposal_defense && t.type === type
-            )[0]?.full?.proposal_defense.date
+            )[0]?.full?.proposal_defense?.date
           )
         ).toDateString()
       );
@@ -99,7 +99,7 @@ export default function LecDashboard() {
           Number(
             SData.filter(
               (t: any) => t.project?.internal_defense && t.type === type
-            )[0]?.full?.proposal_defense.date
+            )[0]?.full?.proposal_defense?.date
           )
         ).toDateString()
       );
@@ -113,7 +113,7 @@ export default function LecDashboard() {
           Number(
             SData.filter(
               (t: any) => t.project?.external_defense && t.type === type
-            )[0]?.full?.proposal_defense.date
+            )[0]?.full?.proposal_defense?.date
           )
         ).toDateString()
       );
@@ -128,7 +128,7 @@ export default function LecDashboard() {
           Number(
             SData.filter(
               (t: any) => t.project?.proposal_defense && t.type === type
-            )[0]?.full?.proposal_defense.date
+            )[0]?.full?.proposal_defense?.date
           )
         ).toDateString()
       );
@@ -142,7 +142,7 @@ export default function LecDashboard() {
           Number(
             SData.filter(
               (t: any) => t.project?.internal_defense && t.type === type
-            )[0]?.full?.proposal_defense.date
+            )[0]?.full?.proposal_defense?.date
           )
         ).toDateString()
       );
@@ -155,7 +155,7 @@ export default function LecDashboard() {
         new Date(
           Number(
             SData.filter((t: any) => t.project?.seminar3 && t.type === type)[0]
-              ?.full?.proposal_defense.date
+              ?.full?.proposal_defense?.date
           )
         ).toDateString()
       );
@@ -187,7 +187,7 @@ export default function LecDashboard() {
       new Date(
         Number(
           userdata.data.filter((t: any) => t.type === type)[0]?.full
-            ?.proposal_defense.date
+            ?.proposal_defense?.date
         )
       ).toDateString()
     );
@@ -312,7 +312,7 @@ export default function LecDashboard() {
 
                 <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
-                  labelText="Section:"
+                  labelText="Session:"
                   id="dropDown"
                   setSelectOption={(e: any, i: any) => setsection(i)}
                   name="Section"

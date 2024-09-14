@@ -46,7 +46,7 @@ export default function SPGSRep() {
         <div className="flex mb-10 flex-row">
                 <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
-                  labelText="Section:"
+                  labelText="Session:"
                   id="dropDown"
                   setSelectOption={(e:any,i:any) =>setsection(i)}
                   name="Section"
