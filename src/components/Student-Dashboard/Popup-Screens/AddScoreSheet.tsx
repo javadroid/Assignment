@@ -5,6 +5,7 @@ import FileUpload from "../../Reusable-Code/FileUpload";
 import { useState } from "react";
 import { BaseUrl } from "../../../service";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 interface AddScoreSheetProps {
   onClose: () => void;
@@ -20,9 +21,19 @@ function AddScoreSheet({ onClose, getData ,project}: any) {
   const handleSubmit = () => {
 
     if(100-project.score<upload){
-      alert("you have pass the score limit for this sheet "+(100-project.score)+" "+upload)
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "you have pass the score limit for this sheet "+(100-project.score)+" "+upload,
+      });
+      
     }else if(upload===0){
-      alert("Score is zero")
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Score is zero",
+      });
+      
     }else{
       axios
       .post(`${BaseUrl}user/score`, {

@@ -52,7 +52,7 @@ const App: React.FC = () => {
         {userData?.auth && (
           <>
             <Route path="/admin" element={<Admin />}></Route>
-            <Route path="/section" element={<Section />}></Route>
+            <Route path="/score" element={<Section />}></Route>
           </>
         )}
 
