@@ -29,7 +29,6 @@ import AssignInternalDiscussants from "../Student-Dashboard/Popup-Screens/Assign
 import Assignspgs from "../Student-Dashboard/Popup-Screens/Assignspgs";
 import AssignExternalExaminer from "../Student-Dashboard/Popup-Screens/AssignExternalExaminer";
 import ScoreSheet from "../Student-Dashboard/Popup-Screens/ScoreSheet";
-import Notification from "../Notifications/Notification";
 
 export default function LecDashboard() {
   // State for pagination
@@ -40,7 +39,7 @@ export default function LecDashboard() {
   const [isPopupOpen4, setIsPopupOpen4] = useState(false);
   const [isPopupOpen3, setIsPopupOpen3] = useState(false);
   const [SData, setSData] = useState([]) as any[];
-  const [userData, setuserData] = useState() as any
+  const [userData, setuserData] = useState() as any;
   const [DataFiltered, setDataFiltered] = useState([]) as any[];
   const [seletedStudent, setseletedStudent] = useState([]) as any[];
 
@@ -54,8 +53,8 @@ export default function LecDashboard() {
     session: section,
     batch,
     type,
-    project:"proposal_defense"
-  })as any;
+    project: "proposal_defense",
+  }) as any;
   const [dateq, setdate] = useState() as any;
   useEffect(() => {
     if (
@@ -65,11 +64,13 @@ export default function LecDashboard() {
     ) {
       setcheck(null);
     }
-    
-    setdatatopass({
+
+    setdatatopass((prevData: any) => ({
+      ...prevData,
       session: section,
       batch,
-      type }));
+      type,
+    }));
     setDataFiltered(
       SData.filter(
         (t: any) =>
@@ -88,7 +89,7 @@ export default function LecDashboard() {
         session: section,
         batch,
         type,
-        project:"proposal_defense"
+        project: "proposal_defense",
       });
       setdate(
         new Date(
@@ -108,7 +109,7 @@ export default function LecDashboard() {
         session: section,
         batch,
         type,
-        project:"internal_defense"
+        project: "internal_defense",
       });
       setdate(
         new Date(
@@ -128,7 +129,7 @@ export default function LecDashboard() {
         session: section,
         batch,
         type,
-        project:"external_defense"
+        project: "external_defense",
       });
       setdate(
         new Date(
@@ -145,7 +146,6 @@ export default function LecDashboard() {
     }
 
     if (state === "First Seminar") {
-      
       setdate(
         new Date(
           Number(
@@ -178,7 +178,7 @@ export default function LecDashboard() {
         session: section,
         batch,
         type,
-        project:"seminar3"
+        project: "seminar3",
       });
       setdate(
         new Date(
@@ -210,12 +210,20 @@ export default function LecDashboard() {
         `user/session?type=${check}&lecturer_id=` +
         JSON.parse(localStorage.getItem("userdata")!).user_data._id
     );
-    setSData(userdata.data.filter((item:any, index:number, self:any) =>
-      index === self.findIndex((t:any) => t._id === item._id)
-    ));
-    setDataFiltered(userdata.data.filter((t: any) => t.type === type).filter((item:any, index:number, self:any) =>
-      index === self.findIndex((t:any) => t._id === item._id)
-    ));
+    setSData(
+      userdata.data.filter(
+        (item: any, index: number, self: any) =>
+          index === self.findIndex((t: any) => t._id === item._id)
+      )
+    );
+    setDataFiltered(
+      userdata.data
+        .filter((t: any) => t.type === type)
+        .filter(
+          (item: any, index: number, self: any) =>
+            index === self.findIndex((t: any) => t._id === item._id)
+        )
+    );
     setdate(
       new Date(
         Number(
@@ -299,7 +307,17 @@ export default function LecDashboard() {
         />
       )}
 
-      <div className="w-full text-black">
+      {isPopupOpen4 && (
+        <ScoreSheet
+          selectedStudent={datatopass}
+          userData={userData}
+          onClose={setIsPopupOpen4}
+          getData1={getDataSession}
+          label='External Examiner'
+        />
+      )}
+
+      <div className='w-full text-black'>
         <Navigation />
         <main className='w-full m-0 p-0 '>
           <div className='m-4'>
@@ -307,7 +325,10 @@ export default function LecDashboard() {
               <h1 className='font-semibold my-2 text-sm lg:text-lg'>
                 {JSON.parse(localStorage.getItem("userdata")!).user_data.type}
               </h1>
-              <Notification />
+              <MdOutlineNotificationsActive
+                className='fill-[#726135] w-5 h-5 lg:w-6 lg:h-6 mr-4 cursor-pointer transform transition ease-linear hover:scale-110'
+                to={"#"}
+              />
             </div>
             <hr className='border-gray-400' />
             <h4 className='text-xs my-3'>
@@ -323,10 +344,15 @@ export default function LecDashboard() {
           <p className='px-4 py-1 border-b-2 border-b-gray-300 shadow-md'>
             Date for {state}: {dateq === "Invalid Date" ? "" : dateq}
           </p>
-          <div className="m-4 ">
-            <div className="flex  flex-row justify-between">
-              <div className="flex  flex-row">
-                {! ["HOD", "Provost", "Dean","Departmental PG Coordinator"].includes(
+          <div className='m-4 '>
+            <div className='flex  flex-row justify-between'>
+              <div className='flex  flex-row'>
+                {![
+                  "HOD",
+                  "Provost",
+                  "Dean",
+                  "Departmental PG Coordinator",
+                ].includes(
                   JSON.parse(localStorage.getItem("userdata")!).user_data.type
                 ) && (
                   <DropDown
@@ -397,60 +423,181 @@ export default function LecDashboard() {
                 />
               </div>
               {["HOD", "Provost"].includes(
-                  JSON.parse(localStorage.getItem("userdata")!).user_data.type
-                ) && (
-                  <div className="   flex flex-row justify-evenly">
-                    {state === "Proposal Defense" && (
-                      <button
-                        onClick={() => {
-                          setIsPopupOpen(true);
-                        }}
-                        className="group flex flex-row justify-center items-center p-1 px-2  rounded-xl bg-[#a1812e]"
-                      >
-                        {" "}
-                        <span className="text-base text-white">
-                          {"Assign Internal Discussants"}
-                        </span>
-                      </button>
-                    )}
+                JSON.parse(localStorage.getItem("userdata")!).user_data.type
+              ) && (
+                <div className='   flex flex-row justify-evenly'>
+                  {state === "Proposal Defense" && (
+                    <button
+                      onClick={() => {
+                        setIsPopupOpen(true);
+                      }}
+                      className='group flex flex-row justify-center items-center p-1 px-2  rounded-xl bg-[#a1812e]'>
+                      {" "}
+                      <span className='text-base text-white'>
+                        {"Assign Internal Discussants"}
+                      </span>
+                    </button>
+                  )}
 
-                    {state === "Internal Defense" && (
-                      <button
-                        onClick={() => {
-                          setIsPopupOpen2(true);
-                        }}
-                        className="group flex flex-row justify-center items-center p-1 px-2  rounded-xl bg-[#a1812e]"
-                      >
-                        {" "}
-                        <span className="text-base text-white">
-                          {"Assign SPGS"}
-                        </span>
-                      </button>
-                    )}
+                  {state === "Internal Defense" && (
+                    <button
+                      onClick={() => {
+                        setIsPopupOpen2(true);
+                      }}
+                      className='group flex flex-row justify-center items-center p-1 px-2  rounded-xl bg-[#a1812e]'>
+                      {" "}
+                      <span className='text-base text-white'>
+                        {"Assign SPGS"}
+                      </span>
+                    </button>
+                  )}
 
-                    {state === "External Defense" && (
-                      <button
-                        onClick={() => {
-                          setIsPopupOpen3(true);
-                        }}
-                        className="group flex flex-row justify-center items-center p-1 px-2  rounded-xl bg-[#a1812e]"
-                      >
-                        {" "}
-                        <span className="text-base text-white">
-                          {"External Examiner"}
-                        </span>
-                      </button>
-                    )}
-                  </div>
+                  {state === "External Defense" && (
+                    <button
+                      onClick={() => {
+                        setIsPopupOpen3(true);
+                      }}
+                      className='group flex flex-row justify-center items-center p-1 px-2  rounded-xl bg-[#a1812e]'>
+                      {" "}
+                      <span className='text-base text-white'>
+                        {"External Examiner"}
+                      </span>
+                    </button>
+                  )}
+                </div>
+              )}
+              <div className='flex  flex-row '>
+                {state === "Proposal Defense" && (
+                  <button
+                    onClick={async () => {
+                      axios
+                        .post(BaseUrl + "user/session", {
+                          session: section,
+                          type,
+                          batch,
+
+                          "proposal_defense.status":
+                            DataFiltered[0]?.full?.proposal_defense?.status ===
+                            "active"
+                              ? "done"
+                              : "active",
+                          proposal_defense: {
+                            status:
+                              DataFiltered[0]?.full?.proposal_defense
+                                ?.status === "active"
+                                ? "done"
+                                : "active",
+                          },
+                        })
+                        .then((s) => {
+                          console.log(s.data);
+                          Swal.fire({
+                            icon: "success",
+                            title: "Success",
+                          });
+
+                          getDataSession();
+                        });
+                    }}
+                    className='group flex flex-row justify-center items-center p-1 px-2  rounded-xl bg-[#ab572a]'>
+                    {" "}
+                    <span className='text-base text-white'>
+                      {DataFiltered[0]?.full?.proposal_defense.status ===
+                      "active"
+                        ? "Start"
+                        : "End"}{" "}
+                      {state}
+                    </span>
+                  </button>
                 )}
-              <div className="flex  flex-row ">
-                {/* <InputField
-                    labelText="search:"
-                    id=""
-                    className=" border-2  border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
-                    type="text"
-                    divClassName="flex ml-10 flex-row gap-2 items-end justify-end"
-                  /> */}
+
+                {state === "Internal Defense" && (
+                  <button
+                    onClick={async () => {
+                      axios
+                        .post(BaseUrl + "user/session", {
+                          session: section,
+                          type,
+                          batch,
+
+                          "proposal_defense.status":
+                            DataFiltered[0]?.full?.internal_defense?.status ===
+                            "active"
+                              ? "done"
+                              : "active",
+                          internal_defense: {
+                            status:
+                              DataFiltered[0]?.full?.internal_defense
+                                ?.status === "active"
+                                ? "done"
+                                : "active",
+                          },
+                        })
+                        .then((s) => {
+                          console.log(s.data);
+                          Swal.fire({
+                            icon: "success",
+                            title: "Success",
+                          });
+
+                          getDataSession();
+                        });
+                    }}
+                    className='group flex flex-row justify-center items-center p-1 px-2  rounded-xl bg-[#ab572a]'>
+                    {" "}
+                    <span className='text-base text-white'>
+                      {DataFiltered[0]?.full?.internal_defense?.status ===
+                      "active"
+                        ? "Start"
+                        : "End"}{" "}
+                      {state}
+                    </span>
+                  </button>
+                )}
+
+                {state === "External Defense" && (
+                  <button
+                    onClick={async () => {
+                      axios
+                        .post(BaseUrl + "user/session", {
+                          session: section,
+                          type,
+                          batch,
+
+                          "external_defense.status":
+                            DataFiltered[0]?.full?.external_defense?.status ===
+                            "active"
+                              ? "done"
+                              : "active",
+                          external_defense: {
+                            status:
+                              DataFiltered[0]?.full?.external_defense
+                                ?.status === "active"
+                                ? "done"
+                                : "active",
+                          },
+                        })
+                        .then((s) => {
+                          console.log(s.data);
+                          Swal.fire({
+                            icon: "success",
+                            title: "Success",
+                          });
+
+                          getDataSession();
+                        });
+                    }}
+                    className='group flex flex-row justify-center items-center p-1 px-2  rounded-xl bg-[#ab572a]'>
+                    {" "}
+                    <span className='text-base text-white'>
+                      {DataFiltered[0]?.full?.external_defense?.status ===
+                      "active"
+                        ? "End"
+                        : "Start"}{" "}
+                      {state}
+                    </span>
+                  </button>
+                )}
               </div>
             </div>
 
@@ -566,8 +713,8 @@ export default function LecDashboard() {
                             {row?.full?.external_examiner?.fname || ""}{" "}
                             {row?.full?.external_examiner?.lname || ""}
                           </StyledTableCell>
-                          <StyledTableCell  align="center">
-                            <div className="flex flex-row justify-between items-center      ">
+                          <StyledTableCell align='center'>
+                            <div className='flex flex-row justify-between items-center      '>
                               <button
                                 disabled={!row.project}
                                 onClick={() => {
@@ -586,19 +733,17 @@ export default function LecDashboard() {
                             </div>
                           </StyledTableCell>
 
-                          <StyledTableCell align="center">
-                            <div className="flex flex-row justify-between items-center      ">
-                              
+                          <StyledTableCell align='center'>
+                            <div className='flex flex-row justify-between items-center      '>
                               <button
                                 disabled={!row.project}
                                 onClick={() => {
-                                  setIsPopupOpen4(true)
-                                  setuserData(row)
+                                  setIsPopupOpen4(true);
+                                  setuserData(row);
                                 }}
-                                className="group flex flex-row justify-center items-center px-8 py-2 rounded-xl bg-[#ed643a]"
-                              >
+                                className='group flex flex-row justify-center items-center px-8 py-2 rounded-xl bg-[#ed643a]'>
                                 {" "}
-                                <span className="text-base text-white">
+                                <span className='text-base text-white'>
                                   Score
                                 </span>
                               </button>
