@@ -42,8 +42,8 @@ function NoticeInfo() {
       </div>
       {/* Notification div */}
       <div className='mx-5'>
-        {smpleData.length > 0 ? (
-          smpleData.map((notificationDatas: any, _id: any) => (
+        {notification.length > 0 ? (
+          notification.map((notificationDatas: any, _id: any) => (
             <section
               key={notificationDatas._id}
               className='flex flex-row  border-2 p-4 pr-5 mb-5'>
