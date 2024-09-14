@@ -19,8 +19,10 @@ import SPGSRep from "./components/Dean/SPGSRep";
 import InternalDiscussantDash from "./components/InternalDiscussant/InternalDiscussantDash";
 import Admin from "./components/Admin/Admin";
 import Section from "./components/Admin/Section";
-import LecDashboard from "./components/HOD && Lecturers Dashboard/Lecturer.dash";
+
 import StudentUploadedProject from "./components/Student-Dashboard/StudentUploadedProject";
+import SupervisorsDashboard from "./components/HOD && Lecturers Dashboard/Supervisor.dash";
+import LecDashboard from "./components/HOD && Lecturers Dashboard/Lecturer.dash";
 
 const App: React.FC = () => {
   const userData = JSON.parse(localStorage.getItem("userdata")!);
@@ -65,6 +67,11 @@ const App: React.FC = () => {
               element={<StudentUploadedProject />}
             ></Route>
             <Route
+              path="/supervisor-dashboard"
+              element={<SupervisorsDashboard />}
+            ></Route>
+
+<Route
               path="/lecturer-dashboard"
               element={<LecDashboard />}
             ></Route>
