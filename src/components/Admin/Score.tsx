@@ -25,7 +25,7 @@ import AddScoreSheet from "../Student-Dashboard/Popup-Screens/AddScoreSheet";
 import DropDown from "../Reusable-Code/DropDown";
 import Notification from "../Notifications/Notification";
 
-export default function Section() {
+export default function Score() {
   // State for pagination
   const [page, setPage] = useState(0);
   const [data, setData] = useState([]);
@@ -33,22 +33,31 @@ export default function Section() {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [isSection, setisSection] = useState(true);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [section, setsection] = useState("2020/2021");
-  const [batch, setbatch] = useState("A");
+  const [section, setsection] = useState() as any;
+  // const [batch, setbatch] = useState("A");
   const [type, settype] = useState("MSC");
   const [score, setscore] = useState(0);
-  useEffect(() => {
-    getData();
-  }, []);
+  const [session, setSession] = useState() as any
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
   useEffect(() => {
+    console.log("object",JSON.parse(localStorage.getItem("userdata")!).user_data.faculty)
     getData();
-  }, [type]);
+  }, [type,section]);
 
   const getData = async () => {
+    const data = await axios.post(
+      `${BaseUrl}user/getSessionName`,{   faculty:JSON.parse(localStorage.getItem("userdata")!)?.user_data?.faculty,
+        department:JSON.parse(localStorage.getItem("userdata")!)?.user_data?.department,}
+    );
+    console.log(data);
+    setSession(data.data);
     const userdata = await axios.post(BaseUrl + "user/getscore", {
       session: section,
-      batch,
+      faculty:JSON.parse(localStorage.getItem("userdata")!)?.user_data?.faculty,
+      department:JSON.parse(localStorage.getItem("userdata")!)?.user_data?.department,
       type,
     });
     setData(userdata.data);
@@ -98,7 +107,7 @@ export default function Section() {
         <Navigation />
         {isPopupOpen && (
           <AddScoreSheet
-            project={{ session: section, batch, type, score }}
+            project={{ session: section,  type, score }}
             onClose={setIsPopupOpen}
             getData={getData}
           />
@@ -126,18 +135,10 @@ export default function Section() {
                   id='dropDown'
                   setSelectOption={(e: any, i: any) => setsection(i)}
                   name='Section'
-                  data={["2020/2021", "2022/2024", "2024/2025"]}
+                  data={session}
                   className='  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500'
                 />
-                <DropDown
-                  // divClassName="flex flex-col xs:w-[30%]"
-                  labelText='Batch:'
-                  id='dropDown'
-                  setSelectOption={(e: any, i: any) => setbatch(i)}
-                  name='Section'
-                  data={["A", "B"]}
-                  className='  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500'
-                />
+               
 
                 <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"

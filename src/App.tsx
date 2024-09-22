@@ -18,13 +18,16 @@ import InternalDisscussant from "./components/HOD Dashboard/InternalDisscussant"
 import SPGSRep from "./components/Dean/SPGSRep";
 import InternalDiscussantDash from "./components/InternalDiscussant/InternalDiscussantDash";
 import Admin from "./components/Admin/Admin";
-import Section from "./components/Admin/Section";
+import Section from "./components/Admin/Score";
 
 import StudentUploadedProject from "./components/Student-Dashboard/StudentUploadedProject";
 import SupervisorsDashboard from "./components/HOD && Lecturers Dashboard/Supervisor.dash";
 import LecDashboard from "./components/HOD && Lecturers Dashboard/Lecturer.dash";
 
 import NoticeInfo from "./components/Notifications/NoticeInfo";
+import LecDashboard2 from "./components/HOD && Lecturers Dashboard/Lecturer.dash2";
+import HODdash2 from "./components/HOD && Lecturers Dashboard/HOD.dash2";
+import ProjectSession from "./components/HOD Dashboard/Session";
 
 const App: React.FC = () => {
   const userData = JSON.parse(localStorage.getItem("userdata")!);
@@ -39,8 +42,12 @@ const App: React.FC = () => {
               <>
                 {userData?.user_data?.is_student ? (
                   <Navigate to={"/uploaded"} />
-                ) : (
-                  <Navigate to={"/lecturer-dashboard"} />
+                ) : (<>
+                {
+                  ["HOD"].includes(userData?.user_data?.type)?( <Navigate to={"/session-student-projects"} />):( <Navigate to={"/notification"} />)
+                }
+                </>
+                 
                 )}
               </>
             ) : (
@@ -53,7 +60,7 @@ const App: React.FC = () => {
         {userData?.auth && (
           <>
             <Route path='/admin' element={<Admin />}></Route>
-            <Route path='/section' element={<Section />}></Route>
+            <Route path='/score' element={<Section />}></Route>
           </>
         )}
 
@@ -73,6 +80,16 @@ const App: React.FC = () => {
             <Route
               path='/lecturer-dashboard'
               element={<LecDashboard />}></Route>
+
+<Route
+              path='/session-student-projects'
+              element={<ProjectSession />}></Route>
+              <Route
+              path='/student-projects/:id'
+              element={<LecDashboard2 />}></Route>
+               <Route
+              path='/student-projects-hod/:id'
+              element={< HODdash2/>}></Route>
             <Route path='/hodDash' element={<HodDashboard />}></Route>
           </>
         )}

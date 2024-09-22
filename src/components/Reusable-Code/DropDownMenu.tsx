@@ -65,7 +65,7 @@ const DropDownMenu: React.FC<Props> = ({ label, className,setData }) => {
           input={<OutlinedInput />}
           renderValue={(selected) => {
             if (selected.length === 0) {
-              return <em>Select from Lecturers to {label}</em>;
+              return <em> {label}</em>;
             }
 
             return selected.join(", ");

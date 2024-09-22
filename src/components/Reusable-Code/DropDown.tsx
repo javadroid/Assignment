@@ -25,6 +25,7 @@ const DropDown: React.FC<Props> = ({
   const handleChange = (event: {
     target: { value: React.SetStateAction<string> };
   }) => {
+
     setSelectOption(name, event.target.value);
   };
   return (
@@ -36,14 +37,27 @@ const DropDown: React.FC<Props> = ({
         onChange={handleChange}
         className={className}
       >
-        <option value="" disabled>
+        <option value="" >
           <em>Select...</em>
         </option>
-        {data?.map((name: any) => (
-          <option key={name} value={name}>
-            {name}
-          </option>
-        ))}
+        {
+        
+        }
+        {data?.map((name: any) => {
+          if(name?._id){
+            return(
+              <option key={name._id} value={name._id}>
+                {name.name}
+              </option>
+            )
+          }else{
+            return(
+              <option key={name} value={name}>
+                {name}
+              </option>
+            )
+          }
+         })}
       </select>
     </div>
   );

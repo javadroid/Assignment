@@ -4,6 +4,7 @@ import { BaseUrl } from "../../service";
 
 import { smpleData } from "./sampleData";
 import Navigation from "../Reusable-Code/Navigation";
+import { Link } from "react-router-dom";
 
 interface Notification {
   _id: any;
@@ -21,7 +22,7 @@ function NoticeInfo() {
 
   const getNotification = async () => {
     try {
-      const data = await axios.get(`${BaseUrl}api/v1/user/notification`);
+      const data = await axios.get(`${BaseUrl}user/notification/`+JSON.parse(localStorage.getItem("userdata")!).user_data._id);
       console.log(data.data);
       setNotification(data.data);
     } catch (error) {
@@ -36,9 +37,9 @@ function NoticeInfo() {
       {/* container */}
       {/* back to home */}
       <div className='flex justify-end'>
-        <div className='w-10 border-b-2 mx-[10%] my-7 flex justify-center'>
+        {/* <div className='w-10 border-b-2 mx-[10%] my-7 flex justify-center'>
           <a href='/'>Back</a>
-        </div>
+        </div> */}
       </div>
       {/* Notification div */}
       <div className='mx-5'>
@@ -52,6 +53,8 @@ function NoticeInfo() {
                 <p>{notificationDatas.message}</p>
                 <span>{notificationDatas.timestamp}</span>
               </div>
+
+              <Link to={"/student-projects/"+notificationDatas.viewid}>{"View"}</Link>
             </section>
           ))
         ) : (

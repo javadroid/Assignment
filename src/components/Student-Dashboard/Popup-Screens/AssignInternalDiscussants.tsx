@@ -17,34 +17,38 @@ interface UploadPopUpProps {
   getData?: any;
   selectedStudent?: any;
   label: any;
+  DataFiltered?:any
 }
 
 function AssignInternalDiscussants({
   onClose,
   selectedStudent,
   getData,
+  DataFiltered,
   label,
 }: UploadPopUpProps) {
   const [projectTopic, setProjectTopic] = useState<string | []>([]);
   const [major, setMajor] = useState() as any;
+  const [major2, setMajor2] = useState() as any;
+  const [major3, setMajor3] = useState() as any;
   const [minor, setMinor] = useState() as any;
   const onPickPDF = (event: any) => {};
   const [showSideBar, setShowSideBar] = useState(true);
   const sildeBarClick = () => {
     setShowSideBar(!showSideBar);
   };
-  useEffect(() => {}, []);
+  useEffect(() => {
+    // console.log("state",selectedStudent)
+  }, []);
 
   const handleSubmit = () => {
 
    
     if(major){
       axios
-      .post(BaseUrl + "user/session", {
-        session: selectedStudent.session,
-        type: selectedStudent.type,
-        batch: selectedStudent.batch,
-        internal_discussants: major
+      .post(BaseUrl + "user/assign", {
+        internal_discussants: major,
+        id:selectedStudent.id,
 
       })
       .then(() => {
@@ -52,20 +56,55 @@ function AssignInternalDiscussants({
           icon: "success",
           title: "Success",
         });
+onClose()
+        getData();
+      });
+    }
+    if(major2){
+      axios
+      .post(BaseUrl + "user/assign", {
+        spgs: major2,
+        id:selectedStudent.id,
 
+      })
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+        });
+onClose()
+        getData();
+      });
+    }
+    if(major3){
+      axios
+      .post(BaseUrl + "user/assign", {
+        external_examiner: major3,
+        id:selectedStudent.id,
+
+      })
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+        });
+onClose()
         getData();
       });
     }
     if(minor){
+      const proj=selectedStudent.project+".date"
+      console.log("DataFiltered",DataFiltered)
+      const students=DataFiltered.map((d:any)=>d._id)
       axios
-      .post(BaseUrl + "user/session", {
-        session: selectedStudent.session,
-        type: selectedStudent.type,
-        batch: selectedStudent.batch,
-       
-        "proposal_defense.date": String(minor),
-        proposal_defense:{
-          date:String(minor)
+      .post(BaseUrl + "user/setDate", {
+        status:selectedStudent.project.split("_")[0]+"_next",
+        
+        id:selectedStudent.id,
+        [proj]: String(minor),
+        [selectedStudent.project]:{
+          date:String(minor),
+          students
         }
 
       })
@@ -74,7 +113,7 @@ function AssignInternalDiscussants({
           icon: "success",
           title: "Success",
         });
-
+onClose()
         getData();
       });
     }
@@ -88,7 +127,7 @@ function AssignInternalDiscussants({
             <div className="m-4">
               <div className="flex sm:flex-row justify-between items-center">
                 <h1 className="font-semibold my-2 text-sm lg:text-lg">
-                  Assign {label}
+                  {selectedStudent.action==="date"?"Set Date For "+selectedStudent.state:"Assign "}  
                 </h1>
                 <div className="flex flex-col ">
                   <IoClose
@@ -102,17 +141,42 @@ function AssignInternalDiscussants({
               <hr className="border-gray-400" />
             </div>
           </main>
+         
           <div className="mx-10">
-            {/* DropDown Menu */}
+             {/* DropDown Menu */}
+          {
+            selectedStudent.action!=="date"&&<>
             <div className="w-full ">
-              <DropDownMenu
-                setData={setMajor}
-                label={"Assign " + label}
-                className=""
-              />
-            </div>
+             <DropDownMenu
+               setData={setMajor}
+               label={"Assign " + "Internal Discussant"}
+               className=""
+             />
+           </div>
+           <div className="w-full ">
+             <DropDownMenu
+               setData={setMajor2}
+               label={"Assign " + "SPGR"}
+               className=""
+             />
+           </div>
+           <div className="w-full ">
+             <DropDownMenu
+               setData={setMajor3}
+               label={"Assign " + "External Examiner"}
+               className=""
+             />
+           </div>
+            </>
+            
+             
+          }
+           
             <div className="w-full ">
-              <div>Set / Change for Proposal Defense</div>
+            {
+            selectedStudent.action!=="date"&&
+            <div>Change date for {selectedStudent?.state}</div>
+          }
               <input
                 onChange={(e) => setMinor(new Date(e.target.value).getTime())}
                 type="date"

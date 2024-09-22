@@ -16,7 +16,7 @@ interface AddScoreSheetProps {
 function AddScoreSheet({ onClose, getData ,project}: any) {
   const [projectTopic, setProjectTopic] = useState<string | []>([]);
   const [upload, setUpload] = useState() as any;
-
+console.log("project",project)
 
   const handleSubmit = () => {
 
@@ -37,7 +37,8 @@ function AddScoreSheet({ onClose, getData ,project}: any) {
     }else{
       axios
       .post(`${BaseUrl}user/score`, {
-        ...project,name:projectTopic,score:upload
+        ...project,name:projectTopic,score:upload,   faculty:JSON.parse(localStorage.getItem("userdata")!)?.user_data?.faculty,
+        department:JSON.parse(localStorage.getItem("userdata")!)?.user_data?.department,
       })
       .then((data) => {
        
