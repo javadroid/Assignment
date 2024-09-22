@@ -69,6 +69,7 @@ export default function LecDashboard2() {
       setdatatopass({
         id,
         state,
+        type:SData?.type,
         assign:"internal_discussants",
         DataFiltered,
         project: "proposal_defense",
@@ -79,6 +80,7 @@ export default function LecDashboard2() {
       setdatatopass({
         id,
         state,
+        type:SData?.type,
         
         DataFiltered,
         project: "internal_defense",
@@ -88,6 +90,7 @@ export default function LecDashboard2() {
       setdatatopass({
         id,
         state,
+        type:SData?.type,
         
         DataFiltered,
         project: "external_defense",
@@ -102,6 +105,7 @@ export default function LecDashboard2() {
       setdatatopass({
         id,
         state,
+        type:SData?.type,
         
         DataFiltered,
         project: "seminar3",
@@ -118,7 +122,7 @@ export default function LecDashboard2() {
   const getDataSession = async () => {
     const userdata = await axios.get(
       BaseUrl +
-        `user/sessionMain?type=${check}&id=` +id
+        `user/sessionMain?type=${state}&id=` +id
     );
     setSData(
       userdata.data[0]

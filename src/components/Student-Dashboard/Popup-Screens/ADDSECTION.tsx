@@ -5,6 +5,7 @@ import FileUpload from "../../Reusable-Code/FileUpload";
 import { useState } from "react";
 import { BaseUrl } from "../../../service";
 import axios from "axios";
+import DropDown from "../../Reusable-Code/DropDown";
 
 interface UploadPopUpProps {
   onClose: () => void;
@@ -22,8 +23,9 @@ function ADDSECTION({ onClose, getData ,project_id=null}: UploadPopUpProps) {
   const handleSubmit = () => {
     // Set showConfirmation to true after the form is submitted
     // setShowConfirmation(true);
-    console.log("upload",upload)
+    // console.log("upload",upload)
     axios.post(`${BaseUrl}user/createSessionName`, {name:projectTopic,
+      type:upload,
       faculty:JSON.parse(localStorage.getItem("userdata")!)?.user_data?.faculty,
     department:JSON.parse(localStorage.getItem("userdata")!)?.user_data?.department,
     }).then((data) => {
@@ -52,7 +54,7 @@ function ADDSECTION({ onClose, getData ,project_id=null}: UploadPopUpProps) {
 
         <div>
           {
-            !project_id && <InputField
+             <InputField
             labelText={"Session Name: "}
             id={"projectTopic"}
             type={"textarea"}
@@ -63,7 +65,17 @@ function ADDSECTION({ onClose, getData ,project_id=null}: UploadPopUpProps) {
             divClassName={"flex flex-col my-5"}
           />
           }
-     
+     <DropDown
+                  // divClassName="flex flex-col xs:w-[30%]"
+                  labelText='Student type:'
+                  id='dropDown'
+                  setSelectOption={(e: any, i: any) => {
+                    setUpload(i);
+                  }}
+                  name='Section'
+                  data={["MSC", "PGD"]}
+                  className='  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500'
+                />
           <button
             onClick={handleSubmit}
             type="button"

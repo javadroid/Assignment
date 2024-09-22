@@ -44,22 +44,25 @@ export default function HODdash2() {
 
   const [section, setsection] = useState("2020/2021");
   const [batch, setbatch] = useState("A");
-  const [type, settype] = useState("MSC");
+  const [type, settype] = useState();
   const [check, setcheck] = useState("Internal Discussant") as any;
 
   const [state, setstate] = useState("Proposal Defense");
+  const {id}=useParams()
   const [datatopass, setdatatopass] = useState({
+    id,
     state,
+    type,
     DataFiltered,
     action: "date",
     project: "proposal_defense",
   }) as any;
   const [dateq, setdate] = useState() as any;
 
-  const {id}=useParams()
-  useEffect(() => {
-    getDataSession();
-  }, [type]);
+  
+  // useEffect(() => {
+  //   getDataSession();
+  // }, [type]);
 
   useEffect(() => {
     // getData();
@@ -67,6 +70,7 @@ export default function HODdash2() {
       setdatatopass({
         id,
         state,
+        type,
         action: "date",
         DataFiltered,
         project: "proposal_defense",
@@ -78,6 +82,7 @@ export default function HODdash2() {
       setdatatopass({
         id,
         state,
+        type,
         action: "date",
         DataFiltered,
         project: "internal_defense",
@@ -88,6 +93,7 @@ export default function HODdash2() {
       setdatatopass({
         id,
         state,
+        type,
         action: "date",
         DataFiltered,
         project: "external_defense",
@@ -105,6 +111,7 @@ export default function HODdash2() {
       setdatatopass({
         id,
         state,
+        type,
         action: "date",
         DataFiltered,
         project: "seminar3",
@@ -122,10 +129,11 @@ export default function HODdash2() {
   const getDataSession = async (defence?: string) => {
     const userdata = await axios.get(
       BaseUrl +
-        `user/session?type=${type}&defence=${
+        `user/session?type=${id}&defence=${
           defence ? defence : "topic_approved"
         }`
     );
+    
     setSData(
       userdata.data.filter(
         (item: any, index: number, self: any) =>
@@ -134,12 +142,9 @@ export default function HODdash2() {
     );
     setDataFiltered(
       userdata.data
-        .filter((t: any) => t.type === type)
-        .filter(
-          (item: any, index: number, self: any) =>
-            index === self.findIndex((t: any) => t._id === item._id)
-        )
+        
     );
+    settype(userdata.data[0]?.type)
     setdate(
       new Date(
         Number(
@@ -252,18 +257,19 @@ export default function HODdash2() {
                 ].includes(
                   JSON.parse(localStorage.getItem("userdata")!).user_data.type
                 ) && (
-                  <DropDown
-                    // divClassName="flex flex-col xs:w-[30%]"
-                    labelText="Role:"
-                    id="dropDown"
-                    setSelectOption={(e: any, i: any) => setcheck(i)}
-                    name="Section"
-                    data={["Internal Discussant", "SPGS", "External Examiner"]}
-                    className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
-                  />
+                  <></>
+                  // <DropDown
+                  //   // divClassName="flex flex-col xs:w-[30%]"
+                  //   labelText="Role:"
+                  //   id="dropDown"
+                  //   setSelectOption={(e: any, i: any) => setcheck(i)}
+                  //   name="Section"
+                  //   data={["Internal Discussant", "SPGS", "External Examiner"]}
+                  //   className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
+                  // />
                 )}
 
-                <DropDown
+                {/* <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
                   labelText="Student type:"
                   id="dropDown"
@@ -273,7 +279,7 @@ export default function HODdash2() {
                   name="Section"
                   data={["MSC", "PGD"]}
                   className="  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500"
-                />
+                /> */}
 
                 <DropDown
                   divClassName=""

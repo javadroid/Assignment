@@ -39,7 +39,7 @@ function ScoreSheet({ onClose, getData1, project,selectedStudent, userData }: an
 
   const getData = async () => {
     const votedata = await axios.post(BaseUrl + "user/getvote", {
-      
+      type: selectedStudent.type,
       session: selectedStudent.id,
       student_id: userData._id,
       lecturer_id: JSON.parse(localStorage.getItem("userdata")!).user_data
@@ -62,7 +62,7 @@ function ScoreSheet({ onClose, getData1, project,selectedStudent, userData }: an
       session: selectedStudent.id,
       faculty:JSON.parse(localStorage.getItem("userdata")!)?.user_data?.faculty,
       department:JSON.parse(localStorage.getItem("userdata")!)?.user_data?.department,
-     
+      type: selectedStudent.type,
     });
     setData(userdata.data);
 

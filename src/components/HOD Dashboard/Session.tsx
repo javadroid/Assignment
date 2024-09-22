@@ -78,6 +78,7 @@ const ProjectSession: React.FC<UploadedProjectProps> = () => {
                     <p className='px-5 text-wrap w-[45%] font-medium text-[1rem] pt-3'>
                       {uploadDatas.name}
                     </p>
+                    {uploadDatas.type||"type"}
                     <div className='absolute bottom-2 right-10'>
                      
                     </div>
