@@ -135,25 +135,25 @@ export default function HODdash2() {
     );
     
     setSData(
-      userdata.data.filter(
+      userdata.data[1].filter(
         (item: any, index: number, self: any) =>
           index === self.findIndex((t: any) => t._id === item._id)
       )
     );
     setDataFiltered(
-      userdata.data
+      userdata.data[1]
         
     );
-    settype(userdata.data[0]?.type)
+    settype(userdata.data[0])
     setdate(
       new Date(
         Number(
-          userdata.data.filter((t: any) => t.type === type)[0]?.full
+          userdata.data[1].filter((t: any) => t.type === type)[0]?.full
             ?.proposal_defense?.date
         )
       ).toDateString()
     );
-    console.log(userdata.data.filter((t: any) => t.type === type));
+    console.log(userdata.data[1].filter((t: any) => t.type === type));
   };
   // Handle page change
   const handleChangePage = (

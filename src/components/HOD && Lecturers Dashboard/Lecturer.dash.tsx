@@ -200,8 +200,8 @@ export default function LecDashboard() {
 
   const getData = async () => {
     const userdata = await axios.get(BaseUrl + "user");
-    setSData(userdata.data);
-    setDataFiltered(userdata.data.filter((t: any) => t.is_student));
+    setSData(userdata.data[1]);
+    setDataFiltered(userdata.data[1].filter((t: any) => t.is_student));
   };
 
   const getDataSession = async () => {
@@ -211,13 +211,13 @@ export default function LecDashboard() {
         JSON.parse(localStorage.getItem("userdata")!).user_data._id
     );
     setSData(
-      userdata.data.filter(
+      userdata.data[1].filter(
         (item: any, index: number, self: any) =>
           index === self.findIndex((t: any) => t._id === item._id)
       )
     );
     setDataFiltered(
-      userdata.data
+      userdata.data[1]
         .filter((t: any) => t.type === type)
         .filter(
           (item: any, index: number, self: any) =>
@@ -227,12 +227,12 @@ export default function LecDashboard() {
     setdate(
       new Date(
         Number(
-          userdata.data.filter((t: any) => t.type === type)[0]?.full
+          userdata.data[1].filter((t: any) => t.type === type)[0]?.full
             ?.proposal_defense?.date
         )
       ).toDateString()
     );
-    console.log(userdata.data.filter((t: any) => t.type === type));
+    console.log(userdata.data[1].filter((t: any) => t.type === type));
   };
   // Handle page change
   const handleChangePage = (
