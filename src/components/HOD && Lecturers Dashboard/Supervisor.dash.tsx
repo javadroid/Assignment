@@ -140,7 +140,7 @@ export default function SupervisorsDashboard() {
           <div className='m-4 '>
             <div className='flex  flex-row justify-between'>
               <div className='flex  flex-row'>
-                <DropDown
+                {/* <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
                   labelText='Session:'
                   id='dropDown'
@@ -157,7 +157,7 @@ export default function SupervisorsDashboard() {
                   name='Section'
                   data={["A", "B"]}
                   className='  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500'
-                />
+                /> */}
 
                 <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
@@ -233,7 +233,7 @@ export default function SupervisorsDashboard() {
                                 </span>
                               </button>
 
-                              {row?.project?.status !== "approved" &&
+                              {row?.project?.status === "uploaded" &&
                                 row.supervisors.major ===
                                   JSON.parse(localStorage.getItem("userdata")!)
                                     .user_data._id && (
@@ -260,7 +260,7 @@ export default function SupervisorsDashboard() {
                                                   "user/project/" +
                                                   row?.project?._id,
                                                 {
-                                                  status: "approved",
+                                                  status: "topic_approved",
                                                   proposal_defense: {
                                                     status: "pending",
                                                   },
