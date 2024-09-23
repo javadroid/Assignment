@@ -21,7 +21,7 @@ const UploadedProject: React.FC<UploadedProjectProps> = () => {
   }, []);
 
   const getData = async () => {
-    const data = await axios.get(`${BaseUrl}user/project`);
+    const data = await axios.get(`${BaseUrl}user/project?id=${JSON.parse(localStorage.getItem("userdata")!)?.user_data?._id}`);
     console.log(data);
     setUploadData(data.data);
   };

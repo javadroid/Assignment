@@ -465,17 +465,18 @@ export default function LecDashboard2() {
                           ) : (
                             <>
                               <StyledTableCell align='center'>
-                                {row?.project?.proposal_defense?.status || ""}
+                                {row?.project?.proposal_defense?.score ||row?.project?.proposal_defense?.status || ""}
                               </StyledTableCell>
                               <StyledTableCell align='center'>
-                                {row?.project?.internal_defense?.status || ""}
+                                {row?.project?.internal_defense?.score ||row?.project?.internal_defense?.status || ""}
                               </StyledTableCell>
                               <StyledTableCell align='center'>
-                                {row?.project?.seminar3?.status || ""}
+                                {row?.project?.external_defense?.score ||row?.project?.external_defense?.status || ""}
                               </StyledTableCell>
                               <StyledTableCell align='center'>
-                                {row?.project?.external_defense?.status || ""}
+                                {row?.project?.seminar3?.score ||row?.project?.seminar3?.status || ""}
                               </StyledTableCell>
+                          
                              
                             </>
                           )}
