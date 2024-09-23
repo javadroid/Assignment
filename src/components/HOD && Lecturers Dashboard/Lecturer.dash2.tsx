@@ -340,6 +340,8 @@ export default function LecDashboard2() {
                       axios
                         .post(BaseUrl + "user/assign", {
                           id,
+                          type,
+                          defense:datatopass.project,
                           [proj]:
                             SData[datatopass.project]?.status ===
                             "active"
@@ -451,13 +453,13 @@ export default function LecDashboard2() {
                           {type === "MSC" ? (
                             <>
                               <StyledTableCell align='center'>
-                                {row?.project?.proposal_defense?.status || ""}
+                                {row?.project?.proposal_defense?.score ||row?.project?.proposal_defense?.status || ""}
                               </StyledTableCell>
                               <StyledTableCell align='center'>
-                                {row?.project?.internal_defense?.status || ""}
+                                {row?.project?.internal_defense?.score ||row?.project?.internal_defense?.status || ""}
                               </StyledTableCell>
                               <StyledTableCell align='center'>
-                                {row?.project?.external_defense?.status || ""}
+                                {row?.project?.external_defense?.score ||row?.project?.external_defense?.status || ""}
                               </StyledTableCell>
                             </>
                           ) : (
@@ -469,11 +471,12 @@ export default function LecDashboard2() {
                                 {row?.project?.internal_defense?.status || ""}
                               </StyledTableCell>
                               <StyledTableCell align='center'>
-                                {row?.project?.external_defense?.status || ""}
-                              </StyledTableCell>
-                              <StyledTableCell align='center'>
                                 {row?.project?.seminar3?.status || ""}
                               </StyledTableCell>
+                              <StyledTableCell align='center'>
+                                {row?.project?.external_defense?.status || ""}
+                              </StyledTableCell>
+                             
                             </>
                           )}
 
