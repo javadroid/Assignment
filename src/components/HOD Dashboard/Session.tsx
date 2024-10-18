@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-empty-pattern */
 import { useEffect, useState } from "react";
 import Navigation from "../Reusable-Code/Navigation";
@@ -29,11 +30,16 @@ const ProjectSession: React.FC<UploadedProjectProps> = () => {
     // JSON.parse(localStorage.getItem("userdata")!).user
     const data = await axios.post(
       `${BaseUrl}user/getSessionName?id=${
-        state
+        (state
           ? state._id
-          : JSON.parse(localStorage.getItem("userdata")!).user_data._id
-     ,{   faculty:JSON.parse(localStorage.getItem("userdata")!)?.user_data?.faculty,
-      department:JSON.parse(localStorage.getItem("userdata")!)?.user_data?.department,} }`
+          : JSON.parse(localStorage.getItem("userdata")!).user_data._id,
+        {
+          faculty: JSON.parse(localStorage.getItem("userdata")!)?.user_data
+            ?.faculty,
+          department: JSON.parse(localStorage.getItem("userdata")!)?.user_data
+            ?.department,
+        })
+      }`
     );
     console.log(data);
     setUploadData(data.data);
@@ -68,41 +74,41 @@ const ProjectSession: React.FC<UploadedProjectProps> = () => {
                 <section key={i} className='w-[90%] h-full'>
                   <div
                     onClick={() => {
-                      nativate("/student-projects-hod/"+uploadDatas._id, { state: uploadDatas });
+                      nativate("/student-projects-hod/" + uploadDatas._id, {
+                        state: uploadDatas,
+                      });
                     }}
-                    className='bg-[#f6dd9e] shadow-lg relative pb-4'
+                    className='bg-[#f6dd9e] shadow-lg relative pb-4 rounded-lg cursor-pointer'
                     id={String(i)}>
-                    <h3 className='font-semibold text-[1.3rem] my-3 pl-5 border-b-2 border-gray-500 shadow-sm'>
-                      {/* {"TOPIC"} */}
-                    </h3>
+                    {/* <h3 className='font-semibold text-[1.3rem] my-3 pl-5 border-b-2 border-gray-500 shadow-sm'>
+                      
+                    </h3> */}
                     <p className='px-5 text-wrap w-[45%] font-medium text-[1rem] pt-3'>
                       {uploadDatas.name}
                     </p>
-                    {uploadDatas.type||"type"}
-                    <div className='absolute bottom-2 right-10'>
-                     
+                    <div className='px-5 text-wrap w-[45%] font-medium text-[1rem] pt-3'>
+                      {uploadDatas.type || "type"}
                     </div>
+                    {/* <div className='absolute bottom-2 right-10'></div> */}
                   </div>
                 </section>
               ))}
             </div>
           </div>
-         
-          
-            <div className='absolute bottom-32 right-10'>
-              <button
-                onClick={togglePopup}
-                className='outline-none p-3  w-[10rem] rounded-md bg-[#726135] text-white  hover:scale-110 hover:bg-[#aa9c7a]'>
-                New Session
-              </button>
-              {isPopupOpen && (
-                <ADDSECTION getData={getData} onClose={togglePopup} />
-              )}
-              {showConfirmation && (
-                <ConfirmationPopup onClose={() => setShowConfirmation(true)} />
-              )}
-            </div>
-         
+
+          <div className='absolute bottom-32 right-10'>
+            <button
+              onClick={togglePopup}
+              className='outline-none p-3  w-[10rem] rounded-md bg-[#726135] text-white  hover:scale-110 hover:bg-[#aa9c7a]'>
+              New Session
+            </button>
+            {isPopupOpen && (
+              <ADDSECTION getData={getData} onClose={togglePopup} />
+            )}
+            {showConfirmation && (
+              <ConfirmationPopup onClose={() => setShowConfirmation(true)} />
+            )}
+          </div>
         </div>
       </div>
     </div>

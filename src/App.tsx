@@ -42,12 +42,14 @@ const App: React.FC = () => {
               <>
                 {userData?.user_data?.is_student ? (
                   <Navigate to={"/uploaded"} />
-                ) : (<>
-                {
-                  ["HOD"].includes(userData?.user_data?.type)?( <Navigate to={"/session-student-projects"} />):( <Navigate to={"/notification"} />)
-                }
-                </>
-                 
+                ) : (
+                  <>
+                    {["HOD"].includes(userData?.user_data?.type) ? (
+                      <Navigate to={"/session-student-projects"} />
+                    ) : (
+                      <Navigate to={"/notification"} />
+                    )}
+                  </>
                 )}
               </>
             ) : (
@@ -81,15 +83,15 @@ const App: React.FC = () => {
               path='/lecturer-dashboard'
               element={<LecDashboard />}></Route>
 
-<Route
+            <Route
               path='/session-student-projects'
               element={<ProjectSession />}></Route>
-              <Route
+            <Route
               path='/student-projects/:id'
               element={<LecDashboard2 />}></Route>
-               <Route
+            <Route
               path='/student-projects-hod/:id'
-              element={< HODdash2/>}></Route>
+              element={<HODdash2 />}></Route>
             <Route path='/hodDash' element={<HodDashboard />}></Route>
           </>
         )}
