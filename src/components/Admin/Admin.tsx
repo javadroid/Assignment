@@ -34,7 +34,7 @@ export default function Admin() {
   const [page, setPage] = useState(0);
   const [data, setData] = useState([]);
   const [dataFiltered, setDataFiltered] = useState([]);
-  const [rowsPerPage, setRowsPerPage] = useState(3);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const [type, setType] = useState("");
   const [isStudent, setIsStudent] = useState(true);

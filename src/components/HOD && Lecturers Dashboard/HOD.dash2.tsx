@@ -34,7 +34,7 @@ import Notification from "../Notifications/Notification";
 export default function HODdash2() {
   // State for pagination
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(3);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isPopupOpen4, setIsPopupOpen4] = useState(false);
   const [SData, setSData] = useState([]) as any[];

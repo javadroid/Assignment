@@ -30,7 +30,7 @@ import Notification from "../Notifications/Notification";
 export default function SupervisorsDashboard() {
   // State for pagination
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(3);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [SData, setSData] = useState([]) as any[];
   const [DataFiltered, setDataFiltered] = useState([]) as any[];

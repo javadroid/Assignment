@@ -33,7 +33,7 @@ import ScoreSheet from "../Student-Dashboard/Popup-Screens/ScoreSheet";
 export default function LecDashboard2() {
   // State for pagination
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(3);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isPopupOpen2, setIsPopupOpen2] = useState(false);
   const [isPopupOpen4, setIsPopupOpen4] = useState(false);
