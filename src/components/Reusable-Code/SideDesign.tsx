@@ -63,7 +63,14 @@ const SideDesign: React.FC<props> = ({ isOpen, isClose }) => {
                 Assign Supervisor
               </Link>
             </li>
-          
+            <li className="group flex  rounded-md h-[4rem] cursor-pointer hover:bg-[#f6dd9e] ">
+              <Link
+                className="group-hover:text-gray-950  group-hover:scale-110 transition-transform ease-linear  flex flex-col text-center m-auto"
+                to={"/admin"}
+              >
+                User Management 
+              </Link>
+            </li>
           </>
         )}
         {JSON.parse(localStorage.getItem("userdata")!).user_data.type ===

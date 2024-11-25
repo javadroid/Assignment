@@ -22,12 +22,13 @@ const LogoutScreen = ({ onClose }: LogoutScreenProps) => {
               style={{ cursor: "pointer", fill: "#e11d48" }}
               size={35}
             />
-            <Link to={"/login"}>
+            <div >
               <IoMdCheckmark onClick={()=>{
                 localStorage.clear()
+                navigate("/login")
                 
               }} size={35} style={{ fill: "#a1812e" }} />
-            </Link>
+            </div>
           </div>
         </div>
       </div>

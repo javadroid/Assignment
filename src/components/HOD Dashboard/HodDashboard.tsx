@@ -145,7 +145,7 @@ export default function HodDashboard() {
                 </ToggleButton>
               </ToggleButtonGroup>
               <div className='flex  flex-row'>
-                <DropDown
+                {/* <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
                   labelText='Session:'
                   id='dropDown'
@@ -153,8 +153,8 @@ export default function HodDashboard() {
                   name='Section'
                   data={["2020/2021", "2022/2024", "2024/2025"]}
                   className='  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500'
-                />
-                <DropDown
+                /> */}
+                {/* <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
                   labelText='Batch:'
                   id='dropDown'
@@ -162,7 +162,7 @@ export default function HodDashboard() {
                   name='Section'
                   data={["A", "B"]}
                   className='  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500'
-                />
+                /> */}
 
                 <DropDown
                   // divClassName="flex flex-col xs:w-[30%]"
@@ -173,9 +173,7 @@ export default function HodDashboard() {
                     setDataFiltered(
                       SData.filter(
                         (t: any) =>
-                          t.type === i &&
-                          t.section === section &&
-                          t.batch === batch
+                          t.type === i 
                       )
                     );
                   }}
