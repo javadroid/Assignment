@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 interface Notification {
   _id: any;
   type: string;
+  viewid:string,
   message: string;
   timestamp: string;
   read: boolean;
@@ -89,7 +90,7 @@ function NoticeInfo() {
                 </div>
 
                 <Link
-                  to={"/student-projects/" + notificationDatas._id}
+                  to={"/student-projects/" + notificationDatas.viewid}
                   onClick={() => markAsRead(notificationDatas._id)}>
                   {"View"}
                 </Link>
