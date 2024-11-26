@@ -162,7 +162,7 @@ export default function Admin() {
                       <StyledTableCell align='center'>
                         {isStudent ? "Type" : "Role"}
                       </StyledTableCell>
-                      <StyledTableCell align='center'></StyledTableCell>
+                      {/* <StyledTableCell align='center'></StyledTableCell> */}
                       <StyledTableCell align='center'></StyledTableCell>
                     </TableRow>
                   </TableHead>
@@ -180,17 +180,21 @@ export default function Admin() {
                         </StyledTableCell>
                         <StyledTableCell align='center'>
                           <ThemeProvider theme={theme}>
-                            <Button variant='contained'>Edit</Button>
+                            <Button onClick={()=>{
+                              axios.delete(`${BaseUrl}profile/${row._id}`).then((e)=>{
+                                getData()
+                              })
+                            }}  variant='contained'>Edit</Button>
                           </ThemeProvider>
                         </StyledTableCell>
 
-                        <StyledTableCell align='center'>
+                        {/* <StyledTableCell align='center'>
                           <ThemeProvider theme={theme}>
                             <Button color='error' variant='contained'>
                               Delete
                             </Button>
                           </ThemeProvider>
-                        </StyledTableCell>
+                        </StyledTableCell> */}
                       </StyledTableRow>
                     ))}
                   </TableBody>
