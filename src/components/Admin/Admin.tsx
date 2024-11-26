@@ -27,6 +27,7 @@ import AssignSupervisor from "../Student-Dashboard/Popup-Screens/AssignSuperviso
 import AddUSer from "../Student-Dashboard/Popup-Screens/AddUser";
 import { BaseUrl } from "../../service";
 import Notification from "../Notifications/Notification";
+import Swal from "sweetalert2";
 
 export default function Admin() {
   // State for pagination
@@ -181,9 +182,24 @@ export default function Admin() {
                         <StyledTableCell align='center'>
                           <ThemeProvider theme={theme}>
                             <Button onClick={()=>{
-                              axios.delete(`${BaseUrl}profile/${row._id}`).then((e)=>{
-                                getData()
-                              })
+
+Swal.fire({
+  title:
+    "Do you want to delete this user?",
+  cancelButtonColor: "yellow",
+  confirmButtonColor: "green",
+  showCancelButton: true,
+  confirmButtonText: "Delete",
+}).then(async (result) => {
+  /* Read more about isConfirmed, isDenied below */
+  if (result.isConfirmed) {
+    axios.delete(`${BaseUrl}profile/${row._id}`).then((e)=>{
+      getData()
+    })
+     
+  }
+});
+                              
                             }}  variant='contained'>Delete</Button>
                           </ThemeProvider>
                         </StyledTableCell>
