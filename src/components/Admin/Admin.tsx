@@ -184,7 +184,7 @@ export default function Admin() {
                               axios.delete(`${BaseUrl}profile/${row._id}`).then((e)=>{
                                 getData()
                               })
-                            }}  variant='contained'>Edit</Button>
+                            }}  variant='contained'>Delete</Button>
                           </ThemeProvider>
                         </StyledTableCell>
 

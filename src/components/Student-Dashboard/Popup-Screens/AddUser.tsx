@@ -190,7 +190,7 @@ function AddUSer({ onClose, getData }: UploadPopUpProps) {
                   selectOption={userData.type}
                   data={
                     userData.is_student
-                      ? ["MSC", "PGD"]
+                      ? ["MSC", "PGD","PHD"]
                       : [
                           "HOD",
                           "Dean",

@@ -74,7 +74,7 @@ export default function SPGSRep() {
                 settype(i);
               }}
               name='Section'
-              data={["MSC", "PGD"]}
+              data={["MSC", "PGD","PHD"]}
               className='  border-2 border-gray-500 py-1 px-2 mr-2 rounded-md  focus:active:border-gray-500'
             />
           </div>
