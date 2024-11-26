@@ -193,7 +193,7 @@ Swal.fire({
 }).then(async (result) => {
   /* Read more about isConfirmed, isDenied below */
   if (result.isConfirmed) {
-    axios.delete(`${BaseUrl}profile/${row._id}`).then((e)=>{
+    axios.delete(`${BaseUrl}/auth/profile/${row._id}`).then((e)=>{
       getData()
     })
      
